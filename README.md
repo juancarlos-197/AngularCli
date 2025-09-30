@@ -333,3 +333,59 @@ Let's see how we can customize the styles of our base or background layer to ada
   }
 </script>
 ```
+
+
+De acuerdo funciona, pero… ¿Dónde ha ido la capa de provincias?
+
+Lo que ocurre es que MapLibre GL JS reemplaza toda la estructura del mapa al cambiar de estilo cuando se llamas a «setStyle()». Este comportamiento no es un bug, es el diseño previsto de MapLibre/Mapbox GL JS, por lo que necesitamos recargar nuestra capa de provincias cada vez que cambiemos nuestros estilos.
+
+Modifiquemos nuestro código para adaptarlo a esta necesidad. Primero encapsulemos la funcionalidad de carga de nuestra capa de provincias en una función «cargarProvincias()», llamamos a dicha función cuando el mapa ha cargado y además en el cuando realizamos un cambio de estilos desde el «select«:
+
+```html
+<script>
+
+
+    //Eventos de click  mostrar información básica al pulsar sobre una provincia
+    if (this.map) {
+      this.map.on('click', layerId, (e) => {
+        if (e.features && e.features.length > 0) {
+          if (e.features[0].properties) {
+
+            console.log('ttt', e.features[0].properties)
+            const props = e.features[0].properties;
+            new maplibregl.Popup()
+              .setLngLat(e.lngLat)
+
+              .setHTML(`
+            <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
+           <h6> Código: ${props['prov_code']}<br/></h6><br/>
+            Comunidad: ${props['acom_name']}<br/>
+            Año: ${props['year']}
+          `)
+              .addTo(this.map!);
+            new maplibregl.Marker({ color: "#152688ff" })
+              .setLngLat([-73.5361958, 1.44582548])
+              .addTo(this.map!);
+
+
+          }
+        }
+      });
+      this.map.on('mouseenter', layerId, () => {
+        if (this.map) {
+          this.map.getCanvas().style.cursor = 'pointer';
+        }
+      });
+      this.map.on('mouseleave', layerId, () => {
+        if (this.map) {
+          this.map.getCanvas().style.cursor = '';
+        }
+      });
+    }
+
+    
+</script>
+
+```
+With this, we have a viewer capable of moving fluidly, showing the user's location, and adapting to different visual styles.
+
