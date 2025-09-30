@@ -113,12 +113,13 @@ Create a db.json file or run json-server db.json to create one with some default
 ```
 npm i json-server@0.17.4
 ```
-### 
+
+###
 
 Create an Angular web application that allows you to:
 
 1. Display a base map using MapLibre GL JS.
-In a previous post, we showed you how to create a web viewer with MapLibre GL JS and load a GeoJSON file with your data. Now we're going a step further: we're going to enhance this viewer by adding basic features that make it much more interactive and useful.
+   In a previous post, we showed you how to create a web viewer with MapLibre GL JS and load a GeoJSON file with your data. Now we're going a step further: we're going to enhance this viewer by adding basic features that make it much more interactive and useful.
 
 <p align="center">
   <a href="">
@@ -132,17 +133,16 @@ In a previous post, we showed you how to create a web viewer with MapLibre GL JS
 We start from a simple viewer, and we center it to show it by default.
 
 ```html
-<div id='map' class="map"> </div>
+<div id="map" class="map"></div>
 <div class="position">
-        
-        <select id="estilos">
-          <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro   </option>
-          <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
-          <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+  <select id="estilos">
+    <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro</option>
+    <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
+    <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+  </select>
+</div>
 
-        </select>
-      </div>
-      <script>
+<script>
 
   //Crear mapa base
   createBaseMap() {
@@ -156,3 +156,11 @@ We start from a simple viewer, and we center it to show it by default.
 </script>
 ```
 
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center">Add navigation, geolocation, and scale controls  </h2>
+  </a>
+</p>
