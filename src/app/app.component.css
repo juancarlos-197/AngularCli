@@ -1,0 +1,10 @@
+.position{
+    position: relative;
+    top: 20px;
+}
+
+.map{
+    width: 800px;
+     height: 300px; 
+     left: 0%
+}

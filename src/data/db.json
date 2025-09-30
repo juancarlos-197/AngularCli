@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.6483,
+          -33.4569
+        ]
+      },
+      "properties": {
+        "name": "Plaza de Armas",
+        "category": "landmark"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.615,
+          -33.44
+        ]
+      },
+      "properties": {
+        "name": "Parque Bicentenario",
+        "category": "park"
+      }
+    }
+  ]
+}
