@@ -300,3 +300,36 @@ Let's continue with the features of our viewer, for example, showing useful info
   }
 </script>
 ```
+
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center">  Change the base style of the map</h2>
+  </a>
+
+Let's see how we can customize the styles of our base or background layer to adapt the display. In our HTML, we add a "select" control to choose between light and dark mode:
+
+```html
+<select id="estilos">
+  <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro</option>
+  <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
+  <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+</select>
+<script>
+
+  //Cambiar estilos del mapa
+  changeBaseStyleMap() {
+    const estilosElement = document.getElementById('estilos');
+    if (estilosElement) {
+      estilosElement.addEventListener('change', (e: Event) => {
+        const target = e.target as HTMLSelectElement;
+        if (target && target.value && this.map) {
+          this.map.setStyle(target.value);
+        }
+      });
+    }
+  }
+</script>
+```
