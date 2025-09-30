@@ -132,10 +132,9 @@ In a previous post, we showed you how to create a web viewer with MapLibre GL JS
 We start from a simple viewer, and we center it to show it by default.
 
 ```html
+<div id='map' class="map"> </div>
 <div class="position">
-        <div id='map' class="map">
-
-        </div>
+        
         <select id="estilos">
           <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro   </option>
           <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
