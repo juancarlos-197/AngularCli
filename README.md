@@ -81,6 +81,7 @@ npm i maplibre-gl@3.2.0-pre.2
 </p>
 Create a db.json file or run json-server db.json to create one with some default resources
 
+```
 {
   "posts": [
     { "id": "1", "title": "string" },
@@ -91,6 +92,9 @@ Create a db.json file or run json-server db.json to create one with some default
     { "id": "2", "text": "some text", "postId": "1" }
   ]
 }
+
+```
+
 
 ```
 npm i json-server@0.17.4
