@@ -37,10 +37,17 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 </h2>
   </a>
 </p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-dark-bg.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-light-bg.svg">
+    <img alt="MapLibre Logo" src="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-light-bg.svg" width="200">
+  </picture>
+</p>
 
 ## Further help. Alcance funcional (MVP obligatorio)
-Construir una aplicación web Angular que permita:
-1. Visualizar un mapa base con MapLibre GL JS.
+Create an Angular web application that allows you to:
+1. Display a base map using MapLibre GL JS.
 
 ### Setting Up a Project
 
@@ -64,13 +71,7 @@ It originated as an open-source fork of mapbox-gl-js, before their switch to a n
     <img alt="" src="https://img.shields.io/npm/v/@builderbot/bot?color=%2300c200&label=%40bot-whatsapp">
   </a>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-dark-bg.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-light-bg.svg">
-    <img alt="MapLibre Logo" src="https://maplibre.org/img/maplibre-logos/maplibre-logo-for-light-bg.svg" width="200">
-  </picture>
-</p>
+
 
 
   <a aria-label="Join the community on GitHub" href="https://link.codigoencasa.com/DISCORD">
