@@ -169,45 +169,44 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
 
 ```html
 <script>
-// Añadir controles de navegación, geolocalización y escala
-  addGeolocationCntrols() {
-    // Controles de zoom y rotación
-    if (this.map) {
-      // If you want to add an attribution control with compact mode, use the following:
-      this.map.addControl(new maplibregl.AttributionControl({
-        compact: true
-      }));
+  // Añadir controles de navegación, geolocalización y escala
+    addGeolocationCntrols() {
+      // Controles de zoom y rotación
+      if (this.map) {
+        // If you want to add an attribution control with compact mode, use the following:
+        this.map.addControl(new maplibregl.AttributionControl({
+          compact: true
+        }));
 
-      this.map.addControl(
-        new maplibregl.NavigationControl(), 'top-right'
-      );
-      this.map.addControl(
-        new maplibregl.GlobeControl()
-      );
+        this.map.addControl(
+          new maplibregl.NavigationControl(), 'top-right'
+        );
+        this.map.addControl(
+          new maplibregl.GlobeControl()
+        );
 
-      // Geolocalización del usuario
-      this.map.addControl(new maplibregl.GeolocateControl({
-        positionOptions: { enableHighAccuracy: true },
-        trackUserLocation: true,
-      }), 'top-right');
+        // Geolocalización del usuario
+        this.map.addControl(new maplibregl.GeolocateControl({
+          positionOptions: { enableHighAccuracy: true },
+          trackUserLocation: true,
+        }), 'top-right');
 
-      // Escala métrica
-      this.map.addControl(new maplibregl.ScaleControl({
-        maxWidth: 100,
-        unit: 'metric'
-      }), 'bottom-left');
+        // Escala métrica
+        this.map.addControl(new maplibregl.ScaleControl({
+          maxWidth: 100,
+          unit: 'metric'
+        }), 'bottom-left');
 
 
-      /**Logotipo de MapLibre
-       * A LogoControles un control que agrega la marca de agua.
-       */
-      this.map.addControl(new maplibregl.LogoControl({ compact: false }));
+        /**Logotipo de MapLibre
+         * A LogoControles un control que agrega la marca de agua.
+         */
+        this.map.addControl(new maplibregl.LogoControl({ compact: false }));
 
+      }
     }
-  }
 </script>
 ```
-
 
 <p align="center">
   <a href="">
@@ -218,18 +217,17 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
   </a>
   This is all very well, but without data, our viewer is useless. Let's use the dataset of provinces in Spain and Colombia in GeoJSON format. This dataset offers simplified polygons of the Spanish and Colombian provinces, making it ideal for our project.
 
-
 ```html
 <script>
 
-  //Cargar datos reales 
+  //Cargar datos reales
   loadRealData() {
-    // Evento load 
+    // Evento load
     const sourceId = 'xample_points';
     const layerId = 'xample_points-layer';
     if (this.map) {
       this.map.on('load', (e) => {
-       /**          
+       /**
         * const radius = 1; // kilometer
         * const options = {
           steps: 104,
@@ -237,7 +235,7 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
         };
         const circle = turf.circle([-76.6361969, 2.4482548], radius);
          */
-       
+
         this.map?.addSource(sourceId, {
           type: 'geojson',
           // data: circle
@@ -258,5 +256,47 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
     }
   }
 </script>
+```
 
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center"> Display contextual information with pop-ups</h2>
+  </a>
+
+Let's continue with the features of our viewer, for example, showing useful information about each province, such as its name, autonomous community, and code when clicked:
+
+```html
+<script>
+
+  //Eventos de click  mostrar información básica al pulsar sobre una provincia
+  if (this.map) {
+    this.map.on('click', layerId, (e) => {
+      if (e.features && e.features.length > 0) {
+        if (e.features[0].properties) {
+
+          console.log('ttt', e.features[0].properties)
+          const props = e.features[0].properties;
+          new maplibregl.Popup()
+            .setLngLat(e.lngLat)
+
+            .setHTML(`
+          <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
+         <h6> Código: ${props['prov_code']}<br/></h6><br/>
+          Comunidad: ${props['acom_name']}<br/>
+          Año: ${props['year']}
+        `)
+            .addTo(this.map!);
+          new maplibregl.Marker({ color: "#152688ff" })
+            .setLngLat([-73.5361958, 1.44582548])
+            .addTo(this.map!);
+
+
+        }
+      }
+    });
+  }
+</script>
 ```
