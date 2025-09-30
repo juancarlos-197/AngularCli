@@ -46,8 +46,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 </p>
 
 ## Further help. Alcance funcional (MVP obligatorio)
-Create an Angular web application that allows you to:
-1. Display a base map using MapLibre GL JS.
 
 ### Setting Up a Project
 
@@ -100,17 +98,13 @@ Create a db.json file or run json-server db.json to create one with some default
 npm i json-server@0.17.4
 ```
 
-<p align="center">
-  <a aria-label="NPM version" href="https://www.npmjs.com/package/maplibre-gl/v/3.2.0-pre.2">
-    <img alt="" src="https://img.shields.io/npm/v/@builderbot/bot?color=%2300c200&label=%40bot-whatsapp">
-  </a>
+Create an Angular web application that allows you to:
+1. Display a base map using MapLibre GL JS.
 
 
 
 
-  <a aria-label="Join the community on GitHub" href="https://link.codigoencasa.com/DISCORD">
-    <img alt="" src="https://img.shields.io/discord/915193197645402142?logo=discord">
-  </a>
+
 </p>
  
 
