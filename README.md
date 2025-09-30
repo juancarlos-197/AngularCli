@@ -208,3 +208,55 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
 </script>
 ```
 
+
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center">  Load real data from an external GeoJSON</h2>
+  </a>
+  This is all very well, but without data, our viewer is useless. Let's use the dataset of provinces in Spain and Colombia in GeoJSON format. This dataset offers simplified polygons of the Spanish and Colombian provinces, making it ideal for our project.
+
+
+```html
+<script>
+
+  //Cargar datos reales 
+  loadRealData() {
+    // Evento load 
+    const sourceId = 'xample_points';
+    const layerId = 'xample_points-layer';
+    if (this.map) {
+      this.map.on('load', (e) => {
+       /**          
+        * const radius = 1; // kilometer
+        * const options = {
+          steps: 104,
+          units: 'kilometers'
+        };
+        const circle = turf.circle([-76.6361969, 2.4482548], radius);
+         */
+       
+        this.map?.addSource(sourceId, {
+          type: 'geojson',
+          // data: circle
+
+          data: 'https://public.opendatasoft.com/explore/dataset/georef-spain-provincia/download/?format=geojson&timezone=Europe/Madrid&lang=es'
+        });
+        this.map?.addLayer({
+          id: layerId,
+          type: 'fill',
+          source: sourceId,
+          paint: {
+            'fill-color': '#ff1c15ad',
+            'fill-opacity': 0.5,
+            'fill-outline-color': '#071224ff'
+          }
+        });
+      });
+    }
+  }
+</script>
+
+```
