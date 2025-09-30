@@ -164,3 +164,47 @@ We start from a simple viewer, and we center it to show it by default.
     <h2 align="center">Add navigation, geolocation, and scale controls  </h2>
   </a>
 </p>
+Adding Navigation, Geolocation, and Scale Controls
+We already have our base map loaded, but we can't do much with it yet. Let's fix it by adding standard controls that allow us to interact with the viewer. MapLibre GL JS natively offers controls for zooming, rotating the map, returning to the north orientation, showing the user's current location (if the browser allows it), and displaying a metric scale that indicates distance on the ground. These elements significantly improve usability, especially on mobile devices or field viewers, and we can add them very easily:
+
+```html
+<script>
+// Añadir controles de navegación, geolocalización y escala
+  addGeolocationCntrols() {
+    // Controles de zoom y rotación
+    if (this.map) {
+      // If you want to add an attribution control with compact mode, use the following:
+      this.map.addControl(new maplibregl.AttributionControl({
+        compact: true
+      }));
+
+      this.map.addControl(
+        new maplibregl.NavigationControl(), 'top-right'
+      );
+      this.map.addControl(
+        new maplibregl.GlobeControl()
+      );
+
+      // Geolocalización del usuario
+      this.map.addControl(new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+      }), 'top-right');
+
+      // Escala métrica
+      this.map.addControl(new maplibregl.ScaleControl({
+        maxWidth: 100,
+        unit: 'metric'
+      }), 'bottom-left');
+
+
+      /**Logotipo de MapLibre
+       * A LogoControles un control que agrega la marca de agua.
+       */
+      this.map.addControl(new maplibregl.LogoControl({ compact: false }));
+
+    }
+  }
+</script>
+```
+
