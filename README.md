@@ -62,12 +62,38 @@ npm install -g @angular/cli
 ```
 
 Install the MapLiber :
+
 MapLibre GL JS is an open-source library for publishing maps on your websites or webview based apps. Fast displaying of maps is possible thanks to GPU-accelerated vector tile rendering.
 
 It originated as an open-source fork of mapbox-gl-js, before their switch to a non-OSS license in December 2020. The library's initial versions (1.x) were intended to be a drop-in replacement for the Mapbox’s OSS version (1.x) with additional functionality, but have evolved a lot since then.
 
 ```
 npm i maplibre-gl@3.2.0-pre.2
+```
+
+<p align="center">
+  <a href="https://builderbot.vercel.app/">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center">Json-server </h2>
+  </a>
+</p>
+Create a db.json file or run json-server db.json to create one with some default resources
+
+{
+  "posts": [
+    { "id": "1", "title": "string" },
+    { "id": "2", "title": "some post" }
+  ],
+  "comments": [
+    { "id": "1", "text": "some text", "postId": "1" },
+    { "id": "2", "text": "some text", "postId": "1" }
+  ]
+}
+
+```
+npm i json-server@0.17.4
 ```
 
 <p align="center">
