@@ -53,18 +53,22 @@ Create an Angular web application that allows you to:
 
 Install the Angular CLI :
 
+The sources for this package are in the Angular CLI repository. Please file issues and pull requests against that repository.
+
+Usage information and reference details can be found in repository README. 
+
 ```
 npm install -g @angular/cli
 ```
 
 Install the MapLiber :
+MapLibre GL JS is an open-source library for publishing maps on your websites or webview based apps. Fast displaying of maps is possible thanks to GPU-accelerated vector tile rendering.
+
+It originated as an open-source fork of mapbox-gl-js, before their switch to a non-OSS license in December 2020. The library's initial versions (1.x) were intended to be a drop-in replacement for the Mapbox’s OSS version (1.x) with additional functionality, but have evolved a lot since then.
 
 ```
 npm i maplibre-gl@3.2.0-pre.2
 ```
-MapLibre GL JS is an open-source library for publishing maps on your websites or webview based apps. Fast displaying of maps is possible thanks to GPU-accelerated vector tile rendering.
-
-It originated as an open-source fork of mapbox-gl-js, before their switch to a non-OSS license in December 2020. The library's initial versions (1.x) were intended to be a drop-in replacement for the Mapbox’s OSS version (1.x) with additional functionality, but have evolved a lot since then.
 
 <p align="center">
   <a aria-label="NPM version" href="https://www.npmjs.com/package/maplibre-gl/v/3.2.0-pre.2">
