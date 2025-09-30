@@ -5,11 +5,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
+import { FooterComponent } from './footer/footer.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
