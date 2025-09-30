@@ -26,8 +26,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
+##
 
-## 
 <p align="center">
   <a href="https://builderbot.vercel.app/">
     <picture>
@@ -49,16 +49,32 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Setting Up a Project
 
+<p align="center">
+  <a href="https://builderbot.vercel.app/">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center">Angular CLI </h2>
+  </a>
+</p>
 Install the Angular CLI :
 
 The sources for this package are in the Angular CLI repository. Please file issues and pull requests against that repository.
 
-Usage information and reference details can be found in repository README. 
+Usage information and reference details can be found in repository README.
 
 ```
 npm install -g @angular/cli
 ```
 
+<p align="center">
+  <a href="https://builderbot.vercel.app/">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center">MapLibre GL JS </h2>
+  </a>
+</p>
 Install the MapLiber :
 
 MapLibre GL JS is an open-source library for publishing maps on your websites or webview based apps. Fast displaying of maps is possible thanks to GPU-accelerated vector tile rendering.
@@ -77,6 +93,7 @@ npm i maplibre-gl@3.2.0-pre.2
     <h2 align="center">Json-server </h2>
   </a>
 </p>
+
 Create a db.json file or run json-server db.json to create one with some default resources
 
 ```
@@ -93,18 +110,13 @@ Create a db.json file or run json-server db.json to create one with some default
 
 ```
 
-
 ```
 npm i json-server@0.17.4
 ```
+### 
 
 Create an Angular web application that allows you to:
+
 1. Display a base map using MapLibre GL JS.
 
-
-
-
-
-</p>
- 
 
