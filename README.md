@@ -50,7 +50,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Setting Up a Project
 
 <p align="center">
-  <a href="https://builderbot.vercel.app/">
+  <a href="">
     <picture>
       <img  height="80">
     </picture>
@@ -68,7 +68,7 @@ npm install -g @angular/cli
 ```
 
 <p align="center">
-  <a href="https://builderbot.vercel.app/">
+  <a href="">
     <picture>
       <img  height="80">
     </picture>
@@ -86,7 +86,7 @@ npm i maplibre-gl@3.2.0-pre.2
 ```
 
 <p align="center">
-  <a href="https://builderbot.vercel.app/">
+  <a href="">
     <picture>
       <img  height="80">
     </picture>
@@ -118,5 +118,42 @@ npm i json-server@0.17.4
 Create an Angular web application that allows you to:
 
 1. Display a base map using MapLibre GL JS.
+In a previous post, we showed you how to create a web viewer with MapLibre GL JS and load a GeoJSON file with your data. Now we're going a step further: we're going to enhance this viewer by adding basic features that make it much more interactive and useful.
 
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center">Create the base map  </h2>
+  </a>
+</p>
+
+We start from a simple viewer, and we center it to show it by default.
+
+```html
+<div class="position">
+        <div id='map' class="map">
+
+        </div>
+        <select id="estilos">
+          <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro   </option>
+          <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
+          <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+
+        </select>
+      </div>
+      <script>
+
+  //Crear mapa base
+  createBaseMap() {
+    this.map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx', // stylesheet location
+      center: [-76.6361969, 2.4482548], // starting position [lng, lat]
+      zoom: 1 // starting zoom
+    });
+  }
+</script>
+```
 
