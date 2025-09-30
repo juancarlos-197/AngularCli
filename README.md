@@ -31,7 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 <p align="center">
   <a href="https://builderbot.vercel.app/">
     <picture>
-  <img src="/docs/images/angular-cli-logo.png" alt="Angular CLI logo" width="100px" height="108px"/>
+      <img src="https://builderbot.vercel.app/assets/thumbnail-vector.png" height="80">
     </picture>
     <h2 align="center">AngularCli + MapLibre GL JS
 </h2>
