@@ -3,11 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import maplibregl from 'maplibre-gl';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { FooterComponent } from './footer/footer.component';
-import * as turf from "@turf/turf";
-
+import * as L from 'leaflet';
+import * as geojson from 'geojson';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,8 +18,7 @@ export class AppComponent {
   public title = 'AngularCli + MapLibre GL JS';
   public map: maplibregl.Map | undefined;
   public marke: maplibregl.Marker | undefined;
-
-  private http = inject(HttpClient);
+  public imagen: any;
 
   ngOnInit() { }
 
@@ -30,18 +28,19 @@ export class AppComponent {
     this.addGeolocationCntrols();
     this.loadRealData();
     this.changeBaseStyleMap();
-
+    this.addGeoJsonFeatures();
     if (this.map) {
-
       this.map.on('load', async () => {
         this.map?.addSource('xample_points', {
           type: 'geojson',
           data: 'https://raw.githubusercontent.com/geoinnova/Points/master/points.json'
         });
-        if (this.map) {
-          const image = await this.map.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/osgeo-logo.png');
-          this.map?.addImage('custom-marker', image.data);
-        }
+          this.imagen = await this.map?.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/osgeo-logo.png');
+          
+          console.log('rrr',this.imagen);
+          
+          this.map?.addImage('custom-marker', this.imagen.data);
+        
         this.map?.addLayer({
           'id': 'xample_points',
           'type': 'circle',
@@ -85,6 +84,7 @@ export class AppComponent {
     new maplibregl.Marker({ color: "#7e1588ff" })
       .setLngLat([-76.5361958, 1.44582548])
       .addTo(this.map!);
+ 
 
   }
 
@@ -116,13 +116,24 @@ export class AppComponent {
         unit: 'metric'
       }), 'bottom-left');
 
-
       /**Logotipo de MapLibre
        * A LogoControles un control que agrega la marca de agua.
        */
       this.map.addControl(new maplibregl.LogoControl({ compact: false }));
 
     }
+
+    var geojsonPoint: geojson.Point = {
+      type: "Point",
+      coordinates: [5.9, 43.13],
+    };
+    var marker = L.geoJSON(geojsonPoint, {
+      pointToLayer: (point,latlon)=> {
+        return L.marker(latlon, )
+      }
+    });
+
+
   }
 
   //Cargar datos reales 
@@ -132,15 +143,15 @@ export class AppComponent {
     const layerId = 'xample_points-layer';
     if (this.map) {
       this.map.on('load', (e) => {
-       /**          
-        * const radius = 1; // kilometer
-        * const options = {
-          steps: 104,
-          units: 'kilometers'
-        };
-        const circle = turf.circle([-76.6361969, 2.4482548], radius);
-         */
-       
+        /**          
+         * const radius = 1; // kilometer
+         * const options = {
+           steps: 104,
+           units: 'kilometers'
+         };
+         const circle = turf.circle([-76.6361969, 2.4482548], radius);
+          */
+
         this.map?.addSource(sourceId, {
           type: 'geojson',
           // data: circle
@@ -165,12 +176,9 @@ export class AppComponent {
       this.map.on('click', layerId, (e) => {
         if (e.features && e.features.length > 0) {
           if (e.features[0].properties) {
-
-            console.log('ttt', e.features[0].properties)
             const props = e.features[0].properties;
             new maplibregl.Popup()
               .setLngLat(e.lngLat)
-
               .setHTML(`
             <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
            <h6> Código: ${props['prov_code']}<br/></h6><br/>
@@ -181,8 +189,6 @@ export class AppComponent {
             new maplibregl.Marker({ color: "#152688ff" })
               .setLngLat([-73.5361958, 1.44582548])
               .addTo(this.map!);
-
-
           }
         }
       });
@@ -214,7 +220,123 @@ export class AppComponent {
       });
     }
   }
- ngOnDestroy() {
+ /**Agregar múltiples funciones de una colección de funciones
+Puedes usar geojson para crear tu propia colección y jugar con esta funcionalidad.
+*/
+ addGeoJsonFeatures() {
+    var geoJsonFeatures: geojson.FeatureCollection = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "marker-color": "#7e7e7e",
+            "marker-size": "medium",
+            "marker-symbol": "circle-stroked",
+            "population": 123456
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              6.134490966796874,
+              49.61649369617232
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              5.887298583984375,
+              49.48240137826932
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              6.179809570312499,
+              49.453842594330716
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                5.4107666015625,
+                49.586677749628784
+              ],
+              [
+                5.71014404296875,
+                49.616048816070425
+              ],
+              [
+                5.78155517578125,
+                49.47883244071047
+              ],
+              [
+                5.696411132812499,
+                49.37969064441394
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  5.2789306640625,
+                  49.7173764049358
+                ],
+                [
+                  5.295410156249999,
+                  49.61070993807422
+                ],
+                [
+                  5.532989501953125,
+                  49.63117246129088
+                ],
+                [
+                  5.604400634765625,
+                  49.74045665339642
+                ],
+                [
+                  5.601654052734375,
+                  49.82558098327032
+                ],
+                [
+                  5.329742431640625,
+                  49.82469504231389
+                ],
+                [
+                  5.2789306640625,
+                  49.7173764049358
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    };
+
+    console.log('qqqqq', geoJsonFeatures);
+    
+  }
+
+  ngOnDestroy() {
     this.map?.remove();
   }
 
