@@ -7,6 +7,10 @@ import 'leaflet/dist/leaflet.css';
 import { FooterComponent } from './footer/footer.component';
 import * as L from 'leaflet';
 import * as geojson from 'geojson';
+import * as turf from "@turf/turf";
+import { circle } from "@turf/circle";
+
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,7 +22,7 @@ export class AppComponent {
   public title = 'AngularCli + MapLibre GL JS';
   public map: maplibregl.Map | undefined;
   public marke: maplibregl.Marker | undefined;
-  public imagen: any;
+
 
   ngOnInit() { }
 
@@ -28,32 +32,10 @@ export class AppComponent {
     this.addGeolocationCntrols();
     this.loadRealData();
     this.changeBaseStyleMap();
+    this.cregarPoint();
     this.addGeoJsonFeatures();
-    if (this.map) {
-      this.map.on('load', async () => {
-        this.map?.addSource('xample_points', {
-          type: 'geojson',
-          data: 'https://raw.githubusercontent.com/geoinnova/Points/master/points.json'
-        });
-          this.imagen = await this.map?.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/osgeo-logo.png');
-          
-          console.log('rrr',this.imagen);
-          
-          this.map?.addImage('custom-marker', this.imagen.data);
-        
-        this.map?.addLayer({
-          'id': 'xample_points',
-          'type': 'circle',
-          'source': 'xample_points',
 
-          'paint': {
-            'circle-radius': 8,
-            'circle-color': '#B42222'
-          },
 
-        });
-      });
-    }
   }
 
   //Crear mapa base
@@ -71,21 +53,15 @@ export class AppComponent {
     this.marke = new maplibregl.Marker({ color: "#7c2828ff" })
       .setLngLat([-76.6361969, 2.4482548])
       .addTo(this.map!);
-
     new maplibregl.Marker({ color: "#FF0000" })
       .setLngLat([-76.6361969, 2.4682548])
       .addTo(this.map!);
-
     new maplibregl.Marker({ color: "#8fc933ff" })
       .setLngLat([-76.6361958, 2.44482548])
       .addTo(this.map!);
-
-
     new maplibregl.Marker({ color: "#7e1588ff" })
       .setLngLat([-76.5361958, 1.44582548])
       .addTo(this.map!);
- 
-
   }
 
   // Añadir controles de navegación, geolocalización y escala
@@ -128,8 +104,8 @@ export class AppComponent {
       coordinates: [5.9, 43.13],
     };
     var marker = L.geoJSON(geojsonPoint, {
-      pointToLayer: (point,latlon)=> {
-        return L.marker(latlon, )
+      pointToLayer: (point, latlon) => {
+        return L.marker(latlon,)
       }
     });
 
@@ -142,40 +118,52 @@ export class AppComponent {
     const sourceId = 'xample_points';
     const layerId = 'xample_points-layer';
     if (this.map) {
-      this.map.on('load', (e) => {
-        /**          
-         * const radius = 1; // kilometer
-         * const options = {
-           steps: 104,
-           units: 'kilometers'
-         };
-         const circle = turf.circle([-76.6361969, 2.4482548], radius);
-          */
-
+      this.map.on('load', async (e) => {
         this.map?.addSource(sourceId, {
           type: 'geojson',
-          // data: circle
-
           data: 'https://public.opendatasoft.com/explore/dataset/georef-spain-provincia/download/?format=geojson&timezone=Europe/Madrid&lang=es'
+          //Base de datos
+          /**   
+          data: {
+              "type": "FeatureCollection",
+              "features": [{
+                  "type": "Feature",
+                  "properties": {},
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                          -76.53063297271729,
+                          39.18174077994108
+                      ]
+                  }
+              }]
+          }
+        */
         });
         this.map?.addLayer({
           id: layerId,
           type: 'fill',
           source: sourceId,
           paint: {
-            'fill-color': '#ff1c15ad',
+            'fill-color': '#00460cad',
             'fill-opacity': 0.5,
             'fill-outline-color': '#071224ff'
-          }
+          },
+
         });
       });
+
     }
 
     //Eventos de click  mostrar información básica al pulsar sobre una provincia
-    if (this.map) {
+    if (this.map ) {
       this.map.on('click', layerId, (e) => {
+       const longitude = e.lngLat.lng;
+        const latitude = e.lngLat.lat;
         if (e.features && e.features.length > 0) {
           if (e.features[0].properties) {
+
+            console.log('ttt', e.features[0].properties)
             const props = e.features[0].properties;
             new maplibregl.Popup()
               .setLngLat(e.lngLat)
@@ -187,8 +175,9 @@ export class AppComponent {
           `)
               .addTo(this.map!);
             new maplibregl.Marker({ color: "#152688ff" })
-              .setLngLat([-73.5361958, 1.44582548])
+              .setLngLat([longitude  , latitude])
               .addTo(this.map!);
+
           }
         }
       });
@@ -203,16 +192,88 @@ export class AppComponent {
         }
       });
     }
+
+
+    // llamar a la funcion para agregar nuevos puntos al mapa
+    this.newPointAdded();
+  
+    
   }
+
+  // Agregar nuevos puntos al mapa al hacer clic
+  newPointAdded() {
+    // Ejemplo de un controlador de eventos click
+    if (this.map) {
+      this.map.on('click', function (e) {
+
+        if (e) {
+          console.log('n', e.lngLat.lng);
+
+        }
+
+        // Obtener las coordenadas del clic
+        const longitude = e.lngLat.lng;
+        const latitude = e.lngLat.lat;
+
+        // Crear una nueva entidad de punto (marcador)
+        const newPoint =
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              -70.6483,
+              -33.4569
+            ]
+          },
+          "properties": {
+            "name": "Plaza de Armas",// Puedes añadir más propiedades aquí
+            "category": "landmark"
+          }
+        };
+        // Añadir el punto al mapa
+        // Esto depende de cómo gestiones tus fuentes de datos en Maplibre
+        // Por ejemplo, si usas una fuente de datos GeoJSON:
+        // map.getSource('your-geojson-source').setData({
+        //    'type': 'FeatureCollection',
+        //    'features': [
+        //        ...map.getSource('your-geojson-source')._data.features,
+        //        newPoint
+        //    ]
+        // });
+
+        // O si estás gestionando una capa de fuentes de datos de forma diferente
+        console.log(`Nuevo punto creado en: ${longitude}, ${latitude}`);
+        new maplibregl.Marker({ color: "#7e1588ff" })
+          .setLngLat([longitude, latitude])
+          .addTo(e.target);
+
+        console.log('nuevo punto', newPoint);
+
+
+        console.log('vvvvvv', newPoint.properties);
+        //const nuevo = newPoint.properties
+        const nuevo = newPoint.properties
+
+        new maplibregl.Popup({ closeOnClick: false })
+          .setLngLat([longitude, latitude])
+          .setHTML(`
+            <h4>${nuevo['name'] || 'Provincia desconocida'}</h4><br/>
+           <h6> Código: ${nuevo['name']}<br/></h6><br/>
+          
+          `)
+          .addTo(e.target);
+
+      });
+    }
+  }
+
 
   //Cambiar estilos del mapa 
   changeBaseStyleMap() {
     const estilosElement = document.getElementById('estilos');
     if (estilosElement) {
       estilosElement.addEventListener('change', (e: Event) => {
-
-        console.log('eer', e);
-
         const target = e.target as HTMLSelectElement;
         if (target && target.value && this.map) {
           this.map.setStyle(target.value);
@@ -220,10 +281,34 @@ export class AppComponent {
       });
     }
   }
- /**Agregar múltiples funciones de una colección de funciones
-Puedes usar geojson para crear tu propia colección y jugar con esta funcionalidad.
-*/
- addGeoJsonFeatures() {
+
+  cregarPoint() {
+    //Puntos a punto
+    if (this.map) {
+      this.map.on('load', () => {
+        this.map?.addSource('xample_points', {
+          type: 'geojson',
+          data: 'https://raw.githubusercontent.com/geoinnova/Points/master/points.json'
+        });
+        this.map?.addLayer({
+          'id': 'xample_points1',
+          'type': 'circle',
+          'source': 'xample_points1',
+          'paint': {
+            'circle-radius': 8,
+            'circle-color': '#085519ff'
+          },
+
+        });
+      });
+    }
+  }
+
+
+  /**Agregar múltiples funciones de una colección de funciones
+ Puedes usar geojson para crear tu propia colección y jugar con esta funcionalidad.
+ */
+  addGeoJsonFeatures() {
     var geoJsonFeatures: geojson.FeatureCollection = {
       "type": "FeatureCollection",
       "features": [
@@ -332,8 +417,8 @@ Puedes usar geojson para crear tu propia colección y jugar con esta funcionalid
       ]
     };
 
-    console.log('qqqqq', geoJsonFeatures);
-    
+    console.log('Base de datos', geoJsonFeatures);
+
   }
 
   ngOnDestroy() {
