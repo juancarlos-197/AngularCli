@@ -117,8 +117,7 @@ npm i json-server@0.17.4
 ###
 
 Create an Angular web application that allows you to:
-
-1. Display a base map using MapLibre GL JS.
+### 1. Display a base map using MapLibre GL JS.
    In a previous post, we showed you how to create a web viewer with MapLibre GL JS and load a GeoJSON file with your data. Now we're going a step further: we're going to enhance this viewer by adding basic features that make it much more interactive and useful.
 
 <p align="center">
@@ -389,3 +388,127 @@ Modifiquemos nuestro código para adaptarlo a esta necesidad. Primero encapsulem
 ```
 With this, we have a viewer capable of moving fluidly, showing the user's location, and adapting to different visual styles.
 
+
+### 2 Upload (import) a GeoJSON point file (a sample file pois.sample.geojson will be attached).
+
+You can use Geojson to create your own collection and play with this functionality.
+
+
+```html
+<script>
+
+ /**Agregar múltiples funciones de una colección de funciones
+Puedes usar geojson para crear tu propia colección y jugar con esta funcionalidad.
+*/
+ addGeoJsonFeatures() {
+    var geoJsonFeatures: geojson.FeatureCollection = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "marker-color": "#7e7e7e",
+            "marker-size": "medium",
+            "marker-symbol": "circle-stroked",
+            "population": 123456
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              6.134490966796874,
+              49.61649369617232
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              5.887298583984375,
+              49.48240137826932
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              6.179809570312499,
+              49.453842594330716
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                5.4107666015625,
+                49.586677749628784
+              ],
+              [
+                5.71014404296875,
+                49.616048816070425
+              ],
+              [
+                5.78155517578125,
+                49.47883244071047
+              ],
+              [
+                5.696411132812499,
+                49.37969064441394
+              ]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  5.2789306640625,
+                  49.7173764049358
+                ],
+                [
+                  5.295410156249999,
+                  49.61070993807422
+                ],
+                [
+                  5.532989501953125,
+                  49.63117246129088
+                ],
+                [
+                  5.604400634765625,
+                  49.74045665339642
+                ],
+                [
+                  5.601654052734375,
+                  49.82558098327032
+                ],
+                [
+                  5.329742431640625,
+                  49.82469504231389
+                ],
+                [
+                  5.2789306640625,
+                  49.7173764049358
+                ]
+              ]
+            ]
+          }
+        }
+      ]
+    };
+ }
+</script>
+
+```
