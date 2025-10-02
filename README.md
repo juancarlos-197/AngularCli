@@ -332,13 +332,11 @@ Let's see how we can customize the styles of our base or background layer to ada
   }
 </script>
 ```
+Okay, it works, but... Where has the province layer gone?
 
+What's happening is that MapLibre GL JS replaces the entire map structure when changing the style using "setStyle()." This behavior isn't a bug; it's the intended design of MapLibre/Mapbox GL JS, so we need to reload our province layer every time we change our styles.
 
-De acuerdo funciona, pero… ¿Dónde ha ido la capa de provincias?
-
-Lo que ocurre es que MapLibre GL JS reemplaza toda la estructura del mapa al cambiar de estilo cuando se llamas a «setStyle()». Este comportamiento no es un bug, es el diseño previsto de MapLibre/Mapbox GL JS, por lo que necesitamos recargar nuestra capa de provincias cada vez que cambiemos nuestros estilos.
-
-Modifiquemos nuestro código para adaptarlo a esta necesidad. Primero encapsulemos la funcionalidad de carga de nuestra capa de provincias en una función «cargarProvincias()», llamamos a dicha función cuando el mapa ha cargado y además en el cuando realizamos un cambio de estilos desde el «select«:
+Let's modify our code to adapt it to this need. First, let's encapsulate the loading functionality of our province layer in a "loadProvinces()" function. We call this function when the map has loaded and also when we change styles from the "select" function:
 
 ```html
 <script>
@@ -509,6 +507,66 @@ Puedes usar geojson para crear tu propia colección y jugar con esta funcionalid
       ]
     };
  }
+
 </script>
+
+```
+
+
+
+As we start our service, very easy, we say:
+
+```html
+
+
+<script>
+  npx json-server db.json
+</script>
+
+
+```
+
+```html
+
+
+<script>
+/**API Rest con json-serve
+*/
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.6483,
+          -33.4569
+        ]
+      },
+      "properties": {
+        "name": "Plaza de Armas",
+        "category": "landmark"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.615,
+          -33.44
+        ]
+      },
+      "properties": {
+        "name": "Parque Bicentenario",
+        "category": "park"
+      }
+    }
+  ]
+}
+
+</script>
+
 
 ```

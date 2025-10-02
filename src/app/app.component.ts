@@ -1,6 +1,7 @@
 import { Component, getNgModuleById, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import maplibregl from 'maplibre-gl';
+/**Importa maplibregl */
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import 'leaflet/dist/leaflet.css';
@@ -9,40 +10,25 @@ import * as L from 'leaflet';
 import * as geojson from 'geojson';
 import * as turf from "@turf/turf";
 import { circle } from "@turf/circle";
-
-import { ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-
+/**Importa Angular Material Car  */
 import { Signal, computed, inject, Injector } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
-
-import {
-  FormControl,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-  FormsModule,
-
-} from '@angular/forms';
+import {FormControl,FormGroupDirective,NgForm,Validators,FormsModule} from '@angular/forms';
+/**Importar Form  */
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+/**Importar Input  */
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-
-import {
-  FormBuilder,
-  FormGroup,
-  FormArray,
-  ReactiveFormsModule,
-} from "@angular/forms";
-
-
-
+import { FormBuilder, FormGroup,ReactiveFormsModule} from "@angular/forms";
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { debounceTime } from 'rxjs';
+import { Mapa } from './interfaces/mapa';
+import { TaskService } from './services/task.service';
+
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -53,7 +39,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FooterComponent, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
+  imports: [
+    FooterComponent, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
     MatCardModule, MatButtonModule, MatDividerModule, MatIconModule
   ],
   templateUrl: './app.component.html',
@@ -63,15 +50,18 @@ export class AppComponent implements OnInit {
   public title = 'AngularCli + MapLibre GL JS';
   public map: maplibregl.Map | undefined;
   public marke: maplibregl.Marker | undefined;
-  form!: FormGroup; // The main reactive form instance
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  //La base de datos de puntos con GeoJSON
+  public newPoint: Mapa[] = []
+  public form!: FormGroup; // The main reactive form instance
+ public emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+public matcher = new MyErrorStateMatcher();
 
-  matcher = new MyErrorStateMatcher();
 
+  constructor(private fb: FormBuilder, private taskService: TaskService) {
 
-  constructor(private fb: FormBuilder) {
-
+    this.newPoint = this.taskService.getAllNewPoint()
+    console.log('Base de datos', this.newPoint);
 
   }
 
@@ -86,6 +76,18 @@ export class AppComponent implements OnInit {
     this.changeBaseStyleMap();
     this.cregarPoint();
     this.addGeoJsonFeatures();
+var geojsonPoint: geojson.Point = {
+      type: "Point",
+      coordinates: [5.9, 43.13],
+    };
+
+    console.log('yyyyyyy',geojsonPoint);
+    
+    var marker = L.geoJSON(geojsonPoint, {
+      pointToLayer: (point, latlon) => {
+        return L.marker(latlon,)
+      }
+    });
 
 
   }
@@ -136,16 +138,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    var geojsonPoint: geojson.Point = {
-      type: "Point",
-      coordinates: [5.9, 43.13],
-    };
-    var marker = L.geoJSON(geojsonPoint, {
-      pointToLayer: (point, latlon) => {
-        return L.marker(latlon,)
-      }
-    });
-
+    
 
   }
 
@@ -158,27 +151,9 @@ export class AppComponent implements OnInit {
       this.map.on('load', async (e) => {
         this.addGeolocationCntrols();
         this.addBookmark();
-
         this.map?.addSource(sourceId, {
           type: 'geojson',
           data: 'https://public.opendatasoft.com/explore/dataset/georef-spain-provincia/download/?format=geojson&timezone=Europe/Madrid&lang=es'
-          //Base de datos
-          /**   
-          data: {
-              "type": "FeatureCollection",
-              "features": [{
-                  "type": "Feature",
-                  "properties": {},
-                  "geometry": {
-                      "type": "Point",
-                      "coordinates": [
-                          -76.53063297271729,
-                          39.18174077994108
-                      ]
-                  }
-              }]
-          }
-        */
         });
         this.map?.addLayer({
           id: layerId,
@@ -260,18 +235,21 @@ export class AppComponent implements OnInit {
     new maplibregl.Marker({ color: "#7e1588ff" })
       .setLngLat([-76.5361958, 1.44582548])
       .addTo(this.map!);
+
+
   }
 
   // Agregar nuevos puntos al mapa al hacer clic
   newPointAdded() {
     // Ejemplo de un controlador de eventos click
+
     if (this.map) {
+
       this.map.on('click', function (e) {
 
         // Obtener las coordenadas del clic
         const longitude = e.lngLat.lng;
         const latitude = e.lngLat.lat;
-
         // Crear una nueva entidad de punto (marcador)
         const newPoint =
         {
@@ -323,6 +301,9 @@ export class AppComponent implements OnInit {
 
         // O si estás gestionando una capa de fuentes de datos de forma diferente
         console.log(`Nuevo punto creado en: ${longitude}, ${latitude}`);
+        console.log(`Nuevo punto creado en: ${longitude}, ${latitude}`);
+
+
         new maplibregl.Marker({ color: "#7e1588ff" })
           .setLngLat([longitude, latitude])
           .addTo(e.target);
@@ -337,7 +318,6 @@ export class AppComponent implements OnInit {
         const size = newPoint.features[0].properties['marker-size']
         const symbol = newPoint.features[0].properties['marker-symbol']
         const population = newPoint.features[0].properties['population']
-
         const name1 = newPoint.features[1].properties
         const category2 = newPoint.features[1].properties
 
@@ -345,6 +325,7 @@ export class AppComponent implements OnInit {
           .setLngLat([longitude, latitude])
           .setHTML(`
             <samp> Sitios públicos para pasearse</samp>
+
             <h6> ${name['name'] || 'Nombre'} </h6>
             <p>Categoria: ${category['category'] || 'Categoria'}  -
                Color: ${color} -  Tamaño: ${size} - Símbolo: ${symbol} - Población: ${population} 
@@ -355,6 +336,7 @@ export class AppComponent implements OnInit {
           `)
           .addTo(e.target);
       });
+
     }
   }
 
