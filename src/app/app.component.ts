@@ -1,4 +1,4 @@
-import { Component, getNgModuleById, inject } from '@angular/core';
+import { Component, getNgModuleById, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import maplibregl from 'maplibre-gl';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -10,26 +10,78 @@ import * as geojson from 'geojson';
 import * as turf from "@turf/turf";
 import { circle } from "@turf/circle";
 
+import { ChangeDetectionStrategy } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 
+import { Signal, computed, inject, Injector } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { of } from 'rxjs';
+
+import {
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+  FormsModule,
+
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  ReactiveFormsModule,
+} from "@angular/forms";
+
+
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { debounceTime } from 'rxjs';
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [FooterComponent, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
+    MatCardModule, MatButtonModule, MatDividerModule, MatIconModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public title = 'AngularCli + MapLibre GL JS';
   public map: maplibregl.Map | undefined;
   public marke: maplibregl.Marker | undefined;
+  form!: FormGroup; // The main reactive form instance
+
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
+  matcher = new MyErrorStateMatcher();
 
 
-  ngOnInit() { }
+  constructor(private fb: FormBuilder) {
+
+
+  }
+
+  ngOnInit() {
+
+  }
+
 
   ngAfterViewInit(): void {
     this.createBaseMap();
-    this.addBookmark();
-    this.addGeolocationCntrols();
     this.loadRealData();
     this.changeBaseStyleMap();
     this.cregarPoint();
@@ -48,21 +100,6 @@ export class AppComponent {
     });
   }
 
-  //Agregar marcador
-  addBookmark() {
-    this.marke = new maplibregl.Marker({ color: "#7c2828ff" })
-      .setLngLat([-76.6361969, 2.4482548])
-      .addTo(this.map!);
-    new maplibregl.Marker({ color: "#FF0000" })
-      .setLngLat([-76.6361969, 2.4682548])
-      .addTo(this.map!);
-    new maplibregl.Marker({ color: "#8fc933ff" })
-      .setLngLat([-76.6361958, 2.44482548])
-      .addTo(this.map!);
-    new maplibregl.Marker({ color: "#7e1588ff" })
-      .setLngLat([-76.5361958, 1.44582548])
-      .addTo(this.map!);
-  }
 
   // Añadir controles de navegación, geolocalización y escala
   addGeolocationCntrols() {
@@ -119,6 +156,9 @@ export class AppComponent {
     const layerId = 'xample_points-layer';
     if (this.map) {
       this.map.on('load', async (e) => {
+        this.addGeolocationCntrols();
+        this.addBookmark();
+
         this.map?.addSource(sourceId, {
           type: 'geojson',
           data: 'https://public.opendatasoft.com/explore/dataset/georef-spain-provincia/download/?format=geojson&timezone=Europe/Madrid&lang=es'
@@ -156,9 +196,9 @@ export class AppComponent {
     }
 
     //Eventos de click  mostrar información básica al pulsar sobre una provincia
-    if (this.map ) {
+    if (this.map) {
       this.map.on('click', layerId, (e) => {
-       const longitude = e.lngLat.lng;
+        const longitude = e.lngLat.lng;
         const latitude = e.lngLat.lat;
         if (e.features && e.features.length > 0) {
           if (e.features[0].properties) {
@@ -172,10 +212,17 @@ export class AppComponent {
            <h6> Código: ${props['prov_code']}<br/></h6><br/>
             Comunidad: ${props['acom_name']}<br/>
             Año: ${props['year']}
+
+
+
+
+
+
+
           `)
               .addTo(this.map!);
             new maplibregl.Marker({ color: "#152688ff" })
-              .setLngLat([longitude  , latitude])
+              .setLngLat([longitude, latitude])
               .addTo(this.map!);
 
           }
@@ -196,8 +243,23 @@ export class AppComponent {
 
     // llamar a la funcion para agregar nuevos puntos al mapa
     this.newPointAdded();
-  
-    
+
+
+  }
+  //Agregar marcador
+  addBookmark() {
+    this.marke = new maplibregl.Marker({ color: "#7c2828ff" })
+      .setLngLat([-76.6361969, 2.4482548])
+      .addTo(this.map!);
+    new maplibregl.Marker({ color: "#FF0000" })
+      .setLngLat([-76.6361969, 2.4682548])
+      .addTo(this.map!);
+    new maplibregl.Marker({ color: "#8fc933ff" })
+      .setLngLat([-76.6361958, 2.44482548])
+      .addTo(this.map!);
+    new maplibregl.Marker({ color: "#7e1588ff" })
+      .setLngLat([-76.5361958, 1.44582548])
+      .addTo(this.map!);
   }
 
   // Agregar nuevos puntos al mapa al hacer clic
@@ -206,11 +268,6 @@ export class AppComponent {
     if (this.map) {
       this.map.on('click', function (e) {
 
-        if (e) {
-          console.log('n', e.lngLat.lng);
-
-        }
-
         // Obtener las coordenadas del clic
         const longitude = e.lngLat.lng;
         const latitude = e.lngLat.lat;
@@ -218,19 +275,41 @@ export class AppComponent {
         // Crear una nueva entidad de punto (marcador)
         const newPoint =
         {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              -70.6483,
-              -33.4569
-            ]
-          },
-          "properties": {
-            "name": "Plaza de Armas",// Puedes añadir más propiedades aquí
-            "category": "landmark"
-          }
-        };
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  longitude,
+                  latitude]
+              },
+              "properties": {
+                "name": "Plaza de Armas",
+                "category": "landmark",
+                "marker-color": "#7e7e7e",
+                "marker-size": "medium",
+                "marker-symbol": "circle-stroked",
+                "population": 123456
+              }
+            },
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  longitude,
+                  latitude
+                ]
+              },
+              "properties": {
+                "name": "Parque Bicentenario",
+                "category": "park"
+              }
+            }
+          ]
+        }
         // Añadir el punto al mapa
         // Esto depende de cómo gestiones tus fuentes de datos en Maplibre
         // Por ejemplo, si usas una fuente de datos GeoJSON:
@@ -248,22 +327,33 @@ export class AppComponent {
           .setLngLat([longitude, latitude])
           .addTo(e.target);
 
-        console.log('nuevo punto', newPoint);
+        console.log('nuevo punto', newPoint.features[0].properties['marker-color']);
 
 
-        console.log('vvvvvv', newPoint.properties);
-        //const nuevo = newPoint.properties
-        const nuevo = newPoint.properties
+        //const nombre,categoria,color,tamaño,símbolo,población
+        const name = newPoint.features[0].properties
+        const category = newPoint.features[0].properties
+        const color = newPoint.features[0].properties['marker-color']
+        const size = newPoint.features[0].properties['marker-size']
+        const symbol = newPoint.features[0].properties['marker-symbol']
+        const population = newPoint.features[0].properties['population']
+
+        const name1 = newPoint.features[1].properties
+        const category2 = newPoint.features[1].properties
 
         new maplibregl.Popup({ closeOnClick: false })
           .setLngLat([longitude, latitude])
           .setHTML(`
-            <h4>${nuevo['name'] || 'Provincia desconocida'}</h4><br/>
-           <h6> Código: ${nuevo['name']}<br/></h6><br/>
-          
+            <samp> Sitios públicos para pasearse</samp>
+            <h6> ${name['name'] || 'Nombre'} </h6>
+            <p>Categoria: ${category['category'] || 'Categoria'}  -
+               Color: ${color} -  Tamaño: ${size} - Símbolo: ${symbol} - Población: ${population} 
+            </p>        
+            <h6>${name1['name'] || 'Nombre'}</h6>
+            <p>Categoria: ${category2['category'] || 'Categoria'} </p>     
+            Nuevo punto creado en: (Lng,Lat): ${longitude}Latitud: ${latitude}
           `)
           .addTo(e.target);
-
       });
     }
   }
@@ -303,7 +393,44 @@ export class AppComponent {
       });
     }
   }
+  /**
+   * Simulates fetching form configuration from an API.
+   * In a real application, this would be an HTTP request.
+   */
+  async fetchFormConfig() {
+    // Simulate API call
+    return {
+      fields: [
+        { label: "Username", type: "text", required: true },
+        { label: "Age", type: "number", required: false },
+        {
+          label: "Gender",
+          type: "select",
+          options: ["Male", "Female"],
+          required: true,
+        },
+      ],
+    };
+  }
 
+  /**
+   * Dynamically creates the form controls based on the fetched configuration.
+   */
+  buildForm(fields: any[]) {
+    const controls: any = {};
+    fields.forEach((field) => {
+      const validators = field.required ? [Validators.required] : [];
+      controls[field.label] = ["", validators];
+    });
+    this.form = this.fb.group(controls);
+  }
+
+  /**
+   * Handles form submission, logging the form value to the console.
+   */
+  submitForm() {
+    console.log(this.form.value);
+  }
 
   /**Agregar múltiples funciones de una colección de funciones
  Puedes usar geojson para crear tu propia colección y jugar con esta funcionalidad.
@@ -416,8 +543,6 @@ export class AppComponent {
         }
       ]
     };
-
-    console.log('Base de datos', geoJsonFeatures);
 
   }
 
