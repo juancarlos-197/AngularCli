@@ -56,9 +56,7 @@ export class TaskService {
       ]
     }
   ]
-  private newPoints: string = 'http://localhost:3000/';//Un endpoint para consumir 
-
-
+  private newPoints: string = 'http://localhost:3000/data';//Un endpoint para consumir 
 
   /**Crea una dependencia llamada HttpClient  */
   constructor(private http: HttpClient) { }
@@ -66,7 +64,7 @@ export class TaskService {
     return this.newPoin
   }
 
-  getNewPoint():Observable <ApiResponse <Mapa[]>> {
+  getNewPoint(): Observable<ApiResponse<Mapa[]>> {
     /**Un verbo de la API, son GET para CONSULTAR, POST para enviar, PUT y PATCH para actuakizar
      * y DELECT para borrar, en este caso CONSULTAR
       */
@@ -82,8 +80,7 @@ export class TaskService {
       errorMensage = `Error`
     } else {
       errorMensage = `Código de error`
-
     }
-return throwError(()=>new Error(errorMensage))
+    return throwError(() => new Error(errorMensage))
   }
 }

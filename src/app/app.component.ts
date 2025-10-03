@@ -1,5 +1,6 @@
-import { Component, getNgModuleById, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Map, NavigationControl, Marker,Popup } from 'maplibre-gl';
 import maplibregl from 'maplibre-gl';
 /**Importa maplibregl */
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -7,10 +8,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import 'leaflet/dist/leaflet.css';
 import { FooterComponent } from './footer/footer.component';
-import * as L from 'leaflet';
 import * as geojson from 'geojson';
-import * as turf from "@turf/turf";
-import { circle } from "@turf/circle";
 import { MatCardModule } from '@angular/material/card';
 /**Importa Angular Material Car  */
 import { Signal, computed, inject, Injector } from '@angular/core';
@@ -26,9 +24,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { debounceTime } from 'rxjs';
 import { Mapa } from './interfaces/mapa';
 import { TaskService } from './services/task.service';
+import { popup } from 'leaflet';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -49,15 +47,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AppComponent implements OnInit {
   public title = 'AngularCli + MapLibre GL JS';
-  public map: maplibregl.Map | undefined;
-  public marke: maplibregl.Marker | undefined;
+  public  map: Map | undefined;
+  public marke: Marker | undefined;
+
   //La base de datos de puntos con GeoJSON pruebas
   public newPoin1: Mapa[] = [];
 
   //Api Rest endpoint
   public newPoint2: Mapa[] = [];
   public loading:boolean=false;
-  public error:string | null = null
+  public error:string | null = null;
   public form!: FormGroup; // The main reactive form instance
   public emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   public matcher = new MyErrorStateMatcher();
@@ -68,10 +67,8 @@ export class AppComponent implements OnInit {
     */
 
   constructor(private fb: FormBuilder, private taskService: TaskService) {
-
     this.newPoin1 = this.taskService.getAllNewPoint()
     console.log('Base de datos pruebas', this.newPoin1);
-
   }
 
   ngOnInit() {
@@ -79,7 +76,6 @@ export class AppComponent implements OnInit {
     this.taskService.getNewPoint().subscribe({
       next:(response)=>{
         console.log('Base de datos API Rest', response);
-        
         this.newPoint2=response.data;
         this.loading=false;
       },
@@ -98,7 +94,10 @@ export class AppComponent implements OnInit {
     this.changeBaseStyleMap();
     this.cregarPoint();
     this.addGeoJsonFeatures();
+  }
 
+  ngOnDestroy() {
+    this.map?.remove();
   }
 
   //Crear mapa base
@@ -111,7 +110,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-
   // Añadir controles de navegación, geolocalización y escala
   addGeolocationCntrols() {
     // Controles de zoom y rotación
@@ -122,7 +120,7 @@ export class AppComponent implements OnInit {
       }));
 
       this.map.addControl(
-        new maplibregl.NavigationControl(), 'top-right'
+        new NavigationControl(), 'top-right'
       );
       this.map.addControl(
         new maplibregl.GlobeControl()
@@ -139,15 +137,11 @@ export class AppComponent implements OnInit {
         maxWidth: 100,
         unit: 'metric'
       }), 'bottom-left');
-
       /**Logotipo de MapLibre
        * A LogoControles un control que agrega la marca de agua.
        */
       this.map.addControl(new maplibregl.LogoControl({ compact: false }));
-
     }
-
-
 
   }
 
@@ -181,15 +175,14 @@ export class AppComponent implements OnInit {
 
     //Eventos de click  mostrar información básica al pulsar sobre una provincia
     if (this.map) {
+      // Configura un detector de eventos en el mapa.
       this.map.on('click', layerId, (e) => {
         const longitude = e.lngLat.lng;
         const latitude = e.lngLat.lat;
         if (e.features && e.features.length > 0) {
           if (e.features[0].properties) {
-
-            console.log('ttt', e.features[0].properties)
             const props = e.features[0].properties;
-            new maplibregl.Popup()
+            new Popup()
               .setLngLat(e.lngLat)
               .setHTML(`
             <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
@@ -218,37 +211,31 @@ export class AppComponent implements OnInit {
     }
 
 
-    // llamar a la funcion para agregar nuevos puntos al mapa
+// llamar a la funcion para agregar nuevos puntos al mapa
     this.newPointAdded();
-
 
   }
   //Agregar marcador
   addBookmark() {
-    this.marke = new maplibregl.Marker({ color: "#7c2828ff" })
+    this.marke = new Marker({ color: "#7c2828ff" })
       .setLngLat([-76.6361969, 2.4482548])
       .addTo(this.map!);
-    new maplibregl.Marker({ color: "#FF0000" })
+    new Marker({ color: "#FF0000" })
       .setLngLat([-76.6361969, 2.4682548])
       .addTo(this.map!);
-    new maplibregl.Marker({ color: "#8fc933ff" })
+    new Marker({ color: "#8fc933ff" })
       .setLngLat([-76.6361958, 2.44482548])
       .addTo(this.map!);
-    new maplibregl.Marker({ color: "#7e1588ff" })
+    new Marker({ color: "#7e1588ff" })
       .setLngLat([-76.5361958, 1.44582548])
       .addTo(this.map!);
-
-
   }
 
   // Agregar nuevos puntos al mapa al hacer clic
   newPointAdded() {
     // Ejemplo de un controlador de eventos click
-
     if (this.map) {
-
       this.map.on('click', function (e) {
-
         // Obtener las coordenadas del clic
         const longitude = e.lngLat.lng;
         const latitude = e.lngLat.lat;
@@ -303,15 +290,10 @@ export class AppComponent implements OnInit {
 
         // O si estás gestionando una capa de fuentes de datos de forma diferente
         console.log(`Nuevo punto creado en: ${longitude}, ${latitude}`);
-        console.log(`Nuevo punto creado en: ${longitude}, ${latitude}`);
 
-
-        new maplibregl.Marker({ color: "#7e1588ff" })
+        new Marker({ color: "#7e1588ff" })
           .setLngLat([longitude, latitude])
           .addTo(e.target);
-
-        console.log('nuevo punto', newPoint.features[0].properties['marker-color']);
-
 
         //const nombre,categoria,color,tamaño,símbolo,población
         const name = newPoint.features[0].properties
@@ -322,12 +304,11 @@ export class AppComponent implements OnInit {
         const population = newPoint.features[0].properties['population']
         const name1 = newPoint.features[1].properties
         const category2 = newPoint.features[1].properties
-
-        new maplibregl.Popup({ closeOnClick: false })
+      //Ventana emergente
+      let popup = new Popup({ closeOnClick: false })
           .setLngLat([longitude, latitude])
           .setHTML(`
             <samp> Sitios públicos para pasearse</samp>
-
             <h6> ${name['name'] || 'Nombre'} </h6>
             <p>Categoria: ${category['category'] || 'Categoria'}  -
                Color: ${color} -  Tamaño: ${size} - Símbolo: ${symbol} - Población: ${population} 
@@ -377,45 +358,7 @@ export class AppComponent implements OnInit {
       });
     }
   }
-  /**
-   * Simulates fetching form configuration from an API.
-   * In a real application, this would be an HTTP request.
-   */
-  async fetchFormConfig() {
-    // Simulate API call
-    return {
-      fields: [
-        { label: "Username", type: "text", required: true },
-        { label: "Age", type: "number", required: false },
-        {
-          label: "Gender",
-          type: "select",
-          options: ["Male", "Female"],
-          required: true,
-        },
-      ],
-    };
-  }
-
-  /**
-   * Dynamically creates the form controls based on the fetched configuration.
-   */
-  buildForm(fields: any[]) {
-    const controls: any = {};
-    fields.forEach((field) => {
-      const validators = field.required ? [Validators.required] : [];
-      controls[field.label] = ["", validators];
-    });
-    this.form = this.fb.group(controls);
-  }
-
-  /**
-   * Handles form submission, logging the form value to the console.
-   */
-  submitForm() {
-    console.log(this.form.value);
-  }
-
+  
   /**Agregar múltiples funciones de una colección de funciones
  Puedes usar geojson para crear tu propia colección y jugar con esta funcionalidad.
  */
@@ -530,9 +473,6 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    this.map?.remove();
-  }
 
 }
 

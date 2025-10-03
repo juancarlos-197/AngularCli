@@ -11,6 +11,4 @@ export interface Mapa {
         name: string,
         category: string
     }
-
-
 }
