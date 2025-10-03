@@ -51,7 +51,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 Angular Cli + MapJson brings the power of advanced customizable indoor navigation into the hands of your customers, elevating indoor mapping to a whole new level.
-
+Minimum requirements to complete Angular CLI + MapJson.
+Some experience with Angular. You don't need much experience, but you should be familiar with the basic concepts and workflow.
+MapLibre GL JS. JavaScript library for creating web maps.
+Node.js and npm. Required to run your Angular CLI + MapJson application locally. Node.js.
+Angular CLI. You must have Angular CLI installed.
 <p align="center">
   <a href="">
     <picture>
