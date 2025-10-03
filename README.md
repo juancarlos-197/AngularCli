@@ -49,6 +49,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Setting Up a Project
 
+
+Angular Cli + MapJson brings the power of advanced customizable indoor navigation into the hands of your customers, elevating indoor mapping to a whole new level.
+
 <p align="center">
   <a href="">
     <picture>
@@ -530,7 +533,7 @@ As we start our service, very easy, we say:
 
 
 <script>
-/**API Rest con json-serve
+/**API Rest con json-serve consumir nuestro servicios
 */
 {
   "type": "FeatureCollection",

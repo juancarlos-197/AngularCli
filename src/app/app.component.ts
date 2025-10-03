@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import maplibregl from 'maplibre-gl';
 /**Importa maplibregl */
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+/**Importa HttpClient para del Core de Angular */
 import 'maplibre-gl/dist/maplibre-gl.css';
 import 'leaflet/dist/leaflet.css';
 import { FooterComponent } from './footer/footer.component';
@@ -15,13 +16,13 @@ import { MatCardModule } from '@angular/material/card';
 import { Signal, computed, inject, Injector } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
-import {FormControl,FormGroupDirective,NgForm,Validators,FormsModule} from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule } from '@angular/forms';
 /**Importar Form  */
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 /**Importar Input  */
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, FormGroup,ReactiveFormsModule} from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,7 +42,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   standalone: true,
   imports: [
     FooterComponent, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
-    MatCardModule, MatButtonModule, MatDividerModule, MatIconModule
+    MatCardModule, MatButtonModule, MatDividerModule, MatIconModule, HttpClientModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -50,23 +51,44 @@ export class AppComponent implements OnInit {
   public title = 'AngularCli + MapLibre GL JS';
   public map: maplibregl.Map | undefined;
   public marke: maplibregl.Marker | undefined;
+  //La base de datos de puntos con GeoJSON pruebas
+  public newPoin1: Mapa[] = [];
 
-  //La base de datos de puntos con GeoJSON
-  public newPoint: Mapa[] = []
+  //Api Rest endpoint
+  public newPoint2: Mapa[] = [];
+  public loading:boolean=false;
+  public error:string | null = null
   public form!: FormGroup; // The main reactive form instance
- public emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-public matcher = new MyErrorStateMatcher();
-
+  public emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  public matcher = new MyErrorStateMatcher();
+  /**El ciclo de vida de Angular , nosotros tenemos que definirle al componente, que estamos trabajando en este 
+   * caso componente principal, que vamos a hacer un consumo de esa Api, por lo dando vamos a tener
+   * que hacer uso de algunos de los HOOKS que tiene Angular disponible. Vamos a hacer uso del HOOK ng init
+   * iniciando ngOnInit 
+    */
 
   constructor(private fb: FormBuilder, private taskService: TaskService) {
 
-    this.newPoint = this.taskService.getAllNewPoint()
-    console.log('Base de datos', this.newPoint);
+    this.newPoin1 = this.taskService.getAllNewPoint()
+    console.log('Base de datos pruebas', this.newPoin1);
 
   }
 
   ngOnInit() {
-
+    /**Api Rest endpoint para consumir */
+    this.taskService.getNewPoint().subscribe({
+      next:(response)=>{
+        console.log('Base de datos API Rest', response);
+        
+        this.newPoint2=response.data;
+        this.loading=false;
+      },
+      error:(error)=>{
+        this.error=error.message
+      }
+    })
+    this.loading=true;
+    this.error=null;
   }
 
 
@@ -76,19 +98,6 @@ public matcher = new MyErrorStateMatcher();
     this.changeBaseStyleMap();
     this.cregarPoint();
     this.addGeoJsonFeatures();
-var geojsonPoint: geojson.Point = {
-      type: "Point",
-      coordinates: [5.9, 43.13],
-    };
-
-    console.log('yyyyyyy',geojsonPoint);
-    
-    var marker = L.geoJSON(geojsonPoint, {
-      pointToLayer: (point, latlon) => {
-        return L.marker(latlon,)
-      }
-    });
-
 
   }
 
@@ -138,7 +147,7 @@ var geojsonPoint: geojson.Point = {
 
     }
 
-    
+
 
   }
 
@@ -188,18 +197,11 @@ var geojsonPoint: geojson.Point = {
             Comunidad: ${props['acom_name']}<br/>
             Año: ${props['year']}
 
-
-
-
-
-
-
           `)
               .addTo(this.map!);
             new maplibregl.Marker({ color: "#152688ff" })
               .setLngLat([longitude, latitude])
               .addTo(this.map!);
-
           }
         }
       });
