@@ -853,7 +853,92 @@ b. Añade una capa para mostrar los puntos del GeoJSON
 ```
 
 
+Explicación del código
 
+map.on('load', ...): 
+ 
+Este fragmento de código asegura que la función se ejecute solo después de que el mapa haya cargado completamente, lo que garantiza que todos los recursos necesarios estén disponibles.
+
+map.addSource(): Este método añade una nueva fuente de datos al mapa.
+* 'pois-source': Es el ID único que le asignas a esta fuente para referenciarla más tarde.
+* type: 'geojson': Especifica que el tipo de datos es GeoJSON.
+* data: ```html
+<script>
+
+     {
+            "type": "FeatureCollection",
+            "features":
+              [
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Plaza de Armas",
+                    "category": "landmark",
+                    "marker-color": "#7e7e7e",
+                    "marker-size": "medium",
+                    "marker-symbol": "circle-stroked",
+                    "population": 123456
+                  }
+                  ,
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -76.53063297271729,
+                      39.18174077994108
+                    ]
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {},
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -66.53063297271729,
+                      49.18174077994108
+                    ]
+                  }
+                },
+
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Parque Bicentenario",
+                    "category": "park"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -76.6361969,
+                      2.4482548]
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Parque Bicentenario",
+                    "category": "park"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -79.6361969,
+                      13.4482548]
+                  }
+                }
+
+              ]
+          }
+</script>
+
+```
+Indica la ubicación de tu archivo GeoJSON. Si el archivo está en el mismo servidor que la aplicación, puedes usar una ruta relativa. Si está en un servidor externo, debes proporcionar la URL completa.
+
+map.addLayer(): Este método añade una capa visual al mapa que utiliza la fuente de datos que definiste.
+- id: 'xample_po': Es el ID único de la capa.
+- type: 'circle': Define el estilo de representación visual. Para puntos, el tipo de capa 'circle' es el más común, ya que dibuja círculos en cada coordenada.
+- source: 'xample_po': Vincula esta capa con la fuente de datos GeoJSON que creaste en el paso anterior.
+- paint: Es un objeto donde puedes definir el estilo visual de los elementos de la capa. Se configura el radio y el color de los círculos. 
 
 ```html
 <script>
@@ -864,11 +949,6 @@ b. Añade una capa para mostrar los puntos del GeoJSON
 ```
 
 
-
-
-
-
-
 ```html
 <script>
 
@@ -876,9 +956,6 @@ b. Añade una capa para mostrar los puntos del GeoJSON
 </script>
 
 ```
-
-
-
 
 
 ```html
