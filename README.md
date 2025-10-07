@@ -1477,3 +1477,67 @@ Pasos para agregar un punto al hacer clic en el mapa
 
 </script>
 ```
+
+
+
+### Eliminar un punto existente.
+Para eliminar un marcador (punto) existente de un mapa de MapLibre utilizando un botón en TypeScript, debes seguir estos pasos: 
+* Guardar los marcadores en un arreglo: Al crear un marcador, debes almacenarlo en un arreglo (array) para tener una referencia a él más adelante.
+* Acceder al marcador: Al hacer clic en el botón de eliminar, debes poder identificar cuál de los marcadores quieres remover. Una forma común es eliminar el último marcador agregado o todos a la vez.
+* Usar el método marker.remove(): La API de MapLibre GL JS para los marcadores incluye un método remove() para eliminarlos del mapa.
+* Vincular el botón a la función: Configura el botón HTML para que, al ser pulsado, ejecute la función TypeScript que remueve el marcador. 
+
+```html
+<script>
+/**Importa maplibregl */
+import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeature } from 'maplibre-gl';
+</script>
+```
+
+
+```html
+<script>
+  <!-- Botón Añadir/Emiminar -->
+        <div id="controls">
+          <button type="button" id="add-marker-btn" class="btn btn-primary">Añadir marcador</button>
+          <button type="button" id="remove-marker-btn" disabled class="btn btn-danger">Eliminar marcador</button>
+        </div>
+  
+  
+  eliminarMarcador() {
+
+
+    // Obtener los botones del DOM
+    const addMarkerBtn = document.getElementById('add-marker-btn') as HTMLButtonElement;
+    const removeMarkerBtn = document.getElementById('remove-marker-btn') as HTMLButtonElement;
+
+    // Manejador para el botón "Añadir marcador"
+    addMarkerBtn.addEventListener('click', () => {
+
+      // Crea un nuevo marcador en una ubicación específica
+      this.marke = new maplibregl.Marker({ color: '#e6ff09ff' })
+        .setLngLat([-74.6361969, 2.8682548])
+        .addTo(this.map!);
+
+      // Habilitar el botón de eliminar una vez que el marcador se ha añadido.
+      removeMarkerBtn.disabled = false;
+      addMarkerBtn.disabled = true;
+    });
+
+    // Manejador para el botón "Eliminar marcador"
+    removeMarkerBtn.addEventListener('click', () => {
+      if (this.marke) {
+        // Llama al método .remove() en la instancia del marcador.
+        this.marke.remove();
+        this.marke = null; // Elimina la referencia para que no se pueda eliminar dos veces.
+
+        // Habilitar el botón de añadir y deshabilitar el de eliminar.
+        removeMarkerBtn.disabled = true;
+        addMarkerBtn.disabled = false;
+      }
+    });
+  }
+
+
+</script>
+``
