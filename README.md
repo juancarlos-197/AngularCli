@@ -626,6 +626,257 @@ To add points to the map in MapLibre GL JS on click, you must use a map click ev
 You can use Geojson to create your own collection and play with this functionality.
 
 
+
+
+
+
+
+
+
+
+
+Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pasos principales: cargar el archivo como fuente de datos, agregar una capa que haga referencia a esa fuente y, opcionalmente, personalizar el estilo de los puntos. 
+
+
+
+
+
+
+
+```html
+<script>
+
+ // Espera a que el mapa cargue antes de añadir las fuentes y capas
+      this.map.on('load', () => {
+        // Añadir la fuente de datos GeoJSON
+        const source = this.map?.addSource('places', {
+          type: 'geojson',
+          //  Cargar datos GeoJSON
+          data:
+          {
+            "type": "FeatureCollection",
+            "features":
+              [
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Plaza de Armas",
+                    "category": "landmark",
+                    "marker-color": "#7e7e7e",
+                    "marker-size": "medium",
+                    "marker-symbol": "circle-stroked",
+                    "population": 123456
+                  }
+                  ,
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -76.53063297271729,
+                      39.18174077994108
+                    ]
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {},
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -66.53063297271729,
+                      49.18174077994108
+                    ]
+                  }
+                },
+
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Parque Bicentenario",
+                    "category": "park"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -76.6361969,
+                      2.4482548]
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Parque Bicentenario",
+                    "category": "park"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -79.6361969,
+                      13.4482548]
+                  }
+                }
+
+              ]
+          }
+        });
+
+
+        // Añadir la capa para visualizar los puntos
+        this.map?.addLayer({
+          'id': 'xample_po',
+          'type': 'circle',// Puedes usar 'circle' o 'symbol' para puntos
+          'source': 'places', // ID de la fuente creada en el paso anterior
+          'paint': {
+            'circle-color': '#008f07ff', // Color de los círculos
+            'circle-radius': 10, // Radio de los círculos
+            'circle-stroke-width': 2,// Ancho del borde
+            'circle-stroke-color': '#ffffff' // Color del borde
+          },
+        });
+
+        });
+
+</script>
+
+```
+
+ 1. Añade el archivo GeoJSON como una fuente de datos
+
+```html
+<script>
+
+ const source = this.map?.addSource('places', {
+          type: 'geojson',
+          //  Cargar datos GeoJSON
+          data:
+          {
+            "type": "FeatureCollection",
+            "features":
+              [
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Plaza de Armas",
+                    "category": "landmark",
+                    "marker-color": "#7e7e7e",
+                    "marker-size": "medium",
+                    "marker-symbol": "circle-stroked",
+                    "population": 123456
+                  }
+                  ,
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -76.53063297271729,
+                      39.18174077994108
+                    ]
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {},
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -66.53063297271729,
+                      49.18174077994108
+                    ]
+                  }
+                },
+
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Parque Bicentenario",
+                    "category": "park"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -76.6361969,
+                      2.4482548]
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Parque Bicentenario",
+                    "category": "park"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -79.6361969,
+                      13.4482548]
+                  }
+                }
+
+              ]
+          }
+        });
+</script>
+
+```
+
+2. Añade una capa para mostrar los puntos del GeoJSON
+
+```html
+<script>
+        // Añadir la capa para visualizar los puntos
+        this.map?.addLayer({
+          'id': 'xample_po',
+          'type': 'circle',// Puedes usar 'circle' o 'symbol' para puntos
+          'source': 'places', // ID de la fuente creada en el paso anterior
+          'paint': {
+            'circle-color': '#008f07ff', // Color de los círculos
+            'circle-radius': 10, // Radio de los círculos
+            'circle-stroke-width': 2,// Ancho del borde
+            'circle-stroke-color': '#ffffff' // Color del borde
+          },
+        });
+  
+</script>
+
+```
+ 3. Estiliza los puntos
+
+```html
+<script>
+          'paint': {
+            'circle-color': '#008f07ff', // Color de los círculos
+            'circle-radius': 10, // Radio de los círculos
+            'circle-stroke-width': 2,// Ancho del borde
+            'circle-stroke-color': '#ffffff' // Color del borde
+          },
+  
+</script>
+
+```
+
+
+
+
+```html
+<script>
+
+  
+</script>
+
+```
+
+
+
+```html
+<script>
+
+  
+</script>
+
+```
+
+
+
+
+
 ```html
 <script>
 
@@ -757,15 +1008,11 @@ As we start our service, very easy, we say:
   npx json-server db.json
 </script>
 
-
 ```
+Archivo data/db.json API Rest 
 
 ```html
-
-
 <script>
-/**API Rest con json-serve consumir nuestro servicios
-*/
 {
   "type": "FeatureCollection",
   "features": [
@@ -804,3 +1051,4 @@ As we start our service, very easy, we say:
 
 
 ```
+
