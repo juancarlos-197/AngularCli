@@ -444,7 +444,6 @@ export class AppComponent implements OnInit {
 
         // O si estás gestionando una capa de fuentes de datos de forma diferente
         console.log(`Nuevo punto creado en: ${longitude}, ${latitude}`);
-        console.log('gg', newPoint.features.find(f => f.properties.category[0]));
         new Marker({ color: "#7e1588ff" })
           .setLngLat([longitude, latitude])
           .addTo(e.target);

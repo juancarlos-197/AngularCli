@@ -1226,6 +1226,254 @@ También otro servicio/task.service.ts
     }
   ]
 </script>
+```
+### 3. Mostrar en el mapa los puntos del GeoJSON.
+
+Para mostrar puntos de un archivo GeoJSON en un mapa utilizando MapLibre GL JS, debe seguir los siguientes pasos: incluir la biblioteca de MapLibre, configurar el mapa base y, luego, agregar el archivo GeoJSON como una fuente y una capa para visualizar los puntos. 
+
+Primero debes crear una fuente de mapa usando la función addSource() y pasar los datos GeoJSON como parámetro. Luego, para visualizar esos puntos, creas una capa con addLayer() y la asocias a la fuente de datos previamente creada, especificando el tipo de geometría ("Point") y las opciones de estilo para los puntos. 
+
+Pasos detallados para mostrar puntos GeoJSON en MapLibre GL JS
+* Crea la fuente de datos (Source):
+- Utiliza el método map.addSource(sourceId, sourceData).
+- sourceId: Es un identificador único para esta fuente (ej: "places").
+- sourceData: Es un objeto que contiene los datos GeoJSON. Puedes cargar esto desde un archivo o directamente como un objeto Typescript.
+Ejemplo de código (fragmento): 
 
 
+```html
+<script>
+  // Añadir la fuente de datos GeoJSON
+        const source = this.map?.addSource('places', {
+          type: 'geojson',
+          //  Cargar datos GeoJSON
+          data:
+          {
+            "type": "FeatureCollection",
+            "features":
+              [
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Plaza de Armas",
+                    "category": "landmark",
+                    "marker-color": "#7e7e7e",
+                    "marker-size": "medium",
+                    "marker-symbol": "circle-stroked",
+                    "population": 123456
+                  }
+                  ,
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -76.53063297271729,
+                      39.18174077994108
+                    ]
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {},
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -66.53063297271729,
+                      49.18174077994108
+                    ]
+                  }
+                },
+
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Parque Bicentenario",
+                    "category": "park"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -76.6361969,
+                      2.4482548]
+                  }
+                },
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "Parque Bicentenario",
+                    "category": "park"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      -79.6361969,
+                      13.4482548]
+                  }
+                }
+
+              ]
+          }
+        });
+
+</script>
+```
+* Agrega la capa de visualización (Layer):
+- Usa el método map.addLayer(layerDefinition).
+- layerDefinition: Es un objeto que describe cómo se renderizará la capa.
+- Especifica que la source es la fuente que creaste en el paso anterior (ej: source: 'places').
+- Define type: 'symbol' para mostrar puntos como símbolos o iconos, o type: 'circle' para círculos.
+- Dentro del objeto paint, puedes configurar el color, el tamaño y la forma de los puntos.
+
+Ejemplo de código (fragmento): 
+
+```html
+<script>
+        // Añadir la capa para visualizar los puntos
+        this.map?.addLayer({
+          'id': 'xample_po',
+          'type': 'circle',// Puedes usar 'circle' o 'symbol' para puntos
+          'source': 'places', // ID de la fuente creada en el paso anterior
+          'paint': {
+            'circle-color': '#008f07ff', // Color de los círculos
+            'circle-radius': 10, // Radio de los círculos
+            'circle-stroke-width': 2,// Ancho del borde
+            'circle-stroke-color': '#ffffff' // Color del borde
+          },
+        });
+</script>
+```
+
+### Consideraciones:
+
+Datos GeoJSON: El archivo GeoJSON debe contener un objeto FeatureCollection con features de tipo Point para que se muestren correctamente. 
+
+### 4. Agregar un nuevo punto haciendo clic en el mapa.
+
+Para agregar un nuevo punto haciendo clic en un mapa MapLibre, debes usar el evento click en el mapa para obtener las coordenadas del clic y luego agregar una nueva característica de punto a tus datos GeoJSON, que puedes visualizar con una capa. Esto implica obtener las coordenadas del evento de clic, crear un objeto GeoJSON con esas coordenadas y añadirlo como una fuente de datos al mapa, y finalmente crear una capa de mapa para mostrarlo visualmente. 
+
+Pasos para agregar un punto al hacer clic en el mapa
+* Configurar el mapa: Asegúrate de tener tu mapa MapLibre inicializado y configurado para escuchar eventos de clic. 
+* Manejar el evento click del mapa:
+- Usa map.on('click', function(e) { ... }); para ejecutar una función cada vez que el usuario haga clic en el mapa. 
+- Dentro de la función, puedes acceder a las coordenadas del clic a través de e.lngLat. 
+* Crear una fuente de datos GeoJSON:
+- Si ya tienes una fuente GeoJSON en tu mapa, puedes agregar los nuevos puntos a ella. 
+- Si no, crea una fuente GeoJSON nueva con los datos de tu punto. 
+- Usa el método map.addSource() para agregar esta fuente al mapa. 
+* Agregar una capa para mostrar los puntos:
+- Añade una capa de tipo "symbol" o "circle" para visualizar los puntos en el mapa. 
+- Asocia esta capa a la fuente GeoJSON que creaste. 
+* Añadir la característica de punto:
+- Crea un nuevo objeto GeoJSON de tipo "Point" usando las coordenadas e.lngLat. 
+- Agrega este nuevo punto a tus datos GeoJSON. Puedes hacerlo obteniendo el objeto source actual y modificándolo. 
+- Actualiza la fuente en el mapa con los nuevos datos GeoJSON usando map.getSource('tu_fuente_id').setData(nuevos_datos_geojson). 
+
+
+```html
+<script>
+       
+  // Agregar nuevos puntos al mapa al hacer clic
+  newPointAdded() {
+    // Controlador de eventos click
+    if (this.map) {
+      this.map.on('click', (e) => {
+        // Obtener las coordenadas del clic
+        const longitude = e.lngLat.lng;
+        const latitude = e.lngLat.lat;
+        // Crear una nueva entidad de punto (marcador)
+        const newPoint =
+        {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  longitude,
+                  latitude]
+              },
+              "properties": {
+                "name": "Plaza de Armas",
+                "category": "landmark",
+                "marker-color": "#7e7e7e",
+                "marker-size": "medium",
+                "marker-symbol": "circle-stroked",
+                "population": 123456
+              }
+            },
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  longitude,
+                  latitude
+                ]
+              },
+              "properties": {
+                "name": "Parque Bicentenario",
+                "category": "park"
+              }
+            }
+          ]
+        }
+
+
+        // Añadir el punto al mapa
+        // Esto depende de cómo gestiones tus fuentes de datos en Maplibre
+        // Por ejemplo, si usas una fuente de datos GeoJSON:
+        // map.getSource('your-geojson-source').setData({
+        //    'type': 'FeatureCollection',
+        //    'features': [
+        //        ...map.getSource('your-geojson-source')._data.features,
+        //        newPoint
+        //    ]
+        // });
+
+        // O si estás gestionando una capa de fuentes de datos de forma diferente
+        console.log(`Nuevo punto creado en: ${longitude}, ${latitude}`);
+        new Marker({ color: "#7e1588ff" })
+          .setLngLat([longitude, latitude])
+          .addTo(e.target);
+
+        //const nombre,categoria,color,tamaño,símbolo,población
+        const name = newPoint.features[0].properties
+        const category = newPoint.features[0].properties
+        const color = newPoint.features[0].properties['marker-color']
+        const size = newPoint.features[0].properties['marker-size']
+        const symbol = newPoint.features[0].properties['marker-symbol']
+        const population = newPoint.features[0].properties['population']
+        const name1 = newPoint.features[1].properties
+        const category2 = newPoint.features[1].properties
+        //Ventana emergente
+        let popup = new Popup()
+          .setLngLat([longitude, latitude])
+          .setHTML(`
+            <samp> Sitios públicos para pasearse</samp>
+            <h6> ${name['name'] || 'Nombre'} </h6>
+            <p>Categoria: ${category['category'] || 'Categoria'}  -
+             Color: ${color} -  Tamaño: ${size} - Símbolo: ${symbol} - Población: ${population} 
+            </p>        
+            <h6>${name1['name'] || 'Nombre'}</h6>
+            <p>Categoria: ${category2['category'] || 'Categoria'} </p>     
+            Nuevo punto creado en: (Lng,Lat): ${longitude}Latitud: ${latitude}
+          `)
+          .addTo(e.target);
+      });
+      // Cambia el cursor a un puntero cuando el mouse
+      this.map.on('mouseenter', 'xample_points-layer', (e) => {
+        if (this.map) {
+          this.map.getCanvas().style.cursor = 'pointer';
+        }
+      });
+      // Cámbielo nuevamente a un puntero cuando se vaya.
+      this.map.on('mouseleave', 'xample_points-layer', () => {
+        if (this.map) {
+          this.map.getCanvas().style.cursor = '';
+        }
+      });
+    }
+  }
+
+</script>
 ```
