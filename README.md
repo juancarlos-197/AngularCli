@@ -209,15 +209,53 @@ Create an Angular web application that allows you to:
 We start from a simple viewer, and we center it to show it by default.
 
 ```html
-<div id="map" class="map"></div>
-<div class="position">
-  <select id="estilos">
-    <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro</option>
-    <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
-    <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
-  </select>
-</div>
+  <h1>{{ title }}</h1>
+      <p>Mi equipo desarrolla una aplicación web que permite a clientes explorar y gestionar ubicaciones
+        (puntos de interés) sobre un mapa interactivo.</p>
+      <p>Angular Cli + MapJson lleva el poder de la navegación interior personalizable avanzada a las manos de tus
+        clientes, elevando el mapeo de interiores a un nivel completamente nuevo </p>
+      <p>Mapas </p>
+      <!--Mapas --> 
+      <select id="estilos">
+        <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro
+        </option>
+        <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
+        <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+      </select>
 
+
+      <div class="position">
+        <div id='map' class="map"></div>
+
+        <!-- Grupo de filtros  -
+        <div id="filter-group" class="filter-group"></div>-->
+
+        <!-- Entrada de filtro -->
+        <div class="filter-ctrl">
+          <input id="filter-input" type="search" name="filter" placeholder="Filtrar por nombre" />
+        </div>
+
+        <!-- Filtrar los símbolos de una capa  -->
+        <fieldset class="filter">
+          Filtrar por tipo
+          <select name="type">
+            <option value="" selected>Todos</option>
+            <option value="lift">Moto</option>
+            <option value="railway">Ferrocarril</option>
+          </select>
+        </fieldset>
+
+        <!-- Botón Descargar GeoJSON -->
+        <button type="button" id="downloadButton" class="btn btn-primary">Descargar GeoJSON</button>
+        
+        <!-- Botón Añadir/Emiminar -->
+        <div id="controls">
+          <button type="button" id="add-marker-btn" class="btn btn-primary">Añadir marcador</button>
+          <button type="button" id="remove-marker-btn" disabled class="btn btn-danger">Eliminar marcador</button>
+        </div>
+      </div>
+
+      
 <script>
 
   //Crear mapa base, Inicializa un objeto MapLibre
@@ -239,6 +277,123 @@ We start from a simple viewer, and we center it to show it by default.
     });
   }
 </script>
+```
+
+```css
+.position {
+    position: relative;
+    top: 20px;
+}
+
+.map {
+    width: 800px;
+    height: 400px;
+    left: 0%
+}
+
+.example-card {
+    max-width: 300px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 31.8%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+}
+
+.map-overlay .map-overlay-inner {
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.map-overlay input {
+    margin: 2px;
+}
+
+input[type=number] {
+    width: 25%
+}
+
+#filter-result {
+    font-size: 8px;
+    font-family: "Courier New";
+}
+
+
+
+
+
+
+.filter-ctrl {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    z-index: 1;
+}
+
+.filter-ctrl input[type='search'] {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    border: 0;
+    background-color: #fff;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    width: 180px;
+}
+
+
+
+
+.filter {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    background-color: white;
+    padding: 10px;
+}
+
+
+
+#downloadButton {
+    position: absolute;
+    bottom: 80px;
+    left: 10px;
+    z-index: 1;
+    padding: 10px;
+    font-family: sans-serif;
+}
+
+
+
+
+#controls {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 10;
+    padding: 10px;
+    background: white;
+    border-radius: px;
+}
+
+button {
+    font-size: 16px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
 ```
 
 <p align="center">
