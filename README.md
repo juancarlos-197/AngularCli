@@ -495,7 +495,28 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
 ```
 ```html
 <script>
-    // Mostrar información del polígono al hacer clic España
+   
+</script>
+```
+
+```html
+<script>
+
+</script>
+```
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center"> Display contextual information with pop-ups</h2>
+  </a>
+
+Let's continue with the features of our viewer, for example, showing useful information about each province, such as its name, autonomous community, and code when clicked:
+
+```html
+<script>
+ // Mostrar información del polígono al hacer clic España
     //Añade el manejador de eventos de clic al mapa
     //Eventos de click  mostrar información básica al pulsar sobre una provincia
     if (this.map) {
@@ -539,54 +560,6 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
         }
       });
     }
-</script>
-```
-
-```html
-<script>
-
-</script>
-```
-<p align="center">
-  <a href="">
-    <picture>
-      <img  height="80">
-    </picture>
-    <h2 align="center"> Display contextual information with pop-ups</h2>
-  </a>
-
-Let's continue with the features of our viewer, for example, showing useful information about each province, such as its name, autonomous community, and code when clicked:
-
-```html
-<script>
-
-  //Eventos de click  mostrar información básica al pulsar sobre una provincia
-  if (this.map) {
-    this.map.on('click', layerId, (e) => {
-      if (e.features && e.features.length > 0) {
-        if (e.features[0].properties) {
-
-          console.log('ttt', e.features[0].properties)
-          const props = e.features[0].properties;
-          new maplibregl.Popup()
-            .setLngLat(e.lngLat)
-
-            .setHTML(`
-          <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
-         <h6> Código: ${props['prov_code']}<br/></h6><br/>
-          Comunidad: ${props['acom_name']}<br/>
-          Año: ${props['year']}
-        `)
-            .addTo(this.map!);
-          new maplibregl.Marker({ color: "#152688ff" })
-            .setLngLat([-73.5361958, 1.44582548])
-            .addTo(this.map!);
-
-
-        }
-      }
-    });
-  }
 </script>
 ```
 
