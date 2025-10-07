@@ -1090,8 +1090,7 @@ Puedes usar geojson para crear tu propia colección y jugar con esta funcionalid
 
 
 
-As we start our service, very easy, we say:
-
+También con servicio Api Rest
 ```html
 
 
@@ -1143,3 +1142,90 @@ Archivo data/db.json API Rest
 
 ```
 
+Archivo data/db.json API Rest 
+
+```html
+<script>
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.6483,
+          -33.4569
+        ]
+      },
+      "properties": {
+        "name": "Plaza de Armas",
+        "category": "landmark"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.615,
+          -33.44
+        ]
+      },
+      "properties": {
+        "name": "Parque Bicentenario",
+        "category": "park"
+      }
+    }
+  ]
+}
+
+</script>
+```
+
+También otro servicio/task.service.ts
+```html
+<script>
+ /**Un arreglo de nuevo punto (Mapa). Variable privada  */
+  private newPoin: any[] = [
+    {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              32.7,
+              45.78]
+          },
+          "properties": {
+            "name": "Plaza de Armas",
+            "category": "landmark",
+            "marker-color": "#7e7e7e",
+            "marker-size": "medium",
+            "marker-symbol": "circle-stroked",
+            "population": 123456
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              56,
+              45
+            ]
+          },
+          "properties": {
+            "name": "Parque Bicentenario",
+            "category": "park"
+          }
+        }
+      ]
+    }
+  ]
+</script>
+
+
+```
