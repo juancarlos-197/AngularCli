@@ -739,7 +739,7 @@ Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pa
 
 ```
 
- 1. Añade el archivo GeoJSON como una fuente de datos
+ a. Añade el archivo GeoJSON como una fuente de datos
 
 ```html
 <script>
@@ -817,7 +817,7 @@ Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pa
 
 ```
 
-2. Añade una capa para mostrar los puntos del GeoJSON
+b. Añade una capa para mostrar los puntos del GeoJSON
 
 ```html
 <script>
@@ -837,7 +837,7 @@ Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pa
 </script>
 
 ```
- 3. Estiliza los puntos
+ c. Estiliza los puntos
 
 ```html
 <script>
@@ -862,6 +862,10 @@ Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pa
 </script>
 
 ```
+
+
+
+
 
 
 
