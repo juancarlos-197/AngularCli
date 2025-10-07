@@ -47,7 +47,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Further help. Alcance funcional (MVP obligatorio)
 
-Para trabajar con la Interfaz de Angular, el requisito principal es tener instalado Node.js, ya que la Angular CLI y el ecosistema de herramientas se ejecutan sobre este entorno. 
+Para trabajar con la Interfaz de Angular, el requisito principal es tener instalado Node.js, ya que la Angular CLI y el ecosistema de herramientas se ejecutan sobre este entorno.
 A continuación, se detallan los requisitos del entorno y las versiones recomendadas para la configuración más reciente.
 
 <p align="center">
@@ -61,7 +61,7 @@ A continuación, se detallan los requisitos del entorno y las versiones recomend
 
 - Sistema operativo: La instalación de Node.js y la CLI de Angular es compatible con los sistemas operativos más comunes, como Windows, macOS y distribuciones de Linux.
 - Memoria (RAM): Se recomienda tener al menos 4 GB de RAM disponibles.
-- Espacio en disco: Un mínimo de 10 GB de espacio libre en el disco duro para la instalación y los proyectos. 
+- Espacio en disco: Un mínimo de 10 GB de espacio libre en el disco duro para la instalación y los proyectos.
 
 ### Versiones de Node.js
 
@@ -74,12 +74,11 @@ A continuación, se detallan los requisitos del entorno y las versiones recomend
   </a>
 </p>
 
-
 Es crucial utilizar una versión compatible y estable de Node.js.
-Angular requiere una versión LTS activa o en mantenimiento de Node.js. 
+Angular requiere una versión LTS activa o en mantenimiento de Node.js.
 
 - Compatibilidad: La versión de Node.js debe ser compatible con la versión de Angular que se va a utilizar. Por ejemplo, Angular 17 requiere Node.js v18.13 o superior.
-Gestor de versiones: Para evitar problemas de compatibilidad entre diferentes proyectos, se recomienda usar un gestor de versiones de Node.js. 
+Gestor de versiones: Para evitar problemas de compatibilidad entre diferentes proyectos, se recomienda usar un gestor de versiones de Node.js.
 <p align="center">
   <a href="">
     <picture>
@@ -89,29 +88,36 @@ Gestor de versiones: Para evitar problemas de compatibilidad entre diferentes pr
   </a>
 </p>
 
-
 ### 1. Instalar Node.js y npm
+
 Descarga: Visita el sitio web oficial de Node.js y descarga la versión LTS recomendada para tu sistema operativo. El paquete de instalación incluye Node.js y su gestor de paquetes, npm.
 Verificación: Abre una terminal o línea de comandos y verifica la instalación con los siguientes comandos:
 node -v (muestra la versión de Node.js)
-npm -v (muestra la versión de npm) 
+npm -v (muestra la versión de npm)
 
 ### 2. Instalar Angular CLI
+
 Una vez que tengas Node.js y npm instalados, puedes instalar la CLI de Angular de forma global en tu máquina ejecutando el siguiente comando en la terminal:
 
-npm install -g @angular/cli 
+npm install -g @angular/cli
 
 ### 3. Verificar la instalación de la CLI de Angular
+
 Para asegurarte de que la CLI de Angular se instaló correctamente y verificar la versión, ejecuta el siguiente comando:
-ng version 
+ng version
+
 ### Consideraciones adicionales
+
 - Editor de código: Aunque no es un requisito de entorno, se recomienda usar un editor o IDE moderno para el desarrollo con Angular. Opciones populares incluyen Visual Studio Code, WebStorm y Atom.
 
-- Actualizaciones: La compatibilidad entre Angular CLI y Node.js evoluciona con cada versión, por lo que es importante mantener ambos actualizados. Si trabajas con proyectos antiguos, asegúrate de utilizar una versión de Node.js compatible con el proyecto. 
+- Actualizaciones: La compatibilidad entre Angular CLI y Node.js evoluciona con cada versión, por lo que es importante mantener ambos actualizados. Si trabajas con proyectos antiguos, asegúrate de utilizar una versión de Node.js compatible con el proyecto.
+
 ### Setting Up a Project
-Al crear una aplicación con Angular CLI, MapLibre GL JS y GeoJSON, se deben tomar varias decisiones de arquitectura y asumir ciertos trade-offs (compromisos). El enfoque dependerá del tamaño del conjunto de datos GeoJSON, la complejidad de la visualización y las necesidades de rendimiento de la aplicación. 
+
+Al crear una aplicación con Angular CLI, MapLibre GL JS y GeoJSON, se deben tomar varias decisiones de arquitectura y asumir ciertos trade-offs (compromisos). El enfoque dependerá del tamaño del conjunto de datos GeoJSON, la complejidad de la visualización y las necesidades de rendimiento de la aplicación.
 
 ### Decisiones clave de arquitectura
+
 Integración de MapLibre en Angular:
 
 - Directa: Se puede importar maplibre-gl directamente en un componente de Angular. Esto ofrece un control total y es sencillo para aplicaciones pequeñas.
@@ -119,7 +125,7 @@ Integración de MapLibre en Angular:
 - Con un wrapper de Angular: Se puede usar la biblioteca ngx-maplibre-gl, que ofrece componentes de Angular para MapLibre. Esto facilita la integración con el ciclo de vida y la detección de cambios de Angular, pero añade una dependencia adicional.
 
 - Gestión de datos GeoJSON:
-En memoria: Para conjuntos de datos pequeños, se puede cargar el GeoJSON como un objeto en memoria al inicio de la aplicación. Esto permite un acceso rápido, pero consume más memoria del navegador.
+  En memoria: Para conjuntos de datos pequeños, se puede cargar el GeoJSON como un objeto en memoria al inicio de la aplicación. Esto permite un acceso rápido, pero consume más memoria del navegador.
 
 Angular Cli + MapJson brings the power of advanced customizable indoor navigation into the hands of your customers, elevating indoor mapping to a whole new level.
 Minimum requirements to complete Angular CLI + MapJson.
@@ -127,6 +133,7 @@ Some experience with Angular. You don't need much experience, but you should be 
 MapLibre GL JS. JavaScript library for creating web maps.
 Node.js and npm. Required to run your Angular CLI + MapJson application locally. Node.js.
 Angular CLI. You must have Angular CLI installed.
+
 <p align="center">
   <a href="">
     <picture>
@@ -192,10 +199,11 @@ Create a db.json file or run json-server db.json to create one with some default
 npm i json-server@0.17.4
 ```
 
-
 Create an Angular web application that allows you to:
+
 ### 1. Display a base map using MapLibre GL JS.
-   In a previous post, we showed you how to create a web viewer with MapLibre GL JS and load a GeoJSON file with your data. Now we're going a step further: we're going to enhance this viewer by adding basic features that make it much more interactive and useful.
+
+In a previous post, we showed you how to create a web viewer with MapLibre GL JS and load a GeoJSON file with your data. Now we're going a step further: we're going to enhance this viewer by adding basic features that make it much more interactive and useful.
 
 <p align="center">
   <a href="">
@@ -209,53 +217,48 @@ Create an Angular web application that allows you to:
 We start from a simple viewer, and we center it to show it by default.
 
 ```html
-  <h1>{{ title }}</h1>
-      <p>Mi equipo desarrolla una aplicación web que permite a clientes explorar y gestionar ubicaciones
-        (puntos de interés) sobre un mapa interactivo.</p>
-      <p>Angular Cli + MapJson lleva el poder de la navegación interior personalizable avanzada a las manos de tus
-        clientes, elevando el mapeo de interiores a un nivel completamente nuevo </p>
-      <p>Mapas </p>
-      <!--Mapas --> 
-      <select id="estilos">
-        <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro
-        </option>
-        <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
-        <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
-      </select>
+<h1>{{ title }}</h1>
+<p>Mi equipo desarrolla una aplicación web que permite a clientes explorar y gestionar ubicaciones (puntos de interés) sobre un mapa interactivo.</p>
+<p>Angular Cli + MapJson lleva el poder de la navegación interior personalizable avanzada a las manos de tus clientes, elevando el mapeo de interiores a un nivel completamente nuevo</p>
+<p>Mapas</p>
+<!--Mapas -->
+<select id="estilos">
+  <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro</option>
+  <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
+  <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+</select>
 
+<div class="position">
+  <div id="map" class="map"></div>
 
-      <div class="position">
-        <div id='map' class="map"></div>
-
-        <!-- Grupo de filtros  -
+  <!-- Grupo de filtros  -
         <div id="filter-group" class="filter-group"></div>-->
 
-        <!-- Entrada de filtro -->
-        <div class="filter-ctrl">
-          <input id="filter-input" type="search" name="filter" placeholder="Filtrar por nombre" />
-        </div>
+  <!-- Entrada de filtro -->
+  <div class="filter-ctrl">
+    <input id="filter-input" type="search" name="filter" placeholder="Filtrar por nombre" />
+  </div>
 
-        <!-- Filtrar los símbolos de una capa  -->
-        <fieldset class="filter">
-          Filtrar por tipo
-          <select name="type">
-            <option value="" selected>Todos</option>
-            <option value="lift">Moto</option>
-            <option value="railway">Ferrocarril</option>
-          </select>
-        </fieldset>
+  <!-- Filtrar los símbolos de una capa  -->
+  <fieldset class="filter">
+    Filtrar por tipo
+    <select name="type">
+      <option value="" selected>Todos</option>
+      <option value="lift">Moto</option>
+      <option value="railway">Ferrocarril</option>
+    </select>
+  </fieldset>
 
-        <!-- Botón Descargar GeoJSON -->
-        <button type="button" id="downloadButton" class="btn btn-primary">Descargar GeoJSON</button>
-        
-        <!-- Botón Añadir/Emiminar -->
-        <div id="controls">
-          <button type="button" id="add-marker-btn" class="btn btn-primary">Añadir marcador</button>
-          <button type="button" id="remove-marker-btn" disabled class="btn btn-danger">Eliminar marcador</button>
-        </div>
-      </div>
+  <!-- Botón Descargar GeoJSON -->
+  <button type="button" id="downloadButton" class="btn btn-primary">Descargar GeoJSON</button>
 
-      
+  <!-- Botón Añadir/Emiminar -->
+  <div id="controls">
+    <button type="button" id="add-marker-btn" class="btn btn-primary">Añadir marcador</button>
+    <button type="button" id="remove-marker-btn" disabled class="btn btn-danger">Eliminar marcador</button>
+  </div>
+</div>
+
 <script>
 
   //Crear mapa base, Inicializa un objeto MapLibre
@@ -281,118 +284,105 @@ We start from a simple viewer, and we center it to show it by default.
 
 ```css
 .position {
-    position: relative;
-    top: 20px;
+  position: relative;
+  top: 20px;
 }
 
 .map {
-    width: 800px;
-    height: 400px;
-    left: 0%
+  width: 800px;
+  height: 400px;
+  left: 0%;
 }
 
 .example-card {
-    max-width: 300px;
+  max-width: 300px;
 }
 
 .example-header-image {
-    background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+  background-image: url("https://material.angular.dev/assets/img/examples/shiba1.jpg");
+  background-size: cover;
 }
 
 .map-overlay {
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    position: absolute;
-    width: 31.8%;
-    top: 0;
-    left: 0;
-    padding: 10px;
+  font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  position: absolute;
+  width: 31.8%;
+  top: 0;
+  left: 0;
+  padding: 10px;
 }
 
 .map-overlay .map-overlay-inner {
-    background-color: #fff;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-    padding: 10px;
-    margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .map-overlay input {
-    margin: 2px;
+  margin: 2px;
 }
 
-input[type=number] {
-    width: 25%
+input[type="number"] {
+  width: 25%;
 }
 
 #filter-result {
-    font-size: 8px;
-    font-family: "Courier New";
+  font-size: 8px;
+  font-family: "Courier New";
 }
-
-
-
-
-
 
 .filter-ctrl {
-    position: absolute;
-    top: 10px;
-    left: 40px;
-    z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  z-index: 1;
 }
 
-.filter-ctrl input[type='search'] {
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    border: 0;
-    background-color: #fff;
-    margin: 0;
-    color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-    width: 180px;
+.filter-ctrl input[type="search"] {
+  font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  border: 0;
+  background-color: #fff;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  width: 180px;
 }
-
-
-
 
 .filter {
-    position: absolute;
-    top: 60px;
-    left: 40px;
-    background-color: white;
-    padding: 10px;
+  position: absolute;
+  top: 60px;
+  left: 40px;
+  background-color: white;
+  padding: 10px;
 }
-
-
 
 #downloadButton {
-    position: absolute;
-    bottom: 80px;
-    left: 10px;
-    z-index: 1;
-    padding: 10px;
-    font-family: sans-serif;
+  position: absolute;
+  bottom: 80px;
+  left: 10px;
+  z-index: 1;
+  padding: 10px;
+  font-family: sans-serif;
 }
 
-
-
-
 #controls {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    z-index: 10;
-    padding: 10px;
-    background: white;
-    border-radius: px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 10;
+  padding: 10px;
+  background: white;
+  border-radius: px;
 }
 
 button {
-    font-size: 16px;
-    padding: 8px 12px;
-    cursor: pointer;
+  font-size: 16px;
+  padding: 8px 12px;
+  cursor: pointer;
 }
 ```
 
@@ -441,7 +431,6 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
     }
 
   }
-
 </script>
 ```
 
@@ -456,54 +445,49 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
 
 ```html
 <script>
-//  point sourceId , points layerId
-    const sourceId = 'xample_point';
-    const layerId = 'xample_points-layer';
-    if (this.map) {
+  //  point sourceId , points layerId
+  const sourceId = "xample_point";
+  const layerId = "xample_points-layer";
+  if (this.map) {
+    // data a tu fuente GeoJSON inicial al mapa.
+    //  Añadir el controlador de eventos de clic, datos de España
+    this.map.on("load", async () => {
+      this.addGeolocationCntrols();
+      this.addBookmark();
+      const img = new Image();
+      img.onload = () => {
+        this.map?.addImage("icono-personalizado", img);
+        const a = this.map?.addSource(sourceId, {
+          type: "geojson",
+          data: "https://public.opendatasoft.com/explore/dataset/georef-spain-provincia/download/?format=geojson&timezone=Europe/Madrid&lang=es",
+        });
 
-      // data a tu fuente GeoJSON inicial al mapa.
-      //  Añadir el controlador de eventos de clic, datos de España
-      this.map.on('load', async () => {
-        this.addGeolocationCntrols();
-        this.addBookmark();
-        const img = new Image();
-        img.onload = () => {
-          this.map?.addImage('icono-personalizado', img);
-          const a = this.map?.addSource(sourceId, {
-            type: 'geojson',
-            data: 'https://public.opendatasoft.com/explore/dataset/georef-spain-provincia/download/?format=geojson&timezone=Europe/Madrid&lang=es'
-          });
-
-          // 2. Crea una capa para mostrar los puntos
-          this.map?.addLayer({
-            id: layerId,
-            type: 'fill',
-            source: sourceId,
-            paint: {
-              'fill-color': '#27ec48ad',
-              'fill-opacity': 0.5,
-              'fill-outline-color': '#071224ff'
-            },
-          });
-        }
-        img.src = 'juan.jpg';
-      });
-    }
-
-
-</script>
-```
-```html
-<script>
-   
+        // 2. Crea una capa para mostrar los puntos
+        this.map?.addLayer({
+          id: layerId,
+          type: "fill",
+          source: sourceId,
+          paint: {
+            "fill-color": "#27ec48ad",
+            "fill-opacity": 0.5,
+            "fill-outline-color": "#071224ff",
+          },
+        });
+      };
+      img.src = "juan.jpg";
+    });
+  }
 </script>
 ```
 
 ```html
-<script>
-
-</script>
+<script></script>
 ```
+
+```html
+<script></script>
+```
+
 <p align="center">
   <a href="">
     <picture>
@@ -516,50 +500,50 @@ Let's continue with the features of our viewer, for example, showing useful info
 
 ```html
 <script>
- // Mostrar información del polígono al hacer clic España
-    //Añade el manejador de eventos de clic al mapa
-    //Eventos de click  mostrar información básica al pulsar sobre una provincia
-    if (this.map) {
-      // Configura un detector de eventos en el mapa.
-      this.map.on('click', layerId, (e) => {
-        console.log('uuuiii', e);
-        // Obtiene las coordenadas del clic
-        const longitude = e.lngLat.lng;
-        const latitude = e.lngLat.lat;
-        if (e.features && e.features.length > 0) {
-          if (e.features[0].properties) {
-            const props = e.features[0].properties;
-            new Popup()
-              .setLngLat(e.lngLat)
-              .setHTML(`
-            <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
-            <h6> Código: ${props['prov_code']}<br/></h6><br/>
-            Comunidad: ${props['acom_name']}<br/>
-            Año: ${props['year']}
-          `)
-              .addTo(this.map!);
-            new maplibregl.Marker({ color: "#152688ff" })
-              .setLngLat([longitude, latitude])
-              .addTo(this.map!);
-          }
-        }
-      });
+  // Mostrar información del polígono al hacer clic España
+     //Añade el manejador de eventos de clic al mapa
+     //Eventos de click  mostrar información básica al pulsar sobre una provincia
+     if (this.map) {
+       // Configura un detector de eventos en el mapa.
+       this.map.on('click', layerId, (e) => {
+         console.log('uuuiii', e);
+         // Obtiene las coordenadas del clic
+         const longitude = e.lngLat.lng;
+         const latitude = e.lngLat.lat;
+         if (e.features && e.features.length > 0) {
+           if (e.features[0].properties) {
+             const props = e.features[0].properties;
+             new Popup()
+               .setLngLat(e.lngLat)
+               .setHTML(`
+             <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
+             <h6> Código: ${props['prov_code']}<br/></h6><br/>
+             Comunidad: ${props['acom_name']}<br/>
+             Año: ${props['year']}
+           `)
+               .addTo(this.map!);
+             new maplibregl.Marker({ color: "#152688ff" })
+               .setLngLat([longitude, latitude])
+               .addTo(this.map!);
+           }
+         }
+       });
 
 
-      // Cambia el cursor a un puntero cuando el mouse está sobre la capa de estados.
-      this.map.on('mouseenter', layerId, (e) => {
-        if (this.map) {
-          this.map.getCanvas().style.cursor = 'pointer';
-        }
-      });
+       // Cambia el cursor a un puntero cuando el mouse está sobre la capa de estados.
+       this.map.on('mouseenter', layerId, (e) => {
+         if (this.map) {
+           this.map.getCanvas().style.cursor = 'pointer';
+         }
+       });
 
-      // Cámbielo nuevamente a un puntero cuando se vaya.
-      this.map.on('mouseleave', layerId, () => {
-        if (this.map) {
-          this.map.getCanvas().style.cursor = '';
-        }
-      });
-    }
+       // Cámbielo nuevamente a un puntero cuando se vaya.
+       this.map.on('mouseleave', layerId, () => {
+         if (this.map) {
+           this.map.getCanvas().style.cursor = '';
+         }
+       });
+     }
 </script>
 ```
 
@@ -574,18 +558,16 @@ Let's continue with the features of our viewer, for example, showing useful info
 Let's see how we can customize the styles of our base or background layer to adapt the display. In our HTML, we add a "select" control to choose between light and dark mode:
 
 ```html
-
- <!--Mapas --> 
-      <select id="estilos">
-        <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro
-        </option>
-        <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
-        <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
-      </select>
+<!--Mapas -->
+<select id="estilos">
+  <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro</option>
+  <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
+  <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+</select>
 
 <script>
 
-  //Cambiar estilos del mapa 
+  //Cambiar estilos del mapa
   changeBaseStyleMap() {
     const estilosElement = document.getElementById('estilos');
     if (estilosElement) {
@@ -599,258 +581,199 @@ Let's see how we can customize the styles of our base or background layer to ada
   }
 </script>
 ```
+
 Okay, it works, but... Where has the province layer gone?
 
-What's happening is that MapLibre GL JS replaces the entire map structure when changing the style using  This behavior isn't a bug; it's the intended design of MapLibre/Mapbox GL JS, so we need to reload our province layer every time we change our styles.
+What's happening is that MapLibre GL JS replaces the entire map structure when changing the style using This behavior isn't a bug; it's the intended design of MapLibre/Mapbox GL JS, so we need to reload our province layer every time we change our styles.
 
 Let's modify our code to adapt it to this need. First, let's encapsulate the loading functionality of our province layer in function. We call this function when the map has loaded and also when we change styles from the "select" function:
 
 ```html
-<script>
-
-
-
-  
-</script>
-
+<script></script>
 ```
+
 With this, we have a viewer capable of moving fluidly, showing the user's location, and adapting to different visual styles.
 
-
 ### 2 Upload (import) a GeoJSON point file (a sample file pois.sample.geojson will be attached).
-
 
 GeoJSON is a very popular data format among many GIS technologies and services: it is simple, lightweight and straightforward, and MapLibre handles it very efficiently.
 To add points to the map in MapLibre GL JS on click, you must use a map click event handler to get the click coordinates, then use map.getSource() to get your GeoJSON source and setData() to add a new point to that source. The new point must be in GeoJSON Point format and included in the existing data structure.
 
 You can use Geojson to create your own collection and play with this functionality.
 
-
-
-
-
-
-
-
-
-
-
-Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pasos principales: cargar el archivo como fuente de datos, agregar una capa que haga referencia a esa fuente y, opcionalmente, personalizar el estilo de los puntos. 
-
-
-
-
-
-
+Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pasos principales: cargar el archivo como fuente de datos, agregar una capa que haga referencia a esa fuente y, opcionalmente, personalizar el estilo de los puntos.
 
 ```html
 <script>
-
- // Espera a que el mapa cargue antes de añadir las fuentes y capas
-      this.map.on('load', () => {
-        // Añadir la fuente de datos GeoJSON
-        const source = this.map?.addSource('places', {
-          type: 'geojson',
-          //  Cargar datos GeoJSON
-          data:
+  // Espera a que el mapa cargue antes de añadir las fuentes y capas
+  this.map.on("load", () => {
+    // Añadir la fuente de datos GeoJSON
+    const source = this.map?.addSource("places", {
+      type: "geojson",
+      //  Cargar datos GeoJSON
+      data: {
+        type: "FeatureCollection",
+        features: [
           {
-            "type": "FeatureCollection",
-            "features":
-              [
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Plaza de Armas",
-                    "category": "landmark",
-                    "marker-color": "#7e7e7e",
-                    "marker-size": "medium",
-                    "marker-symbol": "circle-stroked",
-                    "population": 123456
-                  }
-                  ,
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -76.53063297271729,
-                      39.18174077994108
-                    ]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {},
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -66.53063297271729,
-                      49.18174077994108
-                    ]
-                  }
-                },
-
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Parque Bicentenario",
-                    "category": "park"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -76.6361969,
-                      2.4482548]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Parque Bicentenario",
-                    "category": "park"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -79.6361969,
-                      13.4482548]
-                  }
-                }
-
-              ]
-          }
-        });
-
-
-        // Añadir la capa para visualizar los puntos
-        this.map?.addLayer({
-          'id': 'xample_po',
-          'type': 'circle',// Puedes usar 'circle' o 'symbol' para puntos
-          'source': 'places', // ID de la fuente creada en el paso anterior
-          'paint': {
-            'circle-color': '#008f07ff', // Color de los círculos
-            'circle-radius': 10, // Radio de los círculos
-            'circle-stroke-width': 2,// Ancho del borde
-            'circle-stroke-color': '#ffffff' // Color del borde
+            type: "Feature",
+            properties: {
+              name: "Plaza de Armas",
+              category: "landmark",
+              "marker-color": "#7e7e7e",
+              "marker-size": "medium",
+              "marker-symbol": "circle-stroked",
+              population: 123456,
+            },
+            geometry: {
+              type: "Point",
+              coordinates: [-76.53063297271729, 39.18174077994108],
+            },
           },
-        });
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: [-66.53063297271729, 49.18174077994108],
+            },
+          },
 
-        });
+          {
+            type: "Feature",
+            properties: {
+              name: "Parque Bicentenario",
+              category: "park",
+            },
+            geometry: {
+              type: "Point",
+              coordinates: [-76.6361969, 2.4482548],
+            },
+          },
+          {
+            type: "Feature",
+            properties: {
+              name: "Parque Bicentenario",
+              category: "park",
+            },
+            geometry: {
+              type: "Point",
+              coordinates: [-79.6361969, 13.4482548],
+            },
+          },
+        ],
+      },
+    });
 
+    // Añadir la capa para visualizar los puntos
+    this.map?.addLayer({
+      id: "xample_po",
+      type: "circle", // Puedes usar 'circle' o 'symbol' para puntos
+      source: "places", // ID de la fuente creada en el paso anterior
+      paint: {
+        "circle-color": "#008f07ff", // Color de los círculos
+        "circle-radius": 10, // Radio de los círculos
+        "circle-stroke-width": 2, // Ancho del borde
+        "circle-stroke-color": "#ffffff", // Color del borde
+      },
+    });
+  });
 </script>
-
 ```
 
- a. Añade el archivo GeoJSON como una fuente de datos
+a. Añade el archivo GeoJSON como una fuente de datos
 
 ```html
 <script>
+  const source = this.map?.addSource("places", {
+    type: "geojson",
+    //  Cargar datos GeoJSON
+    data: {
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          properties: {
+            name: "Plaza de Armas",
+            category: "landmark",
+            "marker-color": "#7e7e7e",
+            "marker-size": "medium",
+            "marker-symbol": "circle-stroked",
+            population: 123456,
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [-76.53063297271729, 39.18174077994108],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "Point",
+            coordinates: [-66.53063297271729, 49.18174077994108],
+          },
+        },
 
- const source = this.map?.addSource('places', {
-          type: 'geojson',
-          //  Cargar datos GeoJSON
-          data:
-          {
-            "type": "FeatureCollection",
-            "features":
-              [
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Plaza de Armas",
-                    "category": "landmark",
-                    "marker-color": "#7e7e7e",
-                    "marker-size": "medium",
-                    "marker-symbol": "circle-stroked",
-                    "population": 123456
-                  }
-                  ,
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -76.53063297271729,
-                      39.18174077994108
-                    ]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {},
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -66.53063297271729,
-                      49.18174077994108
-                    ]
-                  }
-                },
-
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Parque Bicentenario",
-                    "category": "park"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -76.6361969,
-                      2.4482548]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Parque Bicentenario",
-                    "category": "park"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -79.6361969,
-                      13.4482548]
-                  }
-                }
-
-              ]
-          }
-        });
+        {
+          type: "Feature",
+          properties: {
+            name: "Parque Bicentenario",
+            category: "park",
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [-76.6361969, 2.4482548],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {
+            name: "Parque Bicentenario",
+            category: "park",
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [-79.6361969, 13.4482548],
+          },
+        },
+      ],
+    },
+  });
 </script>
-
 ```
 
 b. Añade una capa para mostrar los puntos del GeoJSON
 
 ```html
 <script>
-        // Añadir la capa para visualizar los puntos
-        this.map?.addLayer({
-          'id': 'xample_po',
-          'type': 'circle',// Puedes usar 'circle' o 'symbol' para puntos
-          'source': 'places', // ID de la fuente creada en el paso anterior
-          'paint': {
-            'circle-color': '#008f07ff', // Color de los círculos
-            'circle-radius': 10, // Radio de los círculos
-            'circle-stroke-width': 2,// Ancho del borde
-            'circle-stroke-color': '#ffffff' // Color del borde
-          },
-        });
-  
+  // Añadir la capa para visualizar los puntos
+  this.map?.addLayer({
+    id: "xample_po",
+    type: "circle", // Puedes usar 'circle' o 'symbol' para puntos
+    source: "places", // ID de la fuente creada en el paso anterior
+    paint: {
+      "circle-color": "#008f07ff", // Color de los círculos
+      "circle-radius": 10, // Radio de los círculos
+      "circle-stroke-width": 2, // Ancho del borde
+      "circle-stroke-color": "#ffffff", // Color del borde
+    },
+  });
 </script>
-
 ```
- c. Estiliza los puntos
+
+c. Estiliza los puntos
 
 ```html
 <script>
-          'paint': {
-            'circle-color': '#008f07ff', // Color de los círculos
-            'circle-radius': 10, // Radio de los círculos
-            'circle-stroke-width': 2,// Ancho del borde
-            'circle-stroke-color': '#ffffff' // Color del borde
-          },
-  
+  'paint': {
+    'circle-color': '#008f07ff', // Color de los círculos
+    'circle-radius': 10, // Radio de los círculos
+    'circle-stroke-width': 2,// Ancho del borde
+    'circle-stroke-color': '#ffffff' // Color del borde
+  },
 </script>
-
 ```
+
 `
 
 <p align="center">
@@ -861,516 +784,494 @@ b. Añade una capa para mostrar los puntos del GeoJSON
     <h2 align="center">Explicación del código</h2>
   </a>
 
+map.on('load', ...):
 
-map.on('load', ...): 
- 
 Este fragmento de código asegura que la función se ejecute solo después de que el mapa haya cargado completamente, lo que garantiza que todos los recursos necesarios estén disponibles.
 
 map.addSource(): Este método añade una nueva fuente de datos al mapa.
-* 'pois-source': Es el ID único que le asignas a esta fuente para referenciarla más tarde.
-* type: 'geojson': Especifica que el tipo de datos es GeoJSON.
-* data: 
+
+- 'pois-source': Es el ID único que le asignas a esta fuente para referenciarla más tarde.
+- type: 'geojson': Especifica que el tipo de datos es GeoJSON.
+- data:
 
 ```html
 <script>
 
-     {
-            "type": "FeatureCollection",
-            "features":
-              [
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Plaza de Armas",
-                    "category": "landmark",
-                    "marker-color": "#7e7e7e",
-                    "marker-size": "medium",
-                    "marker-symbol": "circle-stroked",
-                    "population": 123456
-                  }
-                  ,
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -76.53063297271729,
-                      39.18174077994108
-                    ]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {},
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -66.53063297271729,
-                      49.18174077994108
-                    ]
-                  }
-                },
+  {
+         "type": "FeatureCollection",
+         "features":
+           [
+             {
+               "type": "Feature",
+               "properties": {
+                 "name": "Plaza de Armas",
+                 "category": "landmark",
+                 "marker-color": "#7e7e7e",
+                 "marker-size": "medium",
+                 "marker-symbol": "circle-stroked",
+                 "population": 123456
+               }
+               ,
+               "geometry": {
+                 "type": "Point",
+                 "coordinates": [
+                   -76.53063297271729,
+                   39.18174077994108
+                 ]
+               }
+             },
+             {
+               "type": "Feature",
+               "properties": {},
+               "geometry": {
+                 "type": "Point",
+                 "coordinates": [
+                   -66.53063297271729,
+                   49.18174077994108
+                 ]
+               }
+             },
 
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Parque Bicentenario",
-                    "category": "park"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -76.6361969,
-                      2.4482548]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Parque Bicentenario",
-                    "category": "park"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -79.6361969,
-                      13.4482548]
-                  }
-                }
+             {
+               "type": "Feature",
+               "properties": {
+                 "name": "Parque Bicentenario",
+                 "category": "park"
+               },
+               "geometry": {
+                 "type": "Point",
+                 "coordinates": [
+                   -76.6361969,
+                   2.4482548]
+               }
+             },
+             {
+               "type": "Feature",
+               "properties": {
+                 "name": "Parque Bicentenario",
+                 "category": "park"
+               },
+               "geometry": {
+                 "type": "Point",
+                 "coordinates": [
+                   -79.6361969,
+                   13.4482548]
+               }
+             }
 
-              ]
-          }
+           ]
+       }
 </script>
-
 ```
+
 Indica la ubicación de tu archivo GeoJSON. Si el archivo está en el mismo servidor que la aplicación, puedes usar una ruta relativa. Si está en un servidor externo, debes proporcionar la URL completa.
 
 map.addLayer(): Este método añade una capa visual al mapa que utiliza la fuente de datos que definiste.
+
 - id: 'xample_po': Es el ID único de la capa.
 - type: 'circle': Define el estilo de representación visual. Para puntos, el tipo de capa 'circle' es el más común, ya que dibuja círculos en cada coordenada.
 - source: 'xample_po': Vincula esta capa con la fuente de datos GeoJSON que creaste en el paso anterior.
-- paint: Es un objeto donde puedes definir el estilo visual de los elementos de la capa. Se configura el radio y el color de los círculos. 
-
+- paint: Es un objeto donde puedes definir el estilo visual de los elementos de la capa. Se configura el radio y el color de los círculos.
 
 ```html
-<script>
-
-  
-</script>
-
+<script></script>
 ```
 
-
 ```html
-<script>
-
-  
-</script>
-
+<script></script>
 ```
 
-
 ```html
 <script>
 
- /**Agregar múltiples funciones de una colección de funciones
-Puedes usar geojson para crear tu propia colección y jugar con esta funcionalidad.
-*/
- addGeoJsonFeatures() {
-    var geoJsonFeatures: geojson.FeatureCollection = {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {
-            "marker-color": "#7e7e7e",
-            "marker-size": "medium",
-            "marker-symbol": "circle-stroked",
-            "population": 123456
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              6.134490966796874,
-              49.61649369617232
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              5.887298583984375,
-              49.48240137826932
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              6.179809570312499,
-              49.453842594330716
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "LineString",
-            "coordinates": [
-              [
-                5.4107666015625,
-                49.586677749628784
-              ],
-              [
-                5.71014404296875,
-                49.616048816070425
-              ],
-              [
-                5.78155517578125,
-                49.47883244071047
-              ],
-              [
-                5.696411132812499,
-                49.37969064441394
+   /**Agregar múltiples funciones de una colección de funciones
+  Puedes usar geojson para crear tu propia colección y jugar con esta funcionalidad.
+  */
+   addGeoJsonFeatures() {
+      var geoJsonFeatures: geojson.FeatureCollection = {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {
+              "marker-color": "#7e7e7e",
+              "marker-size": "medium",
+              "marker-symbol": "circle-stroked",
+              "population": 123456
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                6.134490966796874,
+                49.61649369617232
               ]
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Polygon",
-            "coordinates": [
-              [
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                5.887298583984375,
+                49.48240137826932
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                6.179809570312499,
+                49.453842594330716
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
                 [
-                  5.2789306640625,
-                  49.7173764049358
+                  5.4107666015625,
+                  49.586677749628784
                 ],
                 [
-                  5.295410156249999,
-                  49.61070993807422
+                  5.71014404296875,
+                  49.616048816070425
                 ],
                 [
-                  5.532989501953125,
-                  49.63117246129088
+                  5.78155517578125,
+                  49.47883244071047
                 ],
                 [
-                  5.604400634765625,
-                  49.74045665339642
-                ],
-                [
-                  5.601654052734375,
-                  49.82558098327032
-                ],
-                [
-                  5.329742431640625,
-                  49.82469504231389
-                ],
-                [
-                  5.2789306640625,
-                  49.7173764049358
+                  5.696411132812499,
+                  49.37969064441394
                 ]
               ]
-            ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [
+                    5.2789306640625,
+                    49.7173764049358
+                  ],
+                  [
+                    5.295410156249999,
+                    49.61070993807422
+                  ],
+                  [
+                    5.532989501953125,
+                    49.63117246129088
+                  ],
+                  [
+                    5.604400634765625,
+                    49.74045665339642
+                  ],
+                  [
+                    5.601654052734375,
+                    49.82558098327032
+                  ],
+                  [
+                    5.329742431640625,
+                    49.82469504231389
+                  ],
+                  [
+                    5.2789306640625,
+                    49.7173764049358
+                  ]
+                ]
+              ]
+            }
           }
-        }
-      ]
-    };
- }
-
+        ]
+      };
+   }
 </script>
-
 ```
 
-
-
 También con servicio Api Rest
+
 ```html
-
-
 <script>
   npx json-server db.json
 </script>
-
 ```
-Archivo data/db.json API Rest 
+
+Archivo data/db.json API Rest
 
 ```html
 <script>
-{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -70.6483,
-          -33.4569
-        ]
+  {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -70.6483,
+            -33.4569
+          ]
+        },
+        "properties": {
+          "name": "Plaza de Armas",
+          "category": "landmark"
+        }
       },
-      "properties": {
-        "name": "Plaza de Armas",
-        "category": "landmark"
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -70.615,
+            -33.44
+          ]
+        },
+        "properties": {
+          "name": "Parque Bicentenario",
+          "category": "park"
+        }
       }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -70.615,
-          -33.44
-        ]
-      },
-      "properties": {
-        "name": "Parque Bicentenario",
-        "category": "park"
-      }
-    }
-  ]
-}
-
+    ]
+  }
 </script>
-
-
 ```
 
-Archivo data/db.json API Rest 
+Archivo data/db.json API Rest
 
 ```html
 <script>
-{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -70.6483,
-          -33.4569
-        ]
+  {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -70.6483,
+            -33.4569
+          ]
+        },
+        "properties": {
+          "name": "Plaza de Armas",
+          "category": "landmark"
+        }
       },
-      "properties": {
-        "name": "Plaza de Armas",
-        "category": "landmark"
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -70.615,
+            -33.44
+          ]
+        },
+        "properties": {
+          "name": "Parque Bicentenario",
+          "category": "park"
+        }
       }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -70.615,
-          -33.44
-        ]
-      },
-      "properties": {
-        "name": "Parque Bicentenario",
-        "category": "park"
-      }
-    }
-  ]
-}
-
+    ]
+  }
 </script>
 ```
 
 También otro servicio/task.service.ts
+
 ```html
 <script>
- /**Un arreglo de nuevo punto (Mapa). Variable privada  */
-  private newPoin: any[] = [
-    {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              32.7,
-              45.78]
-          },
-          "properties": {
-            "name": "Plaza de Armas",
-            "category": "landmark",
-            "marker-color": "#7e7e7e",
-            "marker-size": "medium",
-            "marker-symbol": "circle-stroked",
-            "population": 123456
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              56,
-              45
-            ]
-          },
-          "properties": {
-            "name": "Parque Bicentenario",
-            "category": "park"
-          }
-        }
-      ]
-    }
-  ]
+  /**Un arreglo de nuevo punto (Mapa). Variable privada  */
+   private newPoin: any[] = [
+     {
+       "type": "FeatureCollection",
+       "features": [
+         {
+           "type": "Feature",
+           "geometry": {
+             "type": "Point",
+             "coordinates": [
+               32.7,
+               45.78]
+           },
+           "properties": {
+             "name": "Plaza de Armas",
+             "category": "landmark",
+             "marker-color": "#7e7e7e",
+             "marker-size": "medium",
+             "marker-symbol": "circle-stroked",
+             "population": 123456
+           }
+         },
+         {
+           "type": "Feature",
+           "geometry": {
+             "type": "Point",
+             "coordinates": [
+               56,
+               45
+             ]
+           },
+           "properties": {
+             "name": "Parque Bicentenario",
+             "category": "park"
+           }
+         }
+       ]
+     }
+   ]
 </script>
 ```
+
 ### 3. Mostrar en el mapa los puntos del GeoJSON.
 
-Para mostrar puntos de un archivo GeoJSON en un mapa utilizando MapLibre GL JS, debe seguir los siguientes pasos: incluir la biblioteca de MapLibre, configurar el mapa base y, luego, agregar el archivo GeoJSON como una fuente y una capa para visualizar los puntos. 
+Para mostrar puntos de un archivo GeoJSON en un mapa utilizando MapLibre GL JS, debe seguir los siguientes pasos: incluir la biblioteca de MapLibre, configurar el mapa base y, luego, agregar el archivo GeoJSON como una fuente y una capa para visualizar los puntos.
 
-Primero debes crear una fuente de mapa usando la función addSource() y pasar los datos GeoJSON como parámetro. Luego, para visualizar esos puntos, creas una capa con addLayer() y la asocias a la fuente de datos previamente creada, especificando el tipo de geometría ("Point") y las opciones de estilo para los puntos. 
+Primero debes crear una fuente de mapa usando la función addSource() y pasar los datos GeoJSON como parámetro. Luego, para visualizar esos puntos, creas una capa con addLayer() y la asocias a la fuente de datos previamente creada, especificando el tipo de geometría ("Point") y las opciones de estilo para los puntos.
 
 Pasos detallados para mostrar puntos GeoJSON en MapLibre GL JS
-* Crea la fuente de datos (Source):
-- Utiliza el método map.addSource(sourceId, sourceData).
-- sourceId: Es un identificador único para esta fuente (ej: "places").
-- sourceData: Es un objeto que contiene los datos GeoJSON. Puedes cargar esto desde un archivo o directamente como un objeto Typescript.
-Ejemplo de código (fragmento): 
 
+- Crea la fuente de datos (Source):
+
+* Utiliza el método map.addSource(sourceId, sourceData).
+* sourceId: Es un identificador único para esta fuente (ej: "places").
+* sourceData: Es un objeto que contiene los datos GeoJSON. Puedes cargar esto desde un archivo o directamente como un objeto Typescript.
+  Ejemplo de código (fragmento):
 
 ```html
 <script>
   // Añadir la fuente de datos GeoJSON
-        const source = this.map?.addSource('places', {
-          type: 'geojson',
-          //  Cargar datos GeoJSON
-          data:
-          {
-            "type": "FeatureCollection",
-            "features":
-              [
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Plaza de Armas",
-                    "category": "landmark",
-                    "marker-color": "#7e7e7e",
-                    "marker-size": "medium",
-                    "marker-symbol": "circle-stroked",
-                    "population": 123456
-                  }
-                  ,
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -76.53063297271729,
-                      39.18174077994108
-                    ]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {},
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -66.53063297271729,
-                      49.18174077994108
-                    ]
-                  }
-                },
+  const source = this.map?.addSource("places", {
+    type: "geojson",
+    //  Cargar datos GeoJSON
+    data: {
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          properties: {
+            name: "Plaza de Armas",
+            category: "landmark",
+            "marker-color": "#7e7e7e",
+            "marker-size": "medium",
+            "marker-symbol": "circle-stroked",
+            population: 123456,
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [-76.53063297271729, 39.18174077994108],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "Point",
+            coordinates: [-66.53063297271729, 49.18174077994108],
+          },
+        },
 
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Parque Bicentenario",
-                    "category": "park"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -76.6361969,
-                      2.4482548]
-                  }
-                },
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "name": "Parque Bicentenario",
-                    "category": "park"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      -79.6361969,
-                      13.4482548]
-                  }
-                }
-
-              ]
-          }
-        });
-
+        {
+          type: "Feature",
+          properties: {
+            name: "Parque Bicentenario",
+            category: "park",
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [-76.6361969, 2.4482548],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {
+            name: "Parque Bicentenario",
+            category: "park",
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [-79.6361969, 13.4482548],
+          },
+        },
+      ],
+    },
+  });
 </script>
 ```
-* Agrega la capa de visualización (Layer):
-- Usa el método map.addLayer(layerDefinition).
-- layerDefinition: Es un objeto que describe cómo se renderizará la capa.
-- Especifica que la source es la fuente que creaste en el paso anterior (ej: source: 'places').
-- Define type: 'symbol' para mostrar puntos como símbolos o iconos, o type: 'circle' para círculos.
-- Dentro del objeto paint, puedes configurar el color, el tamaño y la forma de los puntos.
 
-Ejemplo de código (fragmento): 
+- Agrega la capa de visualización (Layer):
+
+* Usa el método map.addLayer(layerDefinition).
+* layerDefinition: Es un objeto que describe cómo se renderizará la capa.
+* Especifica que la source es la fuente que creaste en el paso anterior (ej: source: 'places').
+* Define type: 'symbol' para mostrar puntos como símbolos o iconos, o type: 'circle' para círculos.
+* Dentro del objeto paint, puedes configurar el color, el tamaño y la forma de los puntos.
+
+Ejemplo de código (fragmento):
 
 ```html
 <script>
-        // Añadir la capa para visualizar los puntos
-        this.map?.addLayer({
-          'id': 'xample_po',
-          'type': 'circle',// Puedes usar 'circle' o 'symbol' para puntos
-          'source': 'places', // ID de la fuente creada en el paso anterior
-          'paint': {
-            'circle-color': '#008f07ff', // Color de los círculos
-            'circle-radius': 10, // Radio de los círculos
-            'circle-stroke-width': 2,// Ancho del borde
-            'circle-stroke-color': '#ffffff' // Color del borde
-          },
-        });
+  // Añadir la capa para visualizar los puntos
+  this.map?.addLayer({
+    id: "xample_po",
+    type: "circle", // Puedes usar 'circle' o 'symbol' para puntos
+    source: "places", // ID de la fuente creada en el paso anterior
+    paint: {
+      "circle-color": "#008f07ff", // Color de los círculos
+      "circle-radius": 10, // Radio de los círculos
+      "circle-stroke-width": 2, // Ancho del borde
+      "circle-stroke-color": "#ffffff", // Color del borde
+    },
+  });
 </script>
 ```
 
 ### Consideraciones:
 
-Datos GeoJSON: El archivo GeoJSON debe contener un objeto FeatureCollection con features de tipo Point para que se muestren correctamente. 
+Datos GeoJSON: El archivo GeoJSON debe contener un objeto FeatureCollection con features de tipo Point para que se muestren correctamente.
 
 ### 4. Agregar un nuevo punto haciendo clic en el mapa.
 
-Para agregar un nuevo punto haciendo clic en un mapa MapLibre, debes usar el evento click en el mapa para obtener las coordenadas del clic y luego agregar una nueva característica de punto a tus datos GeoJSON, que puedes visualizar con una capa. Esto implica obtener las coordenadas del evento de clic, crear un objeto GeoJSON con esas coordenadas y añadirlo como una fuente de datos al mapa, y finalmente crear una capa de mapa para mostrarlo visualmente. 
+Para agregar un nuevo punto haciendo clic en un mapa MapLibre, debes usar el evento click en el mapa para obtener las coordenadas del clic y luego agregar una nueva característica de punto a tus datos GeoJSON, que puedes visualizar con una capa. Esto implica obtener las coordenadas del evento de clic, crear un objeto GeoJSON con esas coordenadas y añadirlo como una fuente de datos al mapa, y finalmente crear una capa de mapa para mostrarlo visualmente.
 
 Pasos para agregar un punto al hacer clic en el mapa
-* Configurar el mapa: Asegúrate de tener tu mapa MapLibre inicializado y configurado para escuchar eventos de clic. 
-* Manejar el evento click del mapa:
-- Usa map.on('click', function(e) { ... }); para ejecutar una función cada vez que el usuario haga clic en el mapa. 
-- Dentro de la función, puedes acceder a las coordenadas del clic a través de e.lngLat. 
-* Crear una fuente de datos GeoJSON:
-- Si ya tienes una fuente GeoJSON en tu mapa, puedes agregar los nuevos puntos a ella. 
-- Si no, crea una fuente GeoJSON nueva con los datos de tu punto. 
-- Usa el método map.addSource() para agregar esta fuente al mapa. 
-* Agregar una capa para mostrar los puntos:
-- Añade una capa de tipo "symbol" o "circle" para visualizar los puntos en el mapa. 
-- Asocia esta capa a la fuente GeoJSON que creaste. 
-* Añadir la característica de punto:
-- Crea un nuevo objeto GeoJSON de tipo "Point" usando las coordenadas e.lngLat. 
-- Agrega este nuevo punto a tus datos GeoJSON. Puedes hacerlo obteniendo el objeto source actual y modificándolo. 
-- Actualiza la fuente en el mapa con los nuevos datos GeoJSON usando map.getSource('tu_fuente_id').setData(nuevos_datos_geojson). 
 
+- Configurar el mapa: Asegúrate de tener tu mapa MapLibre inicializado y configurado para escuchar eventos de clic.
+- Manejar el evento click del mapa:
+
+* Usa map.on('click', function(e) { ... }); para ejecutar una función cada vez que el usuario haga clic en el mapa.
+* Dentro de la función, puedes acceder a las coordenadas del clic a través de e.lngLat.
+
+- Crear una fuente de datos GeoJSON:
+
+* Si ya tienes una fuente GeoJSON en tu mapa, puedes agregar los nuevos puntos a ella.
+* Si no, crea una fuente GeoJSON nueva con los datos de tu punto.
+* Usa el método map.addSource() para agregar esta fuente al mapa.
+
+- Agregar una capa para mostrar los puntos:
+
+* Añade una capa de tipo "symbol" o "circle" para visualizar los puntos en el mapa.
+* Asocia esta capa a la fuente GeoJSON que creaste.
+
+- Añadir la característica de punto:
+
+* Crea un nuevo objeto GeoJSON de tipo "Point" usando las coordenadas e.lngLat.
+* Agrega este nuevo punto a tus datos GeoJSON. Puedes hacerlo obteniendo el objeto source actual y modificándolo.
+* Actualiza la fuente en el mapa con los nuevos datos GeoJSON usando map.getSource('tu_fuente_id').setData(nuevos_datos_geojson).
 
 ```html
 <script>
-       
+
   // Agregar nuevos puntos al mapa al hacer clic
   newPointAdded() {
     // Controlador de eventos click
@@ -1452,10 +1353,10 @@ Pasos para agregar un punto al hacer clic en el mapa
             <samp> Sitios públicos para pasearse</samp>
             <h6> ${name['name'] || 'Nombre'} </h6>
             <p>Categoria: ${category['category'] || 'Categoria'}  -
-             Color: ${color} -  Tamaño: ${size} - Símbolo: ${symbol} - Población: ${population} 
-            </p>        
+             Color: ${color} -  Tamaño: ${size} - Símbolo: ${symbol} - Población: ${population}
+            </p>
             <h6>${name1['name'] || 'Nombre'}</h6>
-            <p>Categoria: ${category2['category'] || 'Categoria'} </p>     
+            <p>Categoria: ${category2['category'] || 'Categoria'} </p>
             Nuevo punto creado en: (Lng,Lat): ${longitude}Latitud: ${latitude}
           `)
           .addTo(e.target);
@@ -1474,26 +1375,24 @@ Pasos para agregar un punto al hacer clic en el mapa
       });
     }
   }
-
 </script>
 ```
 
+### 5. Eliminar un punto existente.
 
+Para eliminar un marcador (punto) existente de un mapa de MapLibre utilizando un botón en TypeScript, debes seguir estos pasos:
 
-### Eliminar un punto existente.
-Para eliminar un marcador (punto) existente de un mapa de MapLibre utilizando un botón en TypeScript, debes seguir estos pasos: 
-* Guardar los marcadores en un arreglo: Al crear un marcador, debes almacenarlo en un arreglo (array) para tener una referencia a él más adelante.
-* Acceder al marcador: Al hacer clic en el botón de eliminar, debes poder identificar cuál de los marcadores quieres remover. Una forma común es eliminar el último marcador agregado o todos a la vez.
-* Usar el método marker.remove(): La API de MapLibre GL JS para los marcadores incluye un método remove() para eliminarlos del mapa.
-* Vincular el botón a la función: Configura el botón HTML para que, al ser pulsado, ejecute la función TypeScript que remueve el marcador. 
+- Guardar los marcadores en un arreglo: Al crear un marcador, debes almacenarlo en un arreglo (array) para tener una referencia a él más adelante.
+- Acceder al marcador: Al hacer clic en el botón de eliminar, debes poder identificar cuál de los marcadores quieres remover. Una forma común es eliminar el último marcador agregado o todos a la vez.
+- Usar el método marker.remove(): La API de MapLibre GL JS para los marcadores incluye un método remove() para eliminarlos del mapa.
+- Vincular el botón a la función: Configura el botón HTML para que, al ser pulsado, ejecute la función TypeScript que remueve el marcador.
 
 ```html
 <script>
-/**Importa maplibregl */
-import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeature } from 'maplibre-gl';
+  /**Importa maplibregl */
+  import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeature } from "maplibre-gl";
 </script>
 ```
-
 
 ```html
 <script>
@@ -1502,8 +1401,8 @@ import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeat
           <button type="button" id="add-marker-btn" class="btn btn-primary">Añadir marcador</button>
           <button type="button" id="remove-marker-btn" disabled class="btn btn-danger">Eliminar marcador</button>
         </div>
-  
-  
+
+
   eliminarMarcador() {
 
 
@@ -1537,7 +1436,44 @@ import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeat
       }
     });
   }
-
-
 </script>
-``
+```
+
+### 6 Exportar el resultado como archivo GeoJSON descargable.
+
+Para exportar un resultado de MapLibre a un archivo GeoJSON descargable con unos botones usando TypeScript, necesitas extraer los datos de la fuente del mapa, convertirlos en una cadena JSON y crear un enlace de descarga programáticamente.
+
+```html
+<script>
+
+    <!-- Botón Descargar GeoJSON -->
+         <button type="button" id="downloadButton" class="btn btn-primary">Descargar GeoJSON</button>
+
+
+  const downloadButton = document.getElementById('downloadButton') as HTMLButtonElement;
+         // Añadir el evento click al botón
+         downloadButton.addEventListener('click', async () => {
+           // Obtener los datos de la fuente GeoJSON
+           const source = this.map?.getSource('places') as maplibregl.GeoJSONSource;
+           const data = await source.getData();
+
+           // Convertir el objeto GeoJSON a una cadena JSON
+           const dataStr = JSON.stringify(data, null, 2);
+
+           // Crear un blob y un objeto URL
+           const blob = new Blob([dataStr], { type: 'application/geo+json' });
+           const url = URL.createObjectURL(blob);
+           // Crear un elemento <a> para la descarga
+           const link = document.createElement('a');
+           link.href = url;
+           link.download = 'datos-exportados.geojson';
+
+
+           // Simular el clic en el enlace y liberar el objeto URL
+           document.body.appendChild(link);
+           link.click();
+           document.body.removeChild(link);
+           URL.revokeObjectURL(url);
+         });
+</script>
+```
