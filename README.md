@@ -851,9 +851,16 @@ b. Añade una capa para mostrar los puntos del GeoJSON
 </script>
 
 ```
+`
 
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center">Explicación del código</h2>
+  </a>
 
-Explicación del código
 
 map.on('load', ...): 
  
