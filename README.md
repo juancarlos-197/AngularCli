@@ -862,7 +862,9 @@ Este fragmento de código asegura que la función se ejecute solo después de qu
 map.addSource(): Este método añade una nueva fuente de datos al mapa.
 * 'pois-source': Es el ID único que le asignas a esta fuente para referenciarla más tarde.
 * type: 'geojson': Especifica que el tipo de datos es GeoJSON.
-* data: ```html
+* data: 
+
+```html
 <script>
 
      {
@@ -939,6 +941,7 @@ map.addLayer(): Este método añade una capa visual al mapa que utiliza la fuent
 - type: 'circle': Define el estilo de representación visual. Para puntos, el tipo de capa 'circle' es el más común, ya que dibuja círculos en cada coordenada.
 - source: 'xample_po': Vincula esta capa con la fuente de datos GeoJSON que creaste en el paso anterior.
 - paint: Es un objeto donde puedes definir el estilo visual de los elementos de la capa. Se configura el radio y el color de los círculos. 
+
 
 ```html
 <script>
