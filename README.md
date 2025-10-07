@@ -574,14 +574,18 @@ Let's continue with the features of our viewer, for example, showing useful info
 Let's see how we can customize the styles of our base or background layer to adapt the display. In our HTML, we add a "select" control to choose between light and dark mode:
 
 ```html
-<select id="estilos">
-  <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro</option>
-  <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
-  <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
-</select>
+
+ <!--Mapas --> 
+      <select id="estilos">
+        <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro
+        </option>
+        <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
+        <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+      </select>
+
 <script>
 
-  //Cambiar estilos del mapa
+  //Cambiar estilos del mapa 
   changeBaseStyleMap() {
     const estilosElement = document.getElementById('estilos');
     if (estilosElement) {
@@ -597,53 +601,16 @@ Let's see how we can customize the styles of our base or background layer to ada
 ```
 Okay, it works, but... Where has the province layer gone?
 
-What's happening is that MapLibre GL JS replaces the entire map structure when changing the style using "setStyle()." This behavior isn't a bug; it's the intended design of MapLibre/Mapbox GL JS, so we need to reload our province layer every time we change our styles.
+What's happening is that MapLibre GL JS replaces the entire map structure when changing the style using  This behavior isn't a bug; it's the intended design of MapLibre/Mapbox GL JS, so we need to reload our province layer every time we change our styles.
 
-Let's modify our code to adapt it to this need. First, let's encapsulate the loading functionality of our province layer in a "loadProvinces()" function. We call this function when the map has loaded and also when we change styles from the "select" function:
+Let's modify our code to adapt it to this need. First, let's encapsulate the loading functionality of our province layer in function. We call this function when the map has loaded and also when we change styles from the "select" function:
 
 ```html
 <script>
 
 
-    //Eventos de click  mostrar información básica al pulsar sobre una provincia
-    if (this.map) {
-      this.map.on('click', layerId, (e) => {
-        if (e.features && e.features.length > 0) {
-          if (e.features[0].properties) {
 
-            console.log('ttt', e.features[0].properties)
-            const props = e.features[0].properties;
-            new maplibregl.Popup()
-              .setLngLat(e.lngLat)
-
-              .setHTML(`
-            <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
-           <h6> Código: ${props['prov_code']}<br/></h6><br/>
-            Comunidad: ${props['acom_name']}<br/>
-            Año: ${props['year']}
-          `)
-              .addTo(this.map!);
-            new maplibregl.Marker({ color: "#152688ff" })
-              .setLngLat([-73.5361958, 1.44582548])
-              .addTo(this.map!);
-
-
-          }
-        }
-      });
-      this.map.on('mouseenter', layerId, () => {
-        if (this.map) {
-          this.map.getCanvas().style.cursor = 'pointer';
-        }
-      });
-      this.map.on('mouseleave', layerId, () => {
-        if (this.map) {
-          this.map.getCanvas().style.cursor = '';
-        }
-      });
-    }
-
-    
+  
 </script>
 
 ```

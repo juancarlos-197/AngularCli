@@ -344,7 +344,6 @@ export class AppComponent implements OnInit {
     if (this.map) {
       // Configura un detector de eventos en el mapa.
       this.map.on('click', layerId, (e) => {
-        console.log('uuuiii', e);
         // Obtiene las coordenadas del clic
         const longitude = e.lngLat.lng;
         const latitude = e.lngLat.lat;
@@ -553,6 +552,8 @@ export class AppComponent implements OnInit {
       });
     }
   }
+
+
   filtado() {
 
     //Filtrar con Datos
@@ -709,17 +710,6 @@ export class AppComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
   filterIntoLayer() {
     const data = {};
 
@@ -739,19 +729,11 @@ export class AppComponent implements OnInit {
           'circle-color': '#ff0000'
         }
       });
-
-
-
-    })
-
-
-
+    });
   }
 
 
   filtrarEstado() {
-
-
     this.map?.on('load', () => {
       this.map?.addSource('railways_and_lifts', {
         type: 'geojson',
@@ -806,22 +788,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-
-
-
-
-
-
   imagenFondo() {
-
-
 
     this.map?.on('load', async () => {
       // Add an image to use as a custom marker
       const image = await this.map?.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/osgeo-logo.png');
       this.map?.addImage('custom-marker', image!.data);
-      // Add a GeoJSON source with 15 points
+      // Add a GeoJSON source 
       this.map?.addSource('conferences', {
         'type': 'geojson',
         'data': {
