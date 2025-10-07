@@ -451,56 +451,94 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
       <img  height="80">
     </picture>
     <h2 align="center">  Load real data from an external GeoJSON</h2>
-  </a>
-  This is all very well, but without data, our viewer is useless. Let's use the dataset of provinces in Spain and Colombia in GeoJSON format. This dataset offers simplified polygons of the Spanish and Colombian provinces, making it ideal for our project.
+  </a> 
+   This is all very well, but without data, our viewer is useless. Let's use the dataset of provinces in Spain in GeoJSON format. This dataset offers simplified polygons of the Spanish provinces, making it ideal for our project.
 
 ```html
 <script>
-// Añadir una fuente GeoJSON con algunos datos de ejemplo (por ejemplo, puntos, el nonbre, como Plaza de Armas)
-      const geojsonData = {
-        "type": "FeatureCollection",
-        "features":
-          [
-            {
-              "type": "Feature",
-              "properties": {
-                "name": "Plaza de Armas",
-                "category": "landmark",
-                "marker-color": "#7e7e7e",
-                "marker-size": "medium",
-                "marker-symbol": "circle-stroked",
-                "population": 123456
-              },
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  -76.53063297271729,
-                  39.18174077994108
-                ]
-              }
-            },
-            {
-              "type": "Feature",
-              "properties": {
-                "name": "Parque Bicentenario",
-                "category": "park"
-              }, "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  -66.53063297271729,
-                  49.18174077994108
-                ]
-              }
-            }
-          ]
+//  point sourceId , points layerId
+    const sourceId = 'xample_point';
+    const layerId = 'xample_points-layer';
+    if (this.map) {
 
-      }
+      // data a tu fuente GeoJSON inicial al mapa.
+      //  Añadir el controlador de eventos de clic, datos de España
+      this.map.on('load', async () => {
+        this.addGeolocationCntrols();
+        this.addBookmark();
+        const img = new Image();
+        img.onload = () => {
+          this.map?.addImage('icono-personalizado', img);
+          const a = this.map?.addSource(sourceId, {
+            type: 'geojson',
+            data: 'https://public.opendatasoft.com/explore/dataset/georef-spain-provincia/download/?format=geojson&timezone=Europe/Madrid&lang=es'
+          });
+
+          // 2. Crea una capa para mostrar los puntos
+          this.map?.addLayer({
+            id: layerId,
+            type: 'fill',
+            source: sourceId,
+            paint: {
+              'fill-color': '#27ec48ad',
+              'fill-opacity': 0.5,
+              'fill-outline-color': '#071224ff'
+            },
+          });
+        }
+        img.src = 'juan.jpg';
+      });
+    }
+
 
 </script>
 ```
 ```html
 <script>
+    // Mostrar información del polígono al hacer clic España
+    //Añade el manejador de eventos de clic al mapa
+    //Eventos de click  mostrar información básica al pulsar sobre una provincia
+    if (this.map) {
+      // Configura un detector de eventos en el mapa.
+      this.map.on('click', layerId, (e) => {
+        console.log('uuuiii', e);
+        // Obtiene las coordenadas del clic
+        const longitude = e.lngLat.lng;
+        const latitude = e.lngLat.lat;
+        if (e.features && e.features.length > 0) {
+          if (e.features[0].properties) {
+            const props = e.features[0].properties;
+            new Popup()
+              .setLngLat(e.lngLat)
+              .setHTML(`
+            <h4>${props['prov_name'] || 'Provincia desconocida'}</h4><br/>
+            <h6> Código: ${props['prov_code']}<br/></h6><br/>
+            Comunidad: ${props['acom_name']}<br/>
+            Año: ${props['year']}
+          `)
+              .addTo(this.map!);
+            new maplibregl.Marker({ color: "#152688ff" })
+              .setLngLat([longitude, latitude])
+              .addTo(this.map!);
+          }
+        }
+      });
 
+
+      // Cambia el cursor a un puntero cuando el mouse está sobre la capa de estados.
+      this.map.on('mouseenter', layerId, (e) => {
+        if (this.map) {
+          this.map.getCanvas().style.cursor = 'pointer';
+        }
+      });
+
+      // Cámbielo nuevamente a un puntero cuando se vaya.
+      this.map.on('mouseleave', layerId, () => {
+        if (this.map) {
+          this.map.getCanvas().style.cursor = '';
+        }
+      });
+    }
 </script>
 ```
 
