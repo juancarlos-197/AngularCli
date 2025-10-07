@@ -47,8 +47,79 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Further help. Alcance funcional (MVP obligatorio)
 
-### Setting Up a Project
+Para trabajar con la Interfaz de Angular, el requisito principal es tener instalado Node.js, ya que la Angular CLI y el ecosistema de herramientas se ejecutan sobre este entorno. 
+A continuación, se detallan los requisitos del entorno y las versiones recomendadas para la configuración más reciente.
 
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center"> Requisitos del entorno </h2>
+  </a>
+</p>
+
+- Sistema operativo: La instalación de Node.js y la CLI de Angular es compatible con los sistemas operativos más comunes, como Windows, macOS y distribuciones de Linux.
+- Memoria (RAM): Se recomienda tener al menos 4 GB de RAM disponibles.
+- Espacio en disco: Un mínimo de 10 GB de espacio libre en el disco duro para la instalación y los proyectos. 
+
+### Versiones de Node.js
+
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center"> Node js </h2>
+  </a>
+</p>
+
+
+Es crucial utilizar una versión compatible y estable de Node.js.
+Angular requiere una versión LTS activa o en mantenimiento de Node.js. 
+
+- Compatibilidad: La versión de Node.js debe ser compatible con la versión de Angular que se va a utilizar. Por ejemplo, Angular 17 requiere Node.js v18.13 o superior.
+Gestor de versiones: Para evitar problemas de compatibilidad entre diferentes proyectos, se recomienda usar un gestor de versiones de Node.js. 
+<p align="center">
+  <a href="">
+    <picture>
+      <img  height="80">
+    </picture>
+    <h2 align="center"> Instalación del entorno</h2>
+  </a>
+</p>
+
+
+### 1. Instalar Node.js y npm
+Descarga: Visita el sitio web oficial de Node.js y descarga la versión LTS recomendada para tu sistema operativo. El paquete de instalación incluye Node.js y su gestor de paquetes, npm.
+Verificación: Abre una terminal o línea de comandos y verifica la instalación con los siguientes comandos:
+node -v (muestra la versión de Node.js)
+npm -v (muestra la versión de npm) 
+
+### 2. Instalar Angular CLI
+Una vez que tengas Node.js y npm instalados, puedes instalar la CLI de Angular de forma global en tu máquina ejecutando el siguiente comando en la terminal:
+
+npm install -g @angular/cli 
+
+### 3. Verificar la instalación de la CLI de Angular
+Para asegurarte de que la CLI de Angular se instaló correctamente y verificar la versión, ejecuta el siguiente comando:
+ng version 
+### Consideraciones adicionales
+- Editor de código: Aunque no es un requisito de entorno, se recomienda usar un editor o IDE moderno para el desarrollo con Angular. Opciones populares incluyen Visual Studio Code, WebStorm y Atom.
+
+- Actualizaciones: La compatibilidad entre Angular CLI y Node.js evoluciona con cada versión, por lo que es importante mantener ambos actualizados. Si trabajas con proyectos antiguos, asegúrate de utilizar una versión de Node.js compatible con el proyecto. 
+### Setting Up a Project
+Al crear una aplicación con Angular CLI, MapLibre GL JS y GeoJSON, se deben tomar varias decisiones de arquitectura y asumir ciertos trade-offs (compromisos). El enfoque dependerá del tamaño del conjunto de datos GeoJSON, la complejidad de la visualización y las necesidades de rendimiento de la aplicación. 
+
+### Decisiones clave de arquitectura
+Integración de MapLibre en Angular:
+
+- Directa: Se puede importar maplibre-gl directamente en un componente de Angular. Esto ofrece un control total y es sencillo para aplicaciones pequeñas.
+
+- Con un wrapper de Angular: Se puede usar la biblioteca ngx-maplibre-gl, que ofrece componentes de Angular para MapLibre. Esto facilita la integración con el ciclo de vida y la detección de cambios de Angular, pero añade una dependencia adicional.
+
+- Gestión de datos GeoJSON:
+En memoria: Para conjuntos de datos pequeños, se puede cargar el GeoJSON como un objeto en memoria al inicio de la aplicación. Esto permite un acceso rápido, pero consume más memoria del navegador.
 
 Angular Cli + MapJson brings the power of advanced customizable indoor navigation into the hands of your customers, elevating indoor mapping to a whole new level.
 Minimum requirements to complete Angular CLI + MapJson.
@@ -121,7 +192,6 @@ Create a db.json file or run json-server db.json to create one with some default
 npm i json-server@0.17.4
 ```
 
-###
 
 Create an Angular web application that allows you to:
 ### 1. Display a base map using MapLibre GL JS.
@@ -150,13 +220,22 @@ We start from a simple viewer, and we center it to show it by default.
 
 <script>
 
-  //Crear mapa base
-  createBaseMap() {
+  //Crear mapa base, Inicializa un objeto MapLibre
+  visualizarMapa() {
+
+    // Constantes para las claves de localStorage
+    const MAP_ZOOM_KEY = 'mapZoom';
+
     this.map = new maplibregl.Map({
+      // Identificador del contenedor HTML
       container: 'map',
+      // URL del estilo del mapa base
       style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx', // stylesheet location
-      center: [-76.6361969, 2.4482548], // starting position [lng, lat]
-      zoom: 1 // starting zoom
+      // Coordenadas del punto central [longitud, latitud]
+      center: [-76.6361969, 2.4482548],
+      // Nivel de zoom inicial
+      zoom: getStoredMapZoom() || 1 // Cargar el zoom o usar el predeterminado
+
     });
   }
 </script>
@@ -176,41 +255,38 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
 ```html
 <script>
   // Añadir controles de navegación, geolocalización y escala
-    addGeolocationCntrols() {
-      // Controles de zoom y rotación
-      if (this.map) {
-        // If you want to add an attribution control with compact mode, use the following:
-        this.map.addControl(new maplibregl.AttributionControl({
-          compact: true
-        }));
+  addGeolocationCntrols() {
+    // Controles de zoom y rotación
+    if (this.map) {
+      // Si desea agregar un control de atribución con modo compacto, utilice lo siguiente: AttributionControl
+      this.map.addControl(new maplibregl.AttributionControl({
+        compact: true
+      }));
+      this.map.addControl(
+        new NavigationControl(), 'top-right'
+      );
+      this.map.addControl(
+        new maplibregl.GlobeControl()
+      );
+      // Geolocalización del usuario
+      this.map.addControl(new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+      }), 'top-right');
 
-        this.map.addControl(
-          new maplibregl.NavigationControl(), 'top-right'
-        );
-        this.map.addControl(
-          new maplibregl.GlobeControl()
-        );
-
-        // Geolocalización del usuario
-        this.map.addControl(new maplibregl.GeolocateControl({
-          positionOptions: { enableHighAccuracy: true },
-          trackUserLocation: true,
-        }), 'top-right');
-
-        // Escala métrica
-        this.map.addControl(new maplibregl.ScaleControl({
-          maxWidth: 100,
-          unit: 'metric'
-        }), 'bottom-left');
-
-
-        /**Logotipo de MapLibre
-         * A LogoControles un control que agrega la marca de agua.
-         */
-        this.map.addControl(new maplibregl.LogoControl({ compact: false }));
-
-      }
+      // Escala métrica
+      this.map.addControl(new maplibregl.ScaleControl({
+        maxWidth: 100,
+        unit: 'metric'
+      }), 'bottom-left');
+      /**Logotipo de MapLibre
+       * A LogoControles un control que agrega la marca de agua.
+       */
+      this.map.addControl(new maplibregl.LogoControl({ compact: false }));
     }
+
+  }
+
 </script>
 ```
 
@@ -225,45 +301,59 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
 
 ```html
 <script>
+// Añadir una fuente GeoJSON con algunos datos de ejemplo (por ejemplo, puntos, el nonbre, como Plaza de Armas)
+      const geojsonData = {
+        "type": "FeatureCollection",
+        "features":
+          [
+            {
+              "type": "Feature",
+              "properties": {
+                "name": "Plaza de Armas",
+                "category": "landmark",
+                "marker-color": "#7e7e7e",
+                "marker-size": "medium",
+                "marker-symbol": "circle-stroked",
+                "population": 123456
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  -76.53063297271729,
+                  39.18174077994108
+                ]
+              }
+            },
+            {
+              "type": "Feature",
+              "properties": {
+                "name": "Parque Bicentenario",
+                "category": "park"
+              }, "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  -66.53063297271729,
+                  49.18174077994108
+                ]
+              }
+            }
+          ]
 
-  //Cargar datos reales
-  loadRealData() {
-    // Evento load
-    const sourceId = 'xample_points';
-    const layerId = 'xample_points-layer';
-    if (this.map) {
-      this.map.on('load', (e) => {
-       /**
-        * const radius = 1; // kilometer
-        * const options = {
-          steps: 104,
-          units: 'kilometers'
-        };
-        const circle = turf.circle([-76.6361969, 2.4482548], radius);
-         */
+      }
 
-        this.map?.addSource(sourceId, {
-          type: 'geojson',
-          // data: circle
+</script>
+```
+```html
+<script>
 
-          data: 'https://public.opendatasoft.com/explore/dataset/georef-spain-provincia/download/?format=geojson&timezone=Europe/Madrid&lang=es'
-        });
-        this.map?.addLayer({
-          id: layerId,
-          type: 'fill',
-          source: sourceId,
-          paint: {
-            'fill-color': '#ff1c15ad',
-            'fill-opacity': 0.5,
-            'fill-outline-color': '#071224ff'
-          }
-        });
-      });
-    }
-  }
 </script>
 ```
 
+```html
+<script>
+
+</script>
+```
 <p align="center">
   <a href="">
     <picture>
@@ -395,6 +485,10 @@ With this, we have a viewer capable of moving fluidly, showing the user's locati
 
 
 ### 2 Upload (import) a GeoJSON point file (a sample file pois.sample.geojson will be attached).
+
+
+GeoJSON is a very popular data format among many GIS technologies and services: it is simple, lightweight and straightforward, and MapLibre handles it very efficiently.
+To add points to the map in MapLibre GL JS on click, you must use a map click event handler to get the click coordinates, then use map.getSource() to get your GeoJSON source and setData() to add a new point to that source. The new point must be in GeoJSON Point format and included in the existing data structure.
 
 You can use Geojson to create your own collection and play with this functionality.
 
