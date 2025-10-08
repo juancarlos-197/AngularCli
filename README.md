@@ -222,6 +222,8 @@ export const appConfig: ApplicationConfig = {
 
 </script>
 ```
+### app.component.html
+Úselo en su html
 
 ```html
 <script>
