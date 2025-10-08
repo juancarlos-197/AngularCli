@@ -13,7 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 /**Importa Angular Material Car  */
-import {FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 /**Importar Form  */
 import { MatInputModule } from '@angular/material/input';
 /**Importar generador de formularios  */
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   public newPoint2: Mapa[] = [];
   public loading: boolean = false;
   public error: string | null = null;
- 
+
   /**El ciclo de vida de Angular , nosotros tenemos que definirle al componente, que estamos trabajando en este 
    * caso componente principal, que vamos a hacer un consumo de esa Api, por lo dando vamos a tener
    * que hacer uso de algunos de los HOOKS que tiene Angular disponible. Vamos a hacer uso del HOOK ng init

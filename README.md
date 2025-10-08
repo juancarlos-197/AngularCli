@@ -47,23 +47,22 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Further help. Alcance funcional (MVP obligatorio)
 
-Para trabajar con la Interfaz de Angular, el requisito principal es tener instalado Node.js, ya que la Angular CLI y el ecosistema de herramientas se ejecutan sobre este entorno.
-A continuación, se detallan los requisitos del entorno y las versiones recomendadas para la configuración más reciente.
+To work with the Angular interface, the main requirement is to have Node.js installed, as the Angular CLI and tool ecosystem run in this environment.
+Below are the environment requirements and recommended versions for the most recent configuration.
 
 <p align="center">
   <a href="">
     <picture>
       <img  height="80">
     </picture>
-    <h2 align="center"> Requisitos del entorno </h2>
+    <h2 align="center"> Environment requirements</h2>
   </a>
 </p>
+- Operating System: The Node.js and Angular CLI installation is compatible with most common operating systems, including Windows, macOS, and Linux.
+- Memory (RAM): It is recommended to have at least 4 GB of RAM available.
+- Disk Space: Minimum 10 GB of free hard drive space for installation and projects.
 
-- Sistema operativo: La instalación de Node.js y la CLI de Angular es compatible con los sistemas operativos más comunes, como Windows, macOS y distribuciones de Linux.
-- Memoria (RAM): Se recomienda tener al menos 4 GB de RAM disponibles.
-- Espacio en disco: Un mínimo de 10 GB de espacio libre en el disco duro para la instalación y los proyectos.
-
-### Versiones de Node.js
+### Node.js versions
 
 <p align="center">
   <a href="">
@@ -73,63 +72,51 @@ A continuación, se detallan los requisitos del entorno y las versiones recomend
     <h2 align="center"> Node js </h2>
   </a>
 </p>
+It's crucial to use a compatible and stable version of Node.js.
+Angular requires an active or maintained LTS version of Node.js.
 
-Es crucial utilizar una versión compatible y estable de Node.js.
-Angular requiere una versión LTS activa o en mantenimiento de Node.js.
+- Compatibility: The Node.js version must be compatible with the Angular version you plan to use. For example, Angular 17 requires Node.js v18.13 or higher.
+  Version manager: To avoid compatibility issues between different projects, it's recommended to use a Node.js version manager.
 
-- Compatibilidad: La versión de Node.js debe ser compatible con la versión de Angular que se va a utilizar. Por ejemplo, Angular 17 requiere Node.js v18.13 o superior.
-Gestor de versiones: Para evitar problemas de compatibilidad entre diferentes proyectos, se recomienda usar un gestor de versiones de Node.js.
 <p align="center">
   <a href="">
     <picture>
       <img  height="80">
     </picture>
-    <h2 align="center"> Instalación del entorno</h2>
+    <h2 align="center">Installing the environment</h2>
   </a>
 </p>
 
-### 1. Instalar Node.js y npm
+### Install Node.js and npm
 
-Descarga: Visita el sitio web oficial de Node.js y descarga la versión LTS recomendada para tu sistema operativo. El paquete de instalación incluye Node.js y su gestor de paquetes, npm.
-Verificación: Abre una terminal o línea de comandos y verifica la instalación con los siguientes comandos:
-node -v (muestra la versión de Node.js)
-npm -v (muestra la versión de npm)
+Download: Visit the official Node.js website and download the LTS version recommended for your operating system. The installation package includes Node.js and its package manager, npm.
+Verification: Open a terminal or command line and verify the installation with the following commands:
+node -v (displays the Node.js version)
+npm -v (displays the npm version).
 
-### 2. Instalar Angular CLI
+### Additional considerations
 
-Una vez que tengas Node.js y npm instalados, puedes instalar la CLI de Angular de forma global en tu máquina ejecutando el siguiente comando en la terminal:
+- Code editor: Although not an environment requirement, it's recommended to use a modern editor or IDE for Angular development. Popular options include Visual Studio Code, WebStorm, and Atom.
 
-npm install -g @angular/cli
-
-### 3. Verificar la instalación de la CLI de Angular
-
-Para asegurarte de que la CLI de Angular se instaló correctamente y verificar la versión, ejecuta el siguiente comando:
-ng version
-
-### Consideraciones adicionales
-
-- Editor de código: Aunque no es un requisito de entorno, se recomienda usar un editor o IDE moderno para el desarrollo con Angular. Opciones populares incluyen Visual Studio Code, WebStorm y Atom.
-
-- Actualizaciones: La compatibilidad entre Angular CLI y Node.js evoluciona con cada versión, por lo que es importante mantener ambos actualizados. Si trabajas con proyectos antiguos, asegúrate de utilizar una versión de Node.js compatible con el proyecto.
+- Updates: Compatibility between Angular CLI and Node.js evolves with each release, so it's important to keep both up to date. If you're working with older projects, make sure you're using a version of Node.js that's compatible with your project.
 
 ### Setting Up a Project
 
-Al crear una aplicación con Angular CLI, MapLibre GL JS y GeoJSON, se deben tomar varias decisiones de arquitectura y asumir ciertos trade-offs (compromisos). El enfoque dependerá del tamaño del conjunto de datos GeoJSON, la complejidad de la visualización y las necesidades de rendimiento de la aplicación.
+When building an application with Angular CLI, MapLibre GL JS, and GeoJSON, there are several architectural decisions and trade-offs to be made. The approach will depend on the size of the GeoJSON dataset, the complexity of the visualization, and the application's performance needs.
 
-### Decisiones clave de arquitectura
+### Key architectural decisionsMapLibre Integration in Angular:
 
-Integración de MapLibre en Angular:
+- Direct: You can import maplibre-gl directly into an Angular component. This offers complete control and is simple for small applications.
 
-- Directa: Se puede importar maplibre-gl directamente en un componente de Angular. Esto ofrece un control total y es sencillo para aplicaciones pequeñas.
+- With an Angular wrapper: You can use the ngx-maplibre-gl library, which provides Angular components for MapLibre. This facilitates integration with Angular's lifecycle and change detection, but adds an additional dependency.
 
-- Con un wrapper de Angular: Se puede usar la biblioteca ngx-maplibre-gl, que ofrece componentes de Angular para MapLibre. Esto facilita la integración con el ciclo de vida y la detección de cambios de Angular, pero añade una dependencia adicional.
-
-- Gestión de datos GeoJSON:
-  En memoria: Para conjuntos de datos pequeños, se puede cargar el GeoJSON como un objeto en memoria al inicio de la aplicación. Esto permite un acceso rápido, pero consume más memoria del navegador.
+- GeoJSON Data Management:
+  In-memory: For small datasets, GeoJSON can be loaded as an in-memory object at application startup. This allows for faster access, but consumes more browser memory.
 
 Angular Cli + MapJson brings the power of advanced customizable indoor navigation into the hands of your customers, elevating indoor mapping to a whole new level.
 Minimum requirements to complete Angular CLI + MapJson.
 Some experience with Angular. You don't need much experience, but you should be familiar with the basic concepts and workflow.
+
 MapLibre GL JS. JavaScript library for creating web maps.
 Node.js and npm. Required to run your Angular CLI + MapJson application locally. Node.js.
 Angular CLI. You must have Angular CLI installed.
@@ -169,32 +156,32 @@ It originated as an open-source fork of mapbox-gl-js, before their switch to a n
 ```
 npm i maplibre-gl@3.2.0-pre.2
 ```
-### Importar
+
+### Import
 
 ```html
 <script>
-  import { Component, OnInit } from '@angular/core';
-/**Importa maplibregl */
-import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeature } from 'maplibre-gl';
-import maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
-import 'leaflet/dist/leaflet.css';
-import * as geojson from 'geojson';
+  import { Component, OnInit } from "@angular/core";
+  /**Importa maplibregl */
+  import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeature } from "maplibre-gl";
+  import maplibregl from "maplibre-gl";
+  import "maplibre-gl/dist/maplibre-gl.css";
+  import "leaflet/dist/leaflet.css";
+  import * as geojson from "geojson";
 
-/**Importa FooterComponent */
-import { FooterComponent } from './footer/footer.component';
+  /**Importa FooterComponent */
+  import { FooterComponent } from "./footer/footer.component";
 
-/**Importa HttpClient para del Core de Angular */
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+  /**Importa HttpClient para del Core de Angular */
+  import { HttpClient, HttpClientModule } from "@angular/common/http";
 
-/**Importa Angular Material Car  */
-import {FormsModule } from '@angular/forms';
-/**Importar Form  */
-import { MatInputModule } from '@angular/material/input';
-/**Importar generador de formularios  */
-import { Mapa } from './interfaces/mapa';
-import { TaskService } from './services/task.service';
-
+  /**Importa Angular Material Car  */
+  import { FormsModule } from "@angular/forms";
+  /**Importar Form  */
+  import { MatInputModule } from "@angular/material/input";
+  /**Importar generador de formularios  */
+  import { Mapa } from "./interfaces/mapa";
+  import { TaskService } from "./services/task.service";
 </script>
 ```
 
@@ -202,299 +189,300 @@ import { TaskService } from './services/task.service';
 
 ```html
 <script>
-import { Routes } from '@angular/router';
-export const routes: Routes = [];
-
+  import { Routes } from "@angular/router";
+  export const routes: Routes = [];
 </script>
 ```
+
 ##### app.config.ts
+
 ```html
 <script>
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
-import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),  provideHttpClient(), provideAnimationsAsync()
- ]
-};
-
+  import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
+  import { provideRouter } from "@angular/router";
+  import { provideHttpClient } from "@angular/common/http";
+  import { routes } from "./app.routes";
+  import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+  export const appConfig: ApplicationConfig = {
+    providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideHttpClient(), provideAnimationsAsync()],
+  };
 </script>
 ```
+
 ### app.component.html
-Úselo en su html
+
+Use it in your html
 
 ```html
 <script>
-  <style>
-  :host {
-    text-align: center;
-    --bright-blue: oklch(51.01% 0.274 263.83);
-    --electric-violet: oklch(53.18% 0.28 296.97);
-    --french-violet: oklch(47.66% 0.246 305.88);
-    --vivid-pink: oklch(69.02% 0.277 332.77);
-    --hot-red: oklch(61.42% 0.238 15.34);
-    --orange-red: oklch(63.32% 0.24 31.68);
+    <style>
+    :host {
+      text-align: center;
+      --bright-blue: oklch(51.01% 0.274 263.83);
+      --electric-violet: oklch(53.18% 0.28 296.97);
+      --french-violet: oklch(47.66% 0.246 305.88);
+      --vivid-pink: oklch(69.02% 0.277 332.77);
+      --hot-red: oklch(61.42% 0.238 15.34);
+      --orange-red: oklch(63.32% 0.24 31.68);
 
-    --gray-900: oklch(19.37% 0.006 300.98);
-    --gray-700: oklch(36.98% 0.014 302.71);
-    --gray-400: oklch(70.9% 0.015 304.04);
+      --gray-900: oklch(19.37% 0.006 300.98);
+      --gray-700: oklch(36.98% 0.014 302.71);
+      --gray-400: oklch(70.9% 0.015 304.04);
 
-    --red-to-pink-to-purple-vertical-gradient: linear-gradient(180deg,
-        var(--orange-red) 0%,
-        var(--vivid-pink) 50%,
-        var(--electric-violet) 100%);
+      --red-to-pink-to-purple-vertical-gradient: linear-gradient(180deg,
+          var(--orange-red) 0%,
+          var(--vivid-pink) 50%,
+          var(--electric-violet) 100%);
 
-    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(90deg,
-        var(--orange-red) 0%,
-        var(--vivid-pink) 50%,
-        var(--electric-violet) 100%);
+      --red-to-pink-to-purple-horizontal-gradient: linear-gradient(90deg,
+          var(--orange-red) 0%,
+          var(--vivid-pink) 50%,
+          var(--electric-violet) 100%);
 
-    --pill-accent: var(--bright-blue);
+      --pill-accent: var(--bright-blue);
 
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
 
-  p {
-    margin: 0;
-    color: var(--gray-700);
-  }
+    p {
+      margin: 0;
+      color: var(--gray-700);
+    }
 
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-  }
+    main {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      box-sizing: inherit;
+      position: relative;
+    }
 
-  .angular-logo {
-    max-width: 20.2rem;
-  }
+    .angular-logo {
+      max-width: 20.2rem;
+    }
 
-  .content {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 3rem;
-  }
+    .content {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 700px;
+      margin-bottom: 3rem;
+    }
 
-  .content h1 {
-    margin-top: 1.75rem;
-  }
+    .content h1 {
+      margin-top: 1.75rem;
+    }
 
-  .content p {
-    margin-top: 1.5rem;
-  }
-</style>
+    .content p {
+      margin-top: 1.5rem;
+    }
+  </style>
 
-<main class="main">
-  <div class="content">
-    <div class="left-side">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 982 239" fill="none" class="angular-logo">
-        <g clip-path="url(#a)">
-          <path fill="url(#b)"
-            d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z" />
-          <path fill="url(#c)"
-            d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z" />
-        </g>
-        <defs>
-          <radialGradient id="c" cx="0" cy="0" r="1" gradientTransform="rotate(118.122 171.182 60.81) scale(205.794)"
-            gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FF41F8" />
-            <stop offset=".707" stop-color="#FF41F8" stop-opacity=".5" />
-            <stop offset="1" stop-color="#FF41F8" stop-opacity="0" />
-          </radialGradient>
-          <linearGradient id="b" x1="0" x2="982" y1="192" y2="192" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#F0060B" />
-            <stop offset="0" stop-color="#F0070C" />
-            <stop offset=".526" stop-color="#CC26D5" />
-            <stop offset="1" stop-color="#7702FF" />
-          </linearGradient>
-          <clipPath id="a">
-            <path fill="#fff" d="M0 0h982v239H0z" />
-          </clipPath>
-        </defs>
-      </svg>
-      <h1>{{ title }}</h1>
-      <p>Mi equipo desarrolla una aplicación web que permite a clientes explorar y gestionar ubicaciones
-        (puntos de interés) sobre un mapa interactivo.</p>
-      <p>Angular Cli + MapJson lleva el poder de la navegación interior personalizable avanzada a las manos de tus
-        clientes, elevando el mapeo de interiores a un nivel completamente nuevo </p>
-      <p>Mapas </p>
-      <!--Mapas --> 
-      <select id="estilos">
-        <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro
-        </option>
-        <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
-        <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
-      </select>
-      <div class="position">
-        <div id='map' class="map"></div>
+  <main class="main">
+    <div class="content">
+      <div class="left-side">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 982 239" fill="none" class="angular-logo">
+          <g clip-path="url(#a)">
+            <path fill="url(#b)"
+              d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z" />
+            <path fill="url(#c)"
+              d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z" />
+          </g>
+          <defs>
+            <radialGradient id="c" cx="0" cy="0" r="1" gradientTransform="rotate(118.122 171.182 60.81) scale(205.794)"
+              gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FF41F8" />
+              <stop offset=".707" stop-color="#FF41F8" stop-opacity=".5" />
+              <stop offset="1" stop-color="#FF41F8" stop-opacity="0" />
+            </radialGradient>
+            <linearGradient id="b" x1="0" x2="982" y1="192" y2="192" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F0060B" />
+              <stop offset="0" stop-color="#F0070C" />
+              <stop offset=".526" stop-color="#CC26D5" />
+              <stop offset="1" stop-color="#7702FF" />
+            </linearGradient>
+            <clipPath id="a">
+              <path fill="#fff" d="M0 0h982v239H0z" />
+            </clipPath>
+          </defs>
+        </svg>
+        <h1>{{ title }}</h1>
+        <p>Mi equipo desarrolla una aplicación web que permite a clientes explorar y gestionar ubicaciones
+          (puntos de interés) sobre un mapa interactivo.</p>
+        <p>Angular Cli + MapJson lleva el poder de la navegación interior personalizable avanzada a las manos de tus
+          clientes, elevando el mapeo de interiores a un nivel completamente nuevo </p>
+        <p>Mapas </p>
+        <!--Mapas -->
+        <select id="estilos">
+          <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro
+          </option>
+          <option value="https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json">Oscuro</option>
+          <option value="https://api.maptiler.com/maps/satellite/style.json?key=R92AyDPGHtv4Pg0yOSsx">Satélite</option>
+        </select>
+        <div class="position">
+          <div id='map' class="map"></div>
 
-        <!-- Grupo de filtros  -
-        <div id="filter-group" class="filter-group"></div>-->
+          <!-- Grupo de filtros  -
+          <div id="filter-group" class="filter-group"></div>-->
 
-        <!-- Entrada de filtro -->
-        <div class="filter-ctrl">
-          <input id="filter-input" type="search" name="filter" placeholder="Filtrar por nombre" />
-        </div>
+          <!-- Entrada de filtro -->
+          <div class="filter-ctrl">
+            <input id="filter-input" type="search" name="filter" placeholder="Filtrar por nombre" />
+          </div>
 
-        <!-- Filtrar los símbolos de una capa  -->
-        <fieldset class="filter">
-          Filtrar por tipo
-          <select name="type">
-            <option value="" selected>Todos</option>
-            <option value="lift">Moto</option>
-            <option value="railway">Ferrocarril</option>
-          </select>
-        </fieldset>
+          <!-- Filtrar los símbolos de una capa  -->
+          <fieldset class="filter">
+            Filtrar por tipo
+            <select name="type">
+              <option value="" selected>Todos</option>
+              <option value="lift">Moto</option>
+              <option value="railway">Ferrocarril</option>
+            </select>
+          </fieldset>
 
-        <!-- Botón Descargar GeoJSON -->
-        <button type="button" id="downloadButton" class="btn btn-primary">Descargar GeoJSON</button>
-        
-        <!-- Botón Añadir/Emiminar -->
-        <div id="controls">
-          <button type="button" id="add-marker-btn" class="btn btn-primary">Añadir marcador</button>
-          <button type="button" id="remove-marker-btn" disabled class="btn btn-danger">Eliminar marcador</button>
+          <!-- Botón Descargar GeoJSON -->
+          <button type="button" id="downloadButton" class="btn btn-primary">Descargar GeoJSON</button>
+
+          <!-- Botón Añadir/Emiminar -->
+          <div id="controls">
+            <button type="button" id="add-marker-btn" class="btn btn-primary">Añadir marcador</button>
+            <button type="button" id="remove-marker-btn" disabled class="btn btn-danger">Eliminar marcador</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
 </script>
 ```
 
+##### Use
 
-
-
-
-##### Usa
-Úselo en su componente
+Use it in its component
 
 ```html
 <script>
-  
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    FooterComponent, FormsModule, MatInputModule,
-    HttpClientModule
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
-})
-</script>
-```
-### Importar services/task.ts
-```html
-<script>
-import { Mapa } from './../interfaces/mapa';
-import { ApiResponse } from './../interfaces/apiResponse';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
-/**Importa interfaces  */
+
+  @Component({
+    selector: 'app-root',
+    standalone: true,
+    imports: [
+      FooterComponent, FormsModule, MatInputModule,
+      HttpClientModule
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
+  })
 </script>
 ```
 
-### Usar  services/task.ts
+### Import services/task.ts
+
 ```html
 <script>
-  
-@Injectable({
-  providedIn: 'root'
-})
-export class TaskService {
-  /**Dependencias se va a inyectar desde en Root, muy importante entenderlo. 
-   * Niveles de inyección de dependencias en Angular como lo es Root como lo es Any o 
-   * como lo es componentes específico o también tenemos otra plataforma.  
-    // Inyecciób de servicios desde en inicio de la aplicación completa.
-    // Este archiv de pruebas que angular lleva siempre ese conjunta de pruebas. 
-    // Dispunible en toda la aplicación.
-    // Crear una nueva entidad de punto (marcador)**/
+  import { Mapa } from "./../interfaces/mapa";
+  import { ApiResponse } from "./../interfaces/apiResponse";
+  import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+  import { Injectable } from "@angular/core";
+  import { catchError, map, Observable, throwError } from "rxjs";
+  /**Importa interfaces  */
+</script>
+```
 
-  /**Un arreglo de nuevo punto (Mapa). Variable privada  */
-  private newPoin: any[] = [
-    {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              32.7,
-              45.78]
+### Use services/task.ts
+
+```html
+<script>
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class TaskService {
+    /**Dependencias se va a inyectar desde en Root, muy importante entenderlo.
+     * Niveles de inyección de dependencias en Angular como lo es Root como lo es Any o
+     * como lo es componentes específico o también tenemos otra plataforma.
+      // Inyecciób de servicios desde en inicio de la aplicación completa.
+      // Este archiv de pruebas que angular lleva siempre ese conjunta de pruebas.
+      // Dispunible en toda la aplicación.
+      // Crear una nueva entidad de punto (marcador)**/
+
+    /**Un arreglo de nuevo punto (Mapa). Variable privada  */
+    private newPoin: any[] = [
+      {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                32.7,
+                45.78]
+            },
+            "properties": {
+              "name": "Plaza de Armas",
+              "category": "landmark",
+              "marker-color": "#7e7e7e",
+              "marker-size": "medium",
+              "marker-symbol": "circle-stroked",
+              "population": 123456
+            }
           },
-          "properties": {
-            "name": "Plaza de Armas",
-            "category": "landmark",
-            "marker-color": "#7e7e7e",
-            "marker-size": "medium",
-            "marker-symbol": "circle-stroked",
-            "population": 123456
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                56,
+                45
+              ]
+            },
+            "properties": {
+              "name": "Parque Bicentenario",
+              "category": "park"
+            }
           }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              56,
-              45
-            ]
-          },
-          "properties": {
-            "name": "Parque Bicentenario",
-            "category": "park"
-          }
-        }
-      ]
-    }
-  ]
-  private newPoints: string = 'http://localhost:3000/data';//Un endpoint para consumir 
+        ]
+      }
+    ]
+    private newPoints: string = 'http://localhost:3000/data';//Un endpoint para consumir
 
-  /**Crea una dependencia llamada HttpClient  */
-  constructor(private http: HttpClient) { }
-  getAllNewPoint(): Mapa[] {
-    return this.newPoin
-  }
-
-  getNewPoint(): Observable<ApiResponse<Mapa[]>> {
-    /**Un verbo de la API, son GET para CONSULTAR, POST para enviar, PUT y PATCH para actuakizar
-     * y DELECT para borrar, en este caso CONSULTAR
-      */
-    return this.http.get(this.newPoints).pipe(
-      map((data) => ({ data } as ApiResponse<Mapa[]>)),
-      catchError(this.handleError)
-    )
-  }
-  private handleError(error: HttpErrorResponse) {
-    let errorMensage = 'Ocurrio un error';
-    if (error.error instanceof ErrorEvent) {
-      //Error del lado del cliente
-      errorMensage = `Error`
-    } else {
-      errorMensage = `Código de error`
+    /**Crea una dependencia llamada HttpClient  */
+    constructor(private http: HttpClient) { }
+    getAllNewPoint(): Mapa[] {
+      return this.newPoin
     }
-    return throwError(() => new Error(errorMensage))
+
+    getNewPoint(): Observable<ApiResponse<Mapa[]>> {
+      /**Un verbo de la API, son GET para CONSULTAR, POST para enviar, PUT y PATCH para actuakizar
+       * y DELECT para borrar, en este caso CONSULTAR
+        */
+      return this.http.get(this.newPoints).pipe(
+        map((data) => ({ data } as ApiResponse<Mapa[]>)),
+        catchError(this.handleError)
+      )
+    }
+    private handleError(error: HttpErrorResponse) {
+      let errorMensage = 'Ocurrio un error';
+      if (error.error instanceof ErrorEvent) {
+        //Error del lado del cliente
+        errorMensage = `Error`
+      } else {
+        errorMensage = `Código de error`
+      }
+      return throwError(() => new Error(errorMensage))
+    }
   }
-}
 </script>
 ```
 
@@ -526,10 +514,6 @@ Create a db.json file or run json-server db.json to create one with some default
 ```
 npm i json-server@0.17.4
 ```
-
-
-
-
 
 Create an Angular web application that allows you to:
 
@@ -613,7 +597,9 @@ We start from a simple viewer, and we center it to show it by default.
   }
 </script>
 ```
+
 ### app.component.css
+
 ```css
 .position {
   position: relative;
@@ -816,7 +802,6 @@ We already have our base map loaded, but we can't do much with it yet. Let's fix
 <script></script>
 ```
 
-
 <p align="center">
   <a href="">
     <picture>
@@ -930,7 +915,7 @@ To add points to the map in MapLibre GL JS on click, you must use a map click ev
 
 You can use Geojson to create your own collection and play with this functionality.
 
-Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pasos principales: cargar el archivo como fuente de datos, agregar una capa que haga referencia a esa fuente y, opcionalmente, personalizar el estilo de los puntos.
+To load a GeoJSON file of points into MapLibre GL JS, you need to follow three main steps: load the file as a data source, add a layer that references that source, and optionally customize the style of the points.
 
 ```html
 <script>
@@ -1009,7 +994,7 @@ Para cargar un archivo GeoJSON de puntos en MapLibre GL JS, debes seguir tres pa
 </script>
 ```
 
-a. Añade el archivo GeoJSON como una fuente de datos
+a. Add the GeoJSON file as a data source
 
 ```html
 <script>
@@ -1071,7 +1056,7 @@ a. Añade el archivo GeoJSON como una fuente de datos
 </script>
 ```
 
-b. Añade una capa para mostrar los puntos del GeoJSON
+b. Add a layer to display GeoJSON points
 
 ```html
 <script>
@@ -1090,7 +1075,7 @@ b. Añade una capa para mostrar los puntos del GeoJSON
 </script>
 ```
 
-c. Estiliza los puntos
+c. Design the points
 
 ```html
 <script>
@@ -1103,24 +1088,21 @@ c. Estiliza los puntos
 </script>
 ```
 
-`
-
 <p align="center">
   <a href="">
     <picture>
       <img  height="80">
     </picture>
-    <h2 align="center">Explicación del código</h2>
+    <h2 align="center">Code explanation</h2>
   </a>
 
 map.on('load', ...):
+This code snippet ensures that the function is executed only after the map has fully loaded, ensuring that all necessary resources are available.
 
-Este fragmento de código asegura que la función se ejecute solo después de que el mapa haya cargado completamente, lo que garantiza que todos los recursos necesarios estén disponibles.
+map.addSource(): This method adds a new data source to the map.
 
-map.addSource(): Este método añade una nueva fuente de datos al mapa.
-
-- 'pois-source': Es el ID único que le asignas a esta fuente para referenciarla más tarde.
-- type: 'geojson': Especifica que el tipo de datos es GeoJSON.
+- 'pois-source': It is the unique ID that you assign to this source to reference it later.
+- type: 'geojson': Specifies that the data type is GeoJSON.
 - data:
 
 ```html
@@ -1193,22 +1175,14 @@ map.addSource(): Este método añade una nueva fuente de datos al mapa.
 </script>
 ```
 
-Indica la ubicación de tu archivo GeoJSON. Si el archivo está en el mismo servidor que la aplicación, puedes usar una ruta relativa. Si está en un servidor externo, debes proporcionar la URL completa.
+Indicate the location of your GeoJSON file. If the file is on the same server as the application, you can use a relative path. If it's on an external server, you must provide the full URL.
 
-map.addLayer(): Este método añade una capa visual al mapa que utiliza la fuente de datos que definiste.
+map.addLayer(): This method adds a visual layer to the map that uses the data source you defined.
 
-- id: 'xample_po': Es el ID único de la capa.
-- type: 'circle': Define el estilo de representación visual. Para puntos, el tipo de capa 'circle' es el más común, ya que dibuja círculos en cada coordenada.
-- source: 'xample_po': Vincula esta capa con la fuente de datos GeoJSON que creaste en el paso anterior.
-- paint: Es un objeto donde puedes definir el estilo visual de los elementos de la capa. Se configura el radio y el color de los círculos.
-
-```html
-<script></script>
-```
-
-```html
-<script></script>
-```
+- id: 'xample_po': It is the unique ID of the layer.
+- type: 'circle': Defines the visual representation style. For points, the 'circle' layer type is the most common, as it draws circles at each coordinate.
+- source: 'xample_po': Link this layer to the GeoJSON data source you created in the previous step.
+- paint: It is an object where you can define the visual style of the layer elements. The radius and color of the circles are configured.
 
 ```html
 <script>
@@ -1328,7 +1302,7 @@ map.addLayer(): Este método añade una capa visual al mapa que utiliza la fuent
 </script>
 ```
 
-También con servicio Api Rest
+Also with Api Rest service
 
 ```html
 <script>
@@ -1336,7 +1310,7 @@ También con servicio Api Rest
 </script>
 ```
 
-Archivo data/db.json API Rest
+Data/DB.json Api Rest file
 
 ```html
 <script>
@@ -1376,47 +1350,7 @@ Archivo data/db.json API Rest
 </script>
 ```
 
-Archivo data/db.json API Rest
-
-```html
-<script>
-  {
-    "type": "FeatureCollection",
-    "features": [
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -70.6483,
-            -33.4569
-          ]
-        },
-        "properties": {
-          "name": "Plaza de Armas",
-          "category": "landmark"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            -70.615,
-            -33.44
-          ]
-        },
-        "properties": {
-          "name": "Parque Bicentenario",
-          "category": "park"
-        }
-      }
-    ]
-  }
-</script>
-```
-
-También otro servicio/task.service.ts
+Also another service/task.service.ts
 
 ```html
 <script>
@@ -1462,20 +1396,19 @@ También otro servicio/task.service.ts
 </script>
 ```
 
-### 3. Mostrar en el mapa los puntos del GeoJSON.
+### 3.Show the Geojson points on the map.
 
-Para mostrar puntos de un archivo GeoJSON en un mapa utilizando MapLibre GL JS, debe seguir los siguientes pasos: incluir la biblioteca de MapLibre, configurar el mapa base y, luego, agregar el archivo GeoJSON como una fuente y una capa para visualizar los puntos.
+To show points of a geojson file on a map using GL JS maple, you must follow the following steps: include the Maple Library, configure the base map and, then, add the geojson file as a source and a layer to display the points.
 
-Primero debes crear una fuente de mapa usando la función addSource() y pasar los datos GeoJSON como parámetro. Luego, para visualizar esos puntos, creas una capa con addLayer() y la asocias a la fuente de datos previamente creada, especificando el tipo de geometría ("Point") y las opciones de estilo para los puntos.
+You must first create a map source using the Addsource () function and pass the Geojson data as a parameter. Then, to visualize those points, create a layer with Addlayer () and associate it to the previously created data source, specifying the type of geometry ("Point") and the style options for the points.
 
-Pasos detallados para mostrar puntos GeoJSON en MapLibre GL JS
+Detailed steps to show geojson points in Maplebre Gl JS
+Create the data source (Source):
 
-- Crea la fuente de datos (Source):
-
-* Utiliza el método map.addSource(sourceId, sourceData).
-* sourceId: Es un identificador único para esta fuente (ej: "places").
-* sourceData: Es un objeto que contiene los datos GeoJSON. Puedes cargar esto desde un archivo o directamente como un objeto Typescript.
-  Ejemplo de código (fragmento):
+- Use the Map.addsource (sourceid, sourcedata) method.
+- Sourceid: It is a unique identifier for this source (eg, "Places").
+- Sourcedata: It is an object that contains the Geojson data. You can load this from a file or directly as a TypeScript object.
+  Example of code (fragment):
 
 ```html
 <script>
@@ -1538,15 +1471,15 @@ Pasos detallados para mostrar puntos GeoJSON en MapLibre GL JS
 </script>
 ```
 
-- Agrega la capa de visualización (Layer):
+### Add the display layer (Layer):
 
-* Usa el método map.addLayer(layerDefinition).
-* layerDefinition: Es un objeto que describe cómo se renderizará la capa.
-* Especifica que la source es la fuente que creaste en el paso anterior (ej: source: 'places').
-* Define type: 'symbol' para mostrar puntos como símbolos o iconos, o type: 'circle' para círculos.
-* Dentro del objeto paint, puedes configurar el color, el tamaño y la forma de los puntos.
+- Use the map.addLayer(layerDefinition) method.
+- layerDefinition: It is an object that describes how the layer will be rendered.
+- Specify that the source is the source you created in the previous step (ex: source: 'places').
+- Define type: 'symbol' to display points as symbols or icons, or type: 'circle' for circles.
+- Within the paint object, you can set the color, size and shape of the dots.
 
-Ejemplo de código (fragmento):
+Code example (snippet):
 
 ```html
 <script>
@@ -1565,38 +1498,38 @@ Ejemplo de código (fragmento):
 </script>
 ```
 
-### Consideraciones:
+### Considerations:
 
-Datos GeoJSON: El archivo GeoJSON debe contener un objeto FeatureCollection con features de tipo Point para que se muestren correctamente.
+GeoJSON Data: The GeoJSON file must contain a FeatureCollection object with features of type Point for them to display correctly.
 
-### 4. Agregar un nuevo punto haciendo clic en el mapa.
+### 4. Add a new point by clicking on the map.
 
-Para agregar un nuevo punto haciendo clic en un mapa MapLibre, debes usar el evento click en el mapa para obtener las coordenadas del clic y luego agregar una nueva característica de punto a tus datos GeoJSON, que puedes visualizar con una capa. Esto implica obtener las coordenadas del evento de clic, crear un objeto GeoJSON con esas coordenadas y añadirlo como una fuente de datos al mapa, y finalmente crear una capa de mapa para mostrarlo visualmente.
+To add a new point by clicking on a MapLibre map, you must use the click event on the map to get the coordinates of the click and then add a new point feature to your GeoJSON data, which you can display with a layer. This involves getting the coordinates of the click event, creating a GeoJSON object with those coordinates and adding it as a data source to the map, and finally creating a map layer to display it visually.
 
-Pasos para agregar un punto al hacer clic en el mapa
+### Steps to add a point when clicking on the map
 
-- Configurar el mapa: Asegúrate de tener tu mapa MapLibre inicializado y configurado para escuchar eventos de clic.
-- Manejar el evento click del mapa:
+a. Configure the map: Make sure you have your MapLibre map initialized and configured to listen for click events.
+b. Handle the map click event:
 
-* Usa map.on('click', function(e) { ... }); para ejecutar una función cada vez que el usuario haga clic en el mapa.
-* Dentro de la función, puedes acceder a las coordenadas del clic a través de e.lngLat.
+- Use map.on('click', function(e) { ... }); to run a function every time the user clicks on the map.
+- Inside the function, you can access the click coordinates via e.lngLat.
 
-- Crear una fuente de datos GeoJSON:
+c. Create a GeoJSON data source:
 
-* Si ya tienes una fuente GeoJSON en tu mapa, puedes agregar los nuevos puntos a ella.
-* Si no, crea una fuente GeoJSON nueva con los datos de tu punto.
-* Usa el método map.addSource() para agregar esta fuente al mapa.
+- If you already have a GeoJSON source in your map, you can add the new points to it.
+- If not, create a new GeoJSON source with your point data.
+- Use the map.addSource() method to add this source to the map.
 
-- Agregar una capa para mostrar los puntos:
+d. Add a layer to show the points:
 
-* Añade una capa de tipo "symbol" o "circle" para visualizar los puntos en el mapa.
-* Asocia esta capa a la fuente GeoJSON que creaste.
+- Add a "symbol" or "circle" type layer to display the points on the map.
+- Associate this layer with the GeoJSON source you created.
 
-- Añadir la característica de punto:
+c. Add point feature:
 
-* Crea un nuevo objeto GeoJSON de tipo "Point" usando las coordenadas e.lngLat.
-* Agrega este nuevo punto a tus datos GeoJSON. Puedes hacerlo obteniendo el objeto source actual y modificándolo.
-* Actualiza la fuente en el mapa con los nuevos datos GeoJSON usando map.getSource('tu_fuente_id').setData(nuevos_datos_geojson).
+- Creates a new GeoJSON object of type "Point" using the e.lngLat coordinates.
+- Add this new point to your GeoJSON data. You can do this by getting the current source object and modifying it.
+- Update the source in the map with the new GeoJSON data using map.getSource('your_source_id').setData(new_geojson_data).
 
 ```html
 <script>
@@ -1707,14 +1640,14 @@ Pasos para agregar un punto al hacer clic en el mapa
 </script>
 ```
 
-### 5. Eliminar un punto existente.
+### 5.Delete an existing point.
 
-Para eliminar un marcador (punto) existente de un mapa de MapLibre utilizando un botón en TypeScript, debes seguir estos pasos:
+To eliminate an existing marker (point) of a maplabre map using a TypeScript button, you must follow these steps:
 
-- Guardar los marcadores en un arreglo: Al crear un marcador, debes almacenarlo en un arreglo (array) para tener una referencia a él más adelante.
-- Acceder al marcador: Al hacer clic en el botón de eliminar, debes poder identificar cuál de los marcadores quieres remover. Una forma común es eliminar el último marcador agregado o todos a la vez.
-- Usar el método marker.remove(): La API de MapLibre GL JS para los marcadores incluye un método remove() para eliminarlos del mapa.
-- Vincular el botón a la función: Configura el botón HTML para que, al ser pulsado, ejecute la función TypeScript que remueve el marcador.
+- Store markers in a matrix: When creating a score, you must store it in a matrix (matrix) for subsequent reference.
+- Access the score: By clicking on the Delete button you should be able to identify which of the markers you want to delete. A common way is to eliminate the last aggregate marker or all at once.
+- Use the Marker.remove () method: the API GL JS Maple for markers includes a remote () method to remove them from the map.
+- Link button to function: Configure the HTML button so that when you press, run the TypeScript function that eliminates the score.
 
 ```html
 <script>
@@ -1768,9 +1701,9 @@ Para eliminar un marcador (punto) existente de un mapa de MapLibre utilizando un
 </script>
 ```
 
-### 6 Exportar el resultado como archivo GeoJSON descargable.
+### 6.Export the result as a downloadable geojson file.
 
-Para exportar un resultado de MapLibre a un archivo GeoJSON descargable con unos botones usando TypeScript, necesitas extraer los datos de la fuente del mapa, convertirlos en una cadena JSON y crear un enlace de descarga programáticamente.
+To export a MapLibre result to a downloadable GeoJSON file with a few buttons using TypeScript, you need to extract the data from the map source, convert it to a JSON string, and create a download link programmatically.
 
 ```html
 <script>
