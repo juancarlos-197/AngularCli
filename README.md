@@ -377,6 +377,11 @@ export const appConfig: ApplicationConfig = {
 <app-footer></app-footer>
 </script>
 ```
+
+
+
+
+
 ##### Usa
 Úselo en su componente
 
@@ -608,7 +613,7 @@ We start from a simple viewer, and we center it to show it by default.
   }
 </script>
 ```
-
+### app.component.css
 ```css
 .position {
   position: relative;
