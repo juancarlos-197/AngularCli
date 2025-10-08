@@ -902,9 +902,6 @@ What's happening is that MapLibre GL JS replaces the entire map structure when c
 
 Let's modify our code to adapt it to this need. First, let's encapsulate the loading functionality of our province layer in function. We call this function when the map has loaded and also when we change styles from the "select" function:
 
-```html
-<script></script>
-```
 
 With this, we have a viewer capable of moving fluidly, showing the user's location, and adapting to different visual styles.
 
