@@ -1,5 +1,5 @@
-import { Mapa } from './../interfaces/mapa';
-import { ApiResponse } from './../interfaces/apiResponse';
+import { FeatureCollection } from '../../interfaces/featureCollection';
+import { ApiResponse } from '../../interfaces/apiResponse';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
@@ -18,11 +18,13 @@ export class TaskService {
     // Crear una nueva entidad de punto (marcador)**/
 
   /**Un arreglo de nuevo punto (Mapa). Variable privada  */
-  private newPoin: any[] = [
-    {
+  private newPoin: FeatureCollection[] = [
+     {
+
       "type": "FeatureCollection",
       "features": [
         {
+          "id": "poi-001",
           "type": "Feature",
           "geometry": {
             "type": "Point",
@@ -33,43 +35,40 @@ export class TaskService {
           "properties": {
             "name": "Plaza de Armas",
             "category": "landmark",
-            "marker-color": "#7e7e7e",
-            "marker-size": "medium",
-            "marker-symbol": "circle-stroked",
-            "population": 123456
           }
         },
-        {
+{
+          "id": "poi-002",
           "type": "Feature",
           "geometry": {
             "type": "Point",
             "coordinates": [
-              56,
-              45
-            ]
+              32.7,
+              45.78]
           },
           "properties": {
-            "name": "Parque Bicentenario",
-            "category": "park"
+            "name": "Plaza de Armas",
+            "category": "landmark",
           }
         }
+
       ]
     }
   ]
-  private newPoints: string = 'http://localhost:3000/data';//Un endpoint para consumir 
+  private newPoints: string = 'http://localhost:3000/features';//Un endpoint para consumir 
 
   /**Crea una dependencia llamada HttpClient  */
   constructor(private http: HttpClient) { }
-  getAllNewPoint(): Mapa[] {
+  getAllNewPoint(): FeatureCollection[] {
     return this.newPoin
   }
 
-  getNewPoint(): Observable<ApiResponse<Mapa[]>> {
+  getNewPoint(): Observable<ApiResponse<FeatureCollection[]>> {
     /**Un verbo de la API, son GET para CONSULTAR, POST para enviar, PUT y PATCH para actuakizar
      * y DELECT para borrar, en este caso CONSULTAR
       */
     return this.http.get(this.newPoints).pipe(
-      map((data) => ({ data } as ApiResponse<Mapa[]>)),
+      map((data) => ({ data } as ApiResponse<FeatureCollection[]>)),
       catchError(this.handleError)
     )
   }

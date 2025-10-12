@@ -103,8 +103,13 @@
         (puntos de interés) sobre un mapa interactivo.</p>
       <p>Angular Cli + MapJson lleva el poder de la navegación interior personalizable avanzada a las manos de tus
         clientes, elevando el mapeo de interiores a un nivel completamente nuevo </p>
+      <p>
+        En el desarrollo frontend con Angular, la arquitectura y la separación de responsabilidades son cruciales para
+        construir aplicaciones escalables y mantenibles. La clave es organizar el código de manera que cada parte tenga
+        un propósito claro y específico, evitando que un solo componente o clase se sobrecargue de tareas.
+      </p>
       <p>Mapas </p>
-      <!--Mapas --> 
+      <!--Mapas -->
       <select id="estilos">
         <option value="https://api.maptiler.com/maps/streets-v2/style.json?key=R92AyDPGHtv4Pg0yOSsx">Calles - Claro
         </option>
@@ -134,7 +139,7 @@
 
         <!-- Botón Descargar GeoJSON -->
         <button type="button" id="downloadButton" class="btn btn-primary">Descargar GeoJSON</button>
-        
+
         <!-- Botón Añadir/Emiminar -->
         <div id="controls">
           <button type="button" id="add-marker-btn" class="btn btn-primary">Añadir marcador</button>
@@ -144,5 +149,6 @@
     </div>
   </div>
 </main>
-
+<router-outlet/>
+<app-hero-form></app-hero-form>
 <app-footer></app-footer>

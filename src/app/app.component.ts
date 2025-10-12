@@ -1,3 +1,4 @@
+import { MascotaService } from './services/mascota/mascota.service';
 import { Component, OnInit } from '@angular/core';
 /**Importa maplibregl */
 import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeature } from 'maplibre-gl';
@@ -7,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import * as geojson from 'geojson';
 
 /**Importa FooterComponent */
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 /**Importa HttpClient para del Core de Angular */
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -17,14 +18,17 @@ import { FormsModule } from '@angular/forms';
 /**Importar Form  */
 import { MatInputModule } from '@angular/material/input';
 /**Importar generador de formularios  */
-import { Mapa } from './interfaces/mapa';
-import { TaskService } from './services/task.service';
+import { FeatureCollection } from './interfaces/featureCollection';
+import { TaskService } from './services/task/task.service';
+import { Mascota } from './interfaces/mascota';
+import { RouterOutlet } from '@angular/router';
+import { HeroFormComponent } from './compoonent/hero-form/hero-form.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
+  imports: [RouterOutlet,HeroFormComponent,
     FooterComponent, FormsModule, MatInputModule,
     HttpClientModule
   ],
@@ -37,11 +41,14 @@ export class AppComponent implements OnInit {
   public marke: Marker | null = null;
 
   //La base de datos de puntos con GeoJSON pruebas
-  public newPoin1: Mapa[] = [];
+  public newPoin1: FeatureCollection[] = [];
+
+
 
   //Api Rest endpoint
-  public newPoint2: Mapa[] = [];
-  public loading: boolean = false;
+  public newPoint2: FeatureCollection[] = [];
+
+  //public loading: boolean = false;
   public error: string | null = null;
 
   /**El ciclo de vida de Angular , nosotros tenemos que definirle al componente, que estamos trabajando en este 
@@ -49,27 +56,31 @@ export class AppComponent implements OnInit {
    * que hacer uso de algunos de los HOOKS que tiene Angular disponible. Vamos a hacer uso del HOOK ng init
    * iniciando ngOnInit 
     */
+  geoData: FeatureCollection | null = null;
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService,
+  ) {
     this.newPoin1 = this.taskService.getAllNewPoint()
     console.log('Base de datos pruebas', this.newPoin1);
-
+    
   }
 
   ngOnInit() {
     /**Api Rest endpoint para consumir */
     this.taskService.getNewPoint().subscribe({
       next: (response) => {
-        console.log('Base de datos API Rest', response);
         this.newPoint2 = response.data;
-        this.loading = false;
+                console.log('Base de datos API Rest', this.newPoint2);
+
+       // this.loading = false;
       },
       error: (error) => {
         this.error = error.message
       }
     })
-    this.loading = true;
+    //this.loading = true;
     this.error = null;
+
 
   }
 
@@ -164,6 +175,7 @@ export class AppComponent implements OnInit {
           ]
 
       }
+console.log('P',this.newPoin1);
 
       // Espera a que el mapa cargue antes de añadir las fuentes y capas
       this.map.on('load', () => {
@@ -171,7 +183,7 @@ export class AppComponent implements OnInit {
         const source = this.map?.addSource('places', {
           type: 'geojson',
           //  Cargar datos GeoJSON
-          data:
+          data:    
           {
             "type": "FeatureCollection",
             "features":
@@ -236,6 +248,9 @@ export class AppComponent implements OnInit {
 
               ]
           }
+
+
+
         });
 
 

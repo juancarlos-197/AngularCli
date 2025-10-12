@@ -1,0 +1,47 @@
+{
+  "features": [
+    {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "id": 1,
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-70.6483, -33.4569]
+          },
+          "properties": {
+            "name": "Plaza de Armas",
+            "category": "landmark"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-70.615, -33.44]
+          },
+          "properties": {
+            "name": "Parque Bicentenario",
+            "category": "park"
+          }
+        }
+      ]
+    }
+  ],
+
+  "mascotas": [
+    {
+      "id": " 1 ",
+      "nombre": "Max ",
+      "tipo": " Perro ",
+      "edad": 2
+    },
+    {
+      "id": " 2 ",
+      "nombre": "Luna ",
+      "tipo": " Perroa ",
+      "edad": 4
+    }
+  ]
+}
