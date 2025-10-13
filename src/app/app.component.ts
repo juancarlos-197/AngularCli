@@ -23,12 +23,13 @@ import { TaskService } from './services/task/task.service';
 import { Mascota } from './interfaces/mascota';
 import { RouterOutlet } from '@angular/router';
 import { HeroFormComponent } from './compoonent/hero-form/hero-form.component';
+import { HederComponent } from './shared/components/heder/heder.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeroFormComponent,
+  imports: [RouterOutlet,HeroFormComponent,HederComponent,
     FooterComponent, FormsModule, MatInputModule,
     HttpClientModule
   ],
@@ -69,9 +70,9 @@ export class AppComponent implements OnInit {
     /**Api Rest endpoint para consumir */
     this.taskService.getNewPoint().subscribe({
       next: (response) => {
-        this.newPoint2 = response.data;
-                console.log('Base de datos API Rest', this.newPoint2);
+        this.newPoint2 = response.data
 
+                console.log('Base de datos API Rest', this.newPoint2);
        // this.loading = false;
       },
       error: (error) => {
