@@ -29,7 +29,7 @@ import { HederComponent } from './shared/components/heder/heder.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FormComponent,HederComponent,
+  imports: [RouterOutlet, FormComponent, HederComponent,
     FooterComponent, FormsModule, MatInputModule,
     HttpClientModule
   ],
@@ -58,20 +58,23 @@ export class AppComponent implements OnInit {
    * iniciando ngOnInit 
     */
   geoData: FeatureCollection | null = null;
-  readonly  taskService=inject(TaskService) 
-  constructor() {}
+
+  // Inyección de taskService usando la función inject
+  readonly taskService = inject(TaskService)
+  constructor() { }
 
   ngOnInit() {
-      this.newPoin1 = this.taskService.getAllNewPoint()
+    // Ahora puedes usar taskService aquí
+    this.newPoin1 = this.taskService.getAllNewPoint()
     console.log('Base de datos pruebas', this.newPoin1);
-    
+
     /**Api Rest endpoint para consumir */
     this.taskService.getNewPoint().subscribe({
       next: (response) => {
         this.newPoint2 = response.data
 
-                console.log('Base de datos API Rest', this.newPoint2);
-       // this.loading = false;
+        console.log('Base de datos API Rest', this.newPoint2);
+        // this.loading = false;
       },
       error: (error) => {
         this.error = error.message
@@ -174,7 +177,7 @@ export class AppComponent implements OnInit {
           ]
 
       }
-console.log('P',this.newPoin1);
+      console.log('P', this.newPoin1);
 
       // Espera a que el mapa cargue antes de añadir las fuentes y capas
       this.map.on('load', () => {
@@ -182,7 +185,7 @@ console.log('P',this.newPoin1);
         const source = this.map?.addSource('places', {
           type: 'geojson',
           //  Cargar datos GeoJSON
-          data:    
+          data:
           {
             "type": "FeatureCollection",
             "features":

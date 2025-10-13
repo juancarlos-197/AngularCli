@@ -14,13 +14,15 @@ export class ProductoComponent {
   //Api Rest endpoint
   public mascota: Mascota[] = [];
   public error: string | null = null;
-  
+   
+  // Inyección de mascotaSerice usando la función inject
   readonly mascotaSerice=inject(MascotaService); 
  
   constructor() {}
   
   ngOnInit() {
     /**Api Rest endpoint para consumir */
+        // Ahora puedes usar mascotaSerice aquí
     this.mascotaSerice.getNewMascota().subscribe({
       next: (response) => {
         this.mascota = response.data;
