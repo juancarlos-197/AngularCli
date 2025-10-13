@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MascotaService } from '../../services/mascota/mascota.service';
 import { Mascota } from '../../interfaces/mascota';
 
@@ -10,25 +10,23 @@ import { Mascota } from '../../interfaces/mascota';
   styleUrl: './producto.component.css'
 })
 export class ProductoComponent {
-    
+
   //Api Rest endpoint
   public mascota: Mascota[] = [];
-    public error: string | null = null;
-
-constructor(    private mascotaSerice: MascotaService
-){
-
-}
+  public error: string | null = null;
+  
+  readonly mascotaSerice=inject(MascotaService); 
+ 
+  constructor() {}
+  
   ngOnInit() {
-
-
-      /**Api Rest endpoint para consumir */
+    /**Api Rest endpoint para consumir */
     this.mascotaSerice.getNewMascota().subscribe({
       next: (response) => {
         this.mascota = response.data;
-                console.log('Base de datos API Rest', this.mascota);
+        console.log('Base de datos API Rest', this.mascota);
 
-       // this.loading = false;
+        // this.loading = false;
       },
       error: (error) => {
         this.error = error.message

@@ -1,5 +1,5 @@
 import { MascotaService } from './services/mascota/mascota.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 /**Importa maplibregl */
 import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeature } from 'maplibre-gl';
 import maplibregl from 'maplibre-gl';
@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import * as geojson from 'geojson';
 
 /**Importa FooterComponent */
-import { FooterComponent } from './pages/footer/footer.component';
+import { FooterComponent } from './compoonent/footer/footer.component';
 
 /**Importa HttpClient para del Core de Angular */
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -22,14 +22,14 @@ import { FeatureCollection } from './interfaces/featureCollection';
 import { TaskService } from './services/task/task.service';
 import { Mascota } from './interfaces/mascota';
 import { RouterOutlet } from '@angular/router';
-import { HeroFormComponent } from './compoonent/hero-form/hero-form.component';
+import { FormComponent } from './compoonent/form/form.component';
 import { HederComponent } from './shared/components/heder/heder.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeroFormComponent,HederComponent,
+  imports: [RouterOutlet,FormComponent,HederComponent,
     FooterComponent, FormsModule, MatInputModule,
     HttpClientModule
   ],
@@ -58,15 +58,13 @@ export class AppComponent implements OnInit {
    * iniciando ngOnInit 
     */
   geoData: FeatureCollection | null = null;
-
-  constructor(private taskService: TaskService,
-  ) {
-    this.newPoin1 = this.taskService.getAllNewPoint()
-    console.log('Base de datos pruebas', this.newPoin1);
-    
-  }
+  readonly  taskService=inject(TaskService) 
+  constructor() {}
 
   ngOnInit() {
+      this.newPoin1 = this.taskService.getAllNewPoint()
+    console.log('Base de datos pruebas', this.newPoin1);
+    
     /**Api Rest endpoint para consumir */
     this.taskService.getNewPoint().subscribe({
       next: (response) => {

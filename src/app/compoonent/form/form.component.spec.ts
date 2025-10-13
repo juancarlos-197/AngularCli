@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeroFormComponent } from './hero-form.component';
+import { HeroFormComponent } from './form.component';
 
 describe('HeroFormComponent', () => {
   let component: HeroFormComponent;
