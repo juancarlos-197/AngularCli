@@ -1,4 +1,3 @@
-import { MascotaService } from './services/mascota/mascota.service';
 import { Component, inject, OnInit } from '@angular/core';
 /**Importa maplibregl */
 import { Map, NavigationControl, Marker, Popup, GeoJSONFeatureId, MapGeoJSONFeature } from 'maplibre-gl';
@@ -18,9 +17,12 @@ import { FormsModule } from '@angular/forms';
 /**Importar Form  */
 import { MatInputModule } from '@angular/material/input';
 /**Importar generador de formularios  */
-import { FeatureCollection } from './interfaces/featureCollection';
+import { FeatureCollection, Properties } from './interfaces/featureCollection';
 import { TaskService } from './services/task/task.service';
-import { Mascota } from './interfaces/mascota';
+
+
+
+
 import { RouterOutlet } from '@angular/router';
 import { FormComponent } from './compoonent/form/form.component';
 import { HederComponent } from './shared/components/heder/heder.component';
@@ -47,7 +49,8 @@ export class AppComponent implements OnInit {
 
 
   //Api Rest endpoint
-  public newPoint2: FeatureCollection[] = [];
+  public newPoint2:any;
+  public newPoint3:any;
 
   //public loading: boolean = false;
   public error: string | null = null;
@@ -57,7 +60,6 @@ export class AppComponent implements OnInit {
    * que hacer uso de algunos de los HOOKS que tiene Angular disponible. Vamos a hacer uso del HOOK ng init
    * iniciando ngOnInit 
     */
-  geoData: FeatureCollection | null = null;
 
   // Inyección de taskService usando la función inject
   readonly taskService = inject(TaskService)
@@ -71,9 +73,17 @@ export class AppComponent implements OnInit {
     /**Api Rest endpoint para consumir */
     this.taskService.getNewPoint().subscribe({
       next: (response) => {
-        this.newPoint2 = response.data
+ 
+   // Acceso seguro a la propiedad 'properties' del primer objeto 'feature'
 
-        console.log('Base de datos API Rest', this.newPoint2);
+
+   const name = []
+  
+ this.newPoint2   = response.data?.[0]?.features?.[0]?.properties?.name;
+  this.newPoint3   = response.data?.[0]?.features?.[1]?.properties?.name;
+
+        console.log('Base de datos API Rest- MAP', this.newPoint3
+        );
         // this.loading = false;
       },
       error: (error) => {

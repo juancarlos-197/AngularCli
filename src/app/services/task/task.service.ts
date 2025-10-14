@@ -55,7 +55,7 @@ export class TaskService {
       ]
     }
   ]
-  private newPoints: string = 'http://localhost:3000/features';//Un endpoint para consumir 
+  private newPoints: any = 'http://localhost:3000/features';//Un endpoint para consumir 
 
   /**Crea una dependencia llamada HttpClient  */
   constructor(private http: HttpClient) { }
