@@ -7,7 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import * as geojson from 'geojson';
 
 /**Importa FooterComponent */
-import { FooterComponent } from './compoonent/footer/footer.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 /**Importa HttpClient para del Core de Angular */
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -24,7 +24,7 @@ import { TaskService } from './services/task/task.service';
 
 
 import { RouterOutlet } from '@angular/router';
-import { FormComponent } from './compoonent/form/form.component';
+import { FormComponent } from './components/form/form.component';
 import { HederComponent } from './shared/components/heder/heder.component';
 
 
@@ -77,7 +77,6 @@ export class AppComponent implements OnInit {
    // Acceso seguro a la propiedad 'properties' del primer objeto 'feature'
 
 
-   const name = []
   
  this.newPoint2   = response.data?.[0]?.features?.[0]?.properties?.name;
   this.newPoint3   = response.data?.[0]?.features?.[1]?.properties?.name;

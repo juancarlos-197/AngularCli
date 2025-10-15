@@ -1,0 +1,17 @@
+@if(pokemonResults$ | async; as resultObject){
+<ul class="pokemos-list">
+    @for (item of resultObject.results; track item.name) {
+    <li>
+        <app-pokemon-item [pokemonInfo]="item"></app-pokemon-item>
+
+    </li>
+    }
+</ul>
+}
+
+
+@if(errorMessage){
+    <app-error-message [errorMessage]="errorMessage"></app-error-message>
+}
+
+PPPPPPPPPPPPP
