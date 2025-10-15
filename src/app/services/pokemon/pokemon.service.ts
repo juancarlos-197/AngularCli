@@ -13,7 +13,7 @@ export class PokemonService {
   ) { }
 
   getPokemonList():Observable<PokemonResults>{
-    return this.http.get<PokemonResults>(`https://pokeapi.co/apisdddddddd/v2/pokemon?limit=100000&offset=0`)
+    return this.http.get<PokemonResults>(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
     .pipe(catchError((error: HttpErrorResponse)=>{
       let errorMessage ="";
       if (error.error instanceof ErrorEvent) {
