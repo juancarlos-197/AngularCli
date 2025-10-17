@@ -1,11 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MascotaService } from '../../services/mascota/mascota.service';
 import { Mascota } from '../../interfaces/mascota';
+import {MatTableModule} from '@angular/material/table';
+
+
+
 
 @Component({
   selector: 'app-producto',
   standalone: true,
-  imports: [],
+  imports: [MatTableModule],
   templateUrl: './producto.component.html',
   styleUrl: './producto.component.css'
 })
@@ -17,7 +21,10 @@ export class ProductoComponent {
    
   // Inyección de mascotaSerice usando la función inject
   readonly mascotaSerice=inject(MascotaService); 
- 
+
+
+  displayedColumns: string[] = ['id','nombre', 'tipo', 'edad', ];
+  dataSource : Mascota[] = [];
   constructor() {}
   
   ngOnInit() {
@@ -26,6 +33,7 @@ export class ProductoComponent {
     this.mascotaSerice.getNewMascota().subscribe({
       next: (response) => {
         this.mascota = response.data;
+        this.dataSource = response.data;
         console.log('Base de datos API Rest', this.mascota);
 
         // this.loading = false;

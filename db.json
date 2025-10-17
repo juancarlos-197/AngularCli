@@ -15,7 +15,8 @@
             "category": "landmark"
           }
         },
-        {"id": 2,
+        {
+          "id": 2,
           "type": "Feature",
           "geometry": {
             "type": "Point",
@@ -32,16 +33,28 @@
 
   "mascotas": [
     {
-      "id": " 1 ",
+      "id": 1,
       "nombre": "Max ",
       "tipo": " Perro ",
       "edad": 2
     },
     {
-      "id": " 2 ",
+      "id": 2,
       "nombre": "Luna ",
-      "tipo": " Perroa ",
+      "tipo": " Perra ",
       "edad": 4
+    },
+    {
+      "id": 3,
+      "nombre": "Goty ",
+      "tipo": " Perra ",
+      "edad": 20
+    },
+    {
+      "id": 4,
+      "nombre": "Rex ",
+      "tipo": " Perro ",
+      "edad": 15
     }
   ]
 }
