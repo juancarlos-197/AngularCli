@@ -2,3 +2,10 @@
 
 <p>2 HERO NEW works!</p>
     <button (click)="irAHome()">Ir a la página de inicio</button>
+<section>
+    @if (data) {
+    <div class="container text-center">
+        <app-hero-list [displayedColumns]="displayedColumns" [data]="data" [sortableColumns]="sortables" />
+    </div>
+    }
+</section>

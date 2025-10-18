@@ -56,5 +56,29 @@
       "tipo": " Perro ",
       "edad": 15
     }
+  ],
+
+  
+  "heroes": [
+    {
+      "id": 1,
+      "nombre": "Max "
+      
+    },
+    {
+      "id": 2,
+      "nombre": "Luna "
+      
+    },
+    {
+      "id": 3,
+      "nombre": "Goty "
+      
+    },
+    {
+      "id": 4,
+      "nombre": "Rex "
+      
+    }
   ]
 }

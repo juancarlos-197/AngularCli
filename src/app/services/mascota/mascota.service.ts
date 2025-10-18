@@ -3,16 +3,16 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { ApiResponse } from '../../interfaces/apiResponse';
 import { Mascota } from '../../interfaces/mascota';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MascotaService {
-  private apiUrl: string = 'http://localhost:3000/mascotas';
   constructor(private http: HttpClient) { }
 
   getNewMascota(): Observable<ApiResponse<Mascota[]>> {
-    return this.http.get(this.apiUrl).pipe(
+    return this.http.get(`${environment.apiUrlProductoBase}`).pipe(
       map((data) => ({ data } as ApiResponse<Mascota[]>)),
       catchError(this.handleError)
     )
