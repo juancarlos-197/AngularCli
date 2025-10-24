@@ -41,6 +41,11 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./pages/pokemon-list/pokemon-list.component').then(p => p.PokemonListComponent)
     }, 
+     {
+        path: 'bicicleta',
+        loadComponent: () =>
+            import('./pages/bicicleta/bicicleta.component').then(b => b.BicicletaComponent)
+    },
     {
         path: '**',
         redirectTo: 'home'

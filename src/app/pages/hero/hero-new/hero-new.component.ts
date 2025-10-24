@@ -3,14 +3,14 @@ import { Component, inject, OnInit } from '@angular/core';
  * donde realizarás la navegación.
  */
 import { Router } from '@angular/router';
-import { HeroListComponent } from '../../../components/hero-list/hero-list.component';
+import { GridComponent } from '../../../components/grid/grid.component';
 import { ColumnKeys, Heroes } from '../../../interfaces/heroes';
 import { HeroeService } from '../../../services/heroe/heroe.service';
 
 @Component({
   selector: 'app-hero-new',
   standalone: true,
-  imports: [HeroListComponent],
+  imports: [GridComponent],
   templateUrl: './hero-new.component.html',
   styleUrl: './hero-new.component.css'
 })

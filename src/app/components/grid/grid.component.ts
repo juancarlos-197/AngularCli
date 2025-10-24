@@ -8,13 +8,13 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 @Component({
-  selector: 'app-hero-list',
+  selector: 'app-grid',
   standalone: true,
   imports: [MatPaginator,MatPaginatorModule,MatTableModule,MatSortModule],
-  templateUrl: './hero-list.component.html',
-  styleUrl: './hero-list.component.css'
+  templateUrl: './grid.component.html',
+  styleUrl: './grid.component.css'
 })
-export class HeroListComponent<T> implements OnInit {
+export class GridComponent<T> implements OnInit {
 
 
 displayedColumns=input.required<string[]>();

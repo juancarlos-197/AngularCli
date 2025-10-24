@@ -14,7 +14,7 @@ export class HeroeService {
   constructor() {}
 
   getHeroeList(){
-       return this.http.get('https://jsonplaceholder.typicode.com/posts')
+    return this.http.get(`${environment.apiUrlHeroesBase}`)
 
    }
  
