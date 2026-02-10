@@ -1,10 +1,114 @@
-.position{
+.position {
     position: relative;
     top: 20px;
 }
 
-.map{
+.map {
     width: 800px;
-     height: 300px; 
-     left: 0%
+    height: 400px;
+    left: 0%
+}
+
+.example-card {
+    max-width: 300px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 31.8%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+}
+
+.map-overlay .map-overlay-inner {
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.map-overlay input {
+    margin: 2px;
+}
+
+input[type=number] {
+    width: 25%
+}
+
+#filter-result {
+    font-size: 8px;
+    font-family: "Courier New";
+}
+
+
+
+
+
+
+.filter-ctrl {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    z-index: 1;
+}
+
+.filter-ctrl input[type='search'] {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    border: 0;
+    background-color: #fff;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    width: 180px;
+}
+
+
+
+
+.filter {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    background-color: white;
+    padding: 10px;
+}
+
+
+
+#downloadButton {
+    position: absolute;
+    bottom: 80px;
+    left: 10px;
+    z-index: 1;
+    padding: 10px;
+    font-family: sans-serif;
+}
+
+
+
+
+#controls {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 10;
+    padding: 10px;
+    background: white;
+    border-radius: px;
+}
+
+button {
+    font-size: 16px;
+    padding: 8px 12px;
+    cursor: pointer;
 }
